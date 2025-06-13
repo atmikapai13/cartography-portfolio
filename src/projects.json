@@ -1,0 +1,128 @@
+[
+  {
+    "id": 1,
+    "title": "NYC AlgoMatcher",
+    "city": "New York",
+    "description": "An interactive website to help NYC residents identify which city agency algorithms (as reported under Local Law 35) may process their data",
+    "link": "https://nyc-algo-matcher.vercel.app/",
+    "github": null,
+    "image": "1.png"
+  },
+  {
+    "id": 2,
+    "title": "Iconic Run Clubs",
+    "city": "New York",
+    "description": "A helpful, colorful maps of all the run clubs within my local residence, New York City",
+    "link": "https://atmikapai13.github.io/iconic-runclubs-nyc/",
+    "github": "https://github.com/aap253/iconic-runclubs-nyc",
+    "image": "2.png"
+  },
+  {
+    "id": 3,
+    "title": "Network Analysis of NYC Subway Accessibility",
+    "city": "New York",
+    "description": "Visualized NYC Subway network architecture (network, nodes, flows, and agents) using GTFS data data and ArcGIS Pro’s Network Analyst Toolkit",
+    "link": "https://www.youtube.com/watch?v=3O_3suJZR7A",
+    "github": null,
+    "image": "3.png"
+  },
+  {
+    "id": 4,
+    "title": "Predictive Maintenance of NYC Subway Disruptions",
+    "city": "New York",
+    "description": "Designed predictive maintenance framework using supervised and unsupervised ML techniques to assess impact of delays on passengers and most vulnerable subway lines",
+    "link": "https://drive.google.com/file/d/1zMYCgKBVHw_3ogIhbPMZD92TFE36Dcbp/view?usp=sharing",
+    "github": null,
+    "image": "4.png"
+  },
+  {
+    "id": 5,
+    "title": "IntelliBART Database Management System",
+    "city": "San Francisco",
+    "description": "Independently built IntelliBART, a relational database management system (RDBMS) integrating Bay Area Rapid Transit (BART) ridership data with GTFS geospatial files; engineered efficient ETL pipeline and robust database schema",
+    "link": "https://medium.com/bay-area-transit-tales-from-an-urban-analyst",
+    "github": "https://medium.com/bay-area-transit-tales-from-an-urban-analyst/sql-database-for-bart-ridership-and-scheduling-data-8fadb40efc51",
+    "image": "5.jpg"
+  },
+  {
+    "id": 6,
+    "title": "BART Ridership Analytics",
+    "city": "San Francisco",
+    "description": "Forecasted ridership to gauge potential return to pre-pandemic levels using SARIMA & Prophet time-series methodologies",
+    "link": "https://medium.com/bay-area-transit-tales-from-an-urban-analyst",
+    "github": "https://medium.com/bay-area-transit-tales-from-an-urban-analyst/forecasting-bart-ridership-sarmix-vs-prophet-8fdfae5f24bc",
+    "image": "6.png"
+  },
+  {
+    "id": 7,
+    "title": "ESRI Developer & Technology Summit 2025",
+    "city": "San Diego",
+    "description": "Supported event logistics as a student assistant while gaining exposure to emerging GIS technologies and geospatial applications of AI and LLMs",
+    "link": "https://medium.com/@atmikapai/notes-on-2025-esri-developer-technology-summit-75cd4b496d5d",
+    "github": null,
+    "image": "7.png"
+  },
+  {
+    "id": 8,
+    "title": "ESRI User Conference 2025",
+    "city": "Palm Springs",
+    "description": "Supported event logistics as a student assistant while gaining exposure to emerging GIS technologies and geospatial applications of AI and LLMs",
+    "link": null,
+    "github": null,
+    "image": "8.png"
+  },
+  {
+    "id": 9,
+    "title": "MakAR for Cornell Tech's MakerLAB",
+    "city": "New York",
+    "description": null,
+    "link": "https://youtu.be/XIyegVX8nrM",
+    "github": null,
+    "image": "9.png"
+  },
+  {
+    "id": 10,
+    "title": "Impact of Selective Migration Policies on Student Migration and Patenting",
+    "city": "San Francisco",
+    "description": "Researched history of visa programs (F-1, OPT-STEM, H1-B) to identify suitable intervention periods and control groups; Conducted Difference-in-Difference analysis with three intervention periods to assess impacts over time and authored paper",
+    "link": "https://drive.google.com/file/d/1dCk9VlXqLSW0PUJBzkQAA1ljaWDabbw7/view",
+    "github": null,
+    "image": "10.png"
+  },
+  {
+    "id": 11,
+    "title": "How does disinformation spread?",
+    "city": "Mumbai",
+    "description": "Tasked with designing survey experiment in English and Hindi to investigate belief adaption amid social media misinformation; Crafted neutral questions to capture participants’ shifts in belief when reacting to newspaper and social media clippings in survey; Deployed survey experiment among friends/family in India to boost experiment participation and capture diverse perspectives",
+    "link": "https://ideas.repec.org/p/osf/osfxxx/h7pue.html",
+    "github": null,
+    "image": "11.png"
+  },
+  {
+    "id": 12,
+    "title": "Taxonomic Database System of Hawaiian Species",
+    "city": "Hawaii",
+    "description": "Co-digitized Elwood Zimmerman’s seven multivolume series on Hawaiian insect taxonomy into a database in Microsoft Access; Organized taxonomical information and species interrelationships into a digitally accessible and searchable format",
+    "link": "https://nature.berkeley.edu/evolab/atmika-pai-2/",
+    "github": null,
+    "image": "12.png"
+  },
+  {
+    "id": 13,
+    "title": "Project Manager at Microfinance at Berkeley",
+    "city": "San Francisco",
+    "description": null,
+    "link": "https://microfinanceatberkeley.com/",
+    "github": null,
+    "image": "13.png"
+  },
+  {
+    "id": 14,
+    "title": "Tree-planting strategies in NYC",
+    "city": "New York",
+    "description": "Developed data-driven sustainable tree-planting strategies using QGIS, directly influencing decisions made by New Yorkers for Parks",
+    "link": "https://drive.google.com/file/d/1nUElvpsu3StJxUv4dWGkUcD0va3OIBE1/view?usp=sharing",
+    "github": null,
+    "image": "14.png"
+  }
+]
