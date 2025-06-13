@@ -6,52 +6,64 @@
     "description": "An interactive website to help NYC residents identify which city agency algorithms, as reported under Local Law 35, may process their data",
     "link": "https://nyc-algo-matcher.vercel.app/",
     "github": null,
-    "image": "1.png"
+    "image": "1.png",
+    "spotlight": true,
+    "tech_stack": ["Web Development", "Survey Design"]
   },
   {
     "id": 2,
     "title": "NYC Iconic Run Clubs",
     "city": "New York",
-    "description": "A web map of NYC run clubs for runners like me",
+    "description": "At 2025 Open Data Week, I attended Dan DeWitz's session on mapping NYC's best sandwiches with AI, featuring a playful site inspired by a New York Times list. Fresh off a half marathon, I created a healthier homage, a map of run clubs across New York City.",
     "link": "https://atmikapai13.github.io/iconic-runclubs-nyc/",
     "github": "https://github.com/aap253/iconic-runclubs-nyc",
-    "image": "2.png"
+    "image": "2.png",
+    "spotlight": false,
+    "tech_stack": ["Web Development"]
   },
   {
     "id": 3,
-    "title": "NYC Subway Accessibility",
+    "title": "Transit Deserts in NYC",
     "city": "New York",
-    "description": "Mapped NYC Subway network architecture (network, nodes, flows, and agents) using GTFS data data and ArcGIS Pro’s Network Analyst Toolkit",
+    "description": "I mapped the NYC subway network system (network, nodes, flows, and agents) using GTFS data and ArcGIS Pro's Network Analyst Toolkit to assess dead transit zones in a city often hailed for having the nation's best transit system.",
     "link": "https://www.youtube.com/watch?v=3O_3suJZR7A",
     "github": null,
-    "image": "3.png"
+    "image": "3.png",
+    "spotlight": false,
+    "tech_stack": ["GIS"]
   },
   {
     "id": 4,
     "title": "Predictive Maintenance of NYC Subway Disruptions",
     "city": "New York",
-    "description": "Designed predictive maintenance framework using supervised and unsupervised ML techniques to assess impact of delays on passengers and most vulnerable subway lines",
+    "description": "I co-designed a predictive maintenance framework using linear models, tree-based algorithms, and K-Means clustering to quantify disruption probabilities, passenger delays, and identify high-impact subway lines. I presented the findings as a white paper to the NYC Open Data Team during Open Data Week to support prioritized MTA intervention.",
     "link": "https://drive.google.com/file/d/1zMYCgKBVHw_3ogIhbPMZD92TFE36Dcbp/view?usp=sharing",
     "github": null,
-    "image": "4.png"
+    "image": "4.png",
+    "spotlight": true,
+    "tech_stack": ["ML", "GIS"]
   },
   {
     "id": 5,
     "title": "IntelliBART Database Management System",
-    "city": "San Francisco",
-    "description": "Independently built IntelliBART, a relational database management system (RDBMS) integrating Bay Area Rapid Transit (BART) ridership data with GTFS geospatial files; engineered efficient ETL pipeline and robust database schema",
+    "city": ["San Francisco", "Berkeley"],
+    "description": "I independently built IntelliBART, a relational database management system (RDBMS) integrating Bay Area Rapid Transit (BART) ridership data with GTFS geospatial files. I designed an ETL pipeline and robust database schema to help urban data enthusiasts explore and analyze transit trends.",
     "link": "https://medium.com/bay-area-transit-tales-from-an-urban-analyst",
     "github": "https://medium.com/bay-area-transit-tales-from-an-urban-analyst/sql-database-for-bart-ridership-and-scheduling-data-8fadb40efc51",
-    "image": "5.jpg"
+    "image": "5.jpg",
+    "spotlight": true,
+    "tech_stack": ["GIS", "Database Design"]
   },
   {
     "id": 6,
     "title": "BART Ridership Analytics",
-    "city": "San Francisco",
-    "description": "Forecasted ridership to gauge potential return to pre-pandemic levels using SARIMA & Prophet time-series methodologies",
+    "city": ["San Francisco", "Berkeley"],
+    "description": "Inspired by Ben Wellington's I Quant NYC and Abhishek Roy's Commute Chronicles, I took a deep dive into Bay Area transit ridership trends, leveraging novel methodologies in advanced ML and time-series forecasting.",
     "link": "https://medium.com/bay-area-transit-tales-from-an-urban-analyst",
     "github": "https://medium.com/bay-area-transit-tales-from-an-urban-analyst/forecasting-bart-ridership-sarmix-vs-prophet-8fdfae5f24bc",
-    "image": "6.png"
+    "image": "6.png",
+    "spotlight": false,
+    "tech_stack": ["ML"]
   },
   {
     "id": 7,
@@ -60,7 +72,9 @@
     "description": "Supported event logistics as a student assistant while gaining exposure to emerging GIS technologies and geospatial applications of AI and LLMs",
     "link": null,
     "github": null,
-    "image": "7.png"
+    "image": "7.png",
+    "spotlight": false,
+    "tech_stack": ["GIS"]
   },
   {
     "id": 8,
@@ -69,52 +83,64 @@
     "description": "Supported event logistics as a student assistant while gaining exposure to emerging GIS technologies and geospatial applications of AI and LLMs",
     "link": "https://medium.com/@atmikapai/notes-on-2025-esri-developer-technology-summit-75cd4b496d5d",
     "github": null,
-    "image": "8.png"
+    "image": "8.png",
+    "spotlight": false,
+    "tech_stack": ["GIS"]
   },
   {
     "id": 9,
     "title": "MakAR for Cornell Tech's MakerLAB",
     "city": "New York",
-    "description": null,
+    "description": "MakAR is an AR tool that shows step-by-step instructions through smart glasses to help new makers use lab equipment safely and on their own. Lab staff can update instructions through a dashboard to keep things running smoothly.",
     "link": "https://youtu.be/XIyegVX8nrM",
     "github": null,
-    "image": "9.png"
+    "image": "9.png",
+    "spotlight": true,
+    "tech_stack": ["AR/VR"]
   },
   {
     "id": 10,
-    "title": "Impact of Selective Migration Policies on Student Migration and Patenting",
-    "city": "San Francisco",
+    "title": "Impact of Selective Migration Policies on Foreign Student Migration and Patenting in the USA",
+    "city": ["Berkeley", "Mumbai", "Yokohama", "Singapore", "Sydney"],
     "description": "Researched history of visa programs (F-1, OPT-STEM, H1-B) to identify suitable intervention periods and control groups; Conducted Difference-in-Difference analysis with three intervention periods to assess impacts over time and authored paper",
     "link": "https://drive.google.com/file/d/1dCk9VlXqLSW0PUJBzkQAA1ljaWDabbw7/view",
     "github": null,
-    "image": "10.png"
+    "image": "10.png",
+    "spotlight": false,
+    "tech_stack": ["ML"]
   },
   {
     "id": 11,
     "title": "How does disinformation spread?",
     "city": "Mumbai",
-    "description": "Tasked with designing survey experiment in English and Hindi to investigate belief adaption amid social media misinformation; Crafted neutral questions to capture participants’ shifts in belief when reacting to newspaper and social media clippings in survey; Deployed survey experiment among friends/family in India to boost experiment participation and capture diverse perspectives",
+    "description": "Tasked with designing survey experiment in English and Hindi to investigate belief adaption amid social media misinformation; Crafted neutral questions to capture participants' shifts in belief when reacting to newspaper and social media clippings in survey; Deployed survey experiment among friends/family in India to boost experiment participation and capture diverse perspectives",
     "link": "https://ideas.repec.org/p/osf/osfxxx/h7pue.html",
     "github": null,
-    "image": "11.png"
+    "image": "11.png",
+    "spotlight": false,
+    "tech_stack": ["Survey Design"]
   },
   {
     "id": 12,
     "title": "Taxonomic Database System of Hawaiian Species",
     "city": "Hawaii",
-    "description": "Co-digitized Elwood Zimmerman’s seven multivolume series on Hawaiian insect taxonomy into a database in Microsoft Access; Organized taxonomical information and species interrelationships into a digitally accessible and searchable format",
+    "description": "Co-digitized Elwood Zimmerman's seven multivolume series on Hawaiian insect taxonomy into a database in Microsoft Access; Organized taxonomical information and species interrelationships into a digitally accessible and searchable format",
     "link": "https://nature.berkeley.edu/evolab/atmika-pai-2/",
     "github": null,
-    "image": "12.png"
+    "image": "12.png",
+    "spotlight": false,
+    "tech_stack": ["Database Design"]
   },
   {
     "id": 13,
     "title": "Project Manager at Microfinance at Berkeley",
-    "city": "San Francisco",
+    "city": "Berkeley",
     "description": null,
     "link": "https://microfinanceatberkeley.com/",
     "github": null,
-    "image": "13.png"
+    "image": "13.png",
+    "spotlight": false,
+    "tech_stack": null
   },
   {
     "id": 14,
@@ -123,6 +149,19 @@
     "description": "Developed data-driven sustainable tree-planting strategies using QGIS, directly influencing decisions made by New Yorkers for Parks",
     "link": "https://drive.google.com/file/d/1nUElvpsu3StJxUv4dWGkUcD0va3OIBE1/view?usp=sharing",
     "github": null,
-    "image": "14.png"
+    "image": "14.png",
+    "spotlight": false,
+    "tech_stack": ["GIS"]
+  },
+  {
+    "id": 15,
+    "title": "Disaster Tweet Classification using Natural Language Processing",
+    "city": "New York",
+    "description": "I engineered an NLP model to classify tweets as disaster-related or not, achieving 89.2% accuracy on the test set. I built a preprocessing pipeline consisting of stopword removal, lemmatization, and vectorization. Then, I applied feature extraction techniques like Bag of Words and N-Grams to train Logistic Regression and Bernoulli Naive Bayes models.",
+    "link": "https://medium.com/@atmikapai/building-a-disaster-detection-model-using-nlp-009a11cfc0ef",
+    "github": null,
+    "image": "15.jpg",
+    "spotlight": false,
+    "tech_stack": ["ML"]
   }
 ]

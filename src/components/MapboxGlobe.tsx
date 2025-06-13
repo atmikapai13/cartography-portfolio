@@ -2,6 +2,7 @@ import { useEffect, useRef } from "react";
 import mapboxgl from "mapbox-gl";
 import "mapbox-gl/dist/mapbox-gl.css";
 import projects from "../projects.json";
+import placeData from '../places.json';
 
 // Project cities data
 const project_cities = [
@@ -15,6 +16,7 @@ const project_cities = [
     { id: 9, name: "Sydney", country: "Australia", longitude: 151.2093, latitude: -33.8688 },
     { id: 10, name: "Singapore", country: "Singapore", longitude: 103.8198, latitude: 1.3521 },
     { id: 11, name: "Yokohama", country: "Japan", longitude: 139.6380, latitude: 35.4437 },
+    { id: 12, name: "West Hollywood", country: "USA", longitude: -118.3617, latitude: 34.0900 },
   ];
 
 mapboxgl.accessToken = "pk.eyJ1IjoiYXRtaWthcGFpMTMiLCJhIjoiY21idHR4eTJpMDdhMjJsb20zNmZheTZ6ayJ9.d_bQSBzesyiCUMA-YHRoIA";
@@ -96,7 +98,7 @@ export default function MapboxGlobe({ selectedProject, onCitySelect }: MapboxGlo
         source: "cities",
         layout: {
           "text-field": ["get", "name"],
-          "text-size": 12,
+          "text-size": 11,
           "text-offset": [0, 1.5],
           "text-anchor": "top",
         },
@@ -110,35 +112,20 @@ export default function MapboxGlobe({ selectedProject, onCitySelect }: MapboxGlo
         const cityName = e.features?.[0]?.properties?.name;
         if (!cityName) return;
         if (onCitySelect) onCitySelect(cityName);
-        console.log("City from marker:", cityName, "| Project cities:", (projects as any[]).map(p => p.city));
 
-        // Find projects for this city
-        const cityProjects = (projects as any[]).filter(
-          (proj) => {
-            const match = proj.city.trim().toLowerCase() === cityName.trim().toLowerCase();
-            console.log(`Comparing "${proj.city.trim().toLowerCase()}" to "${cityName.trim().toLowerCase()}":`, match);
-            return match;
-          }
+        // Find city info (place_description and date)
+        const cityData = (placeData as any[]).find(
+          (entry) => entry.city.trim().toLowerCase() === cityName.trim().toLowerCase()
         );
 
-        let popupContent = `<div class="project-popup">`;
-        if (cityProjects.length === 0) {
-          popupContent += `<p>No projects for this city yet.</p>`;
+        let popupContent = `<div class="city-popup" style="text-align:center;">`;
+        if (!cityData) {
+          popupContent += `<p>No projects for this city.</p>`;
         } else {
-          popupContent += `<div class="project-collage">`;
-          cityProjects.forEach((proj, idx) => {
-            const sizeClass = `size${(idx % 3) + 1}`; // Rotate through 3 sizes for visual interest
-            popupContent += `
-              <div class="project-image-container ${sizeClass}">
-                <a href="${proj.link}" target="_blank" class="project-image-link">
-                  <img src="/assets/${proj.image}" alt="${proj.title}" class="project-image" />
-                  <div class="project-overlay">
-                    <h3>${proj.title}</h3>
-                  </div>
-                </a>
-              </div>
-            `;
-          });
+          popupContent += `<div class="city-description">`;
+          popupContent += `<h3 style='margin-bottom: 6px; text-align:center;'>${cityName}</h3>`;
+          popupContent += `<div style='font-size:0.98rem;color:#bdbdbd;margin-bottom:8px;text-align:center;'><em>${cityData.date || ''}</em></div>`;
+          popupContent += `<div style='font-size:1.05rem;color:#e0e0e0;text-align:center;'>${cityData.place_description || ''}</div>`;
           popupContent += `</div>`;
         }
         popupContent += `</div>`;

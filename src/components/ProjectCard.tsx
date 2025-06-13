@@ -5,15 +5,19 @@ interface ProjectCardProps {
   image: string;
   description?: string;
   link?: string;
+  spotlight?: boolean;
 }
 
-const ProjectCard: React.FC<ProjectCardProps> = ({ title, image, description, link }) => {
+const ProjectCard: React.FC<ProjectCardProps> = ({ title, image, description, link, spotlight }) => {
   return (
-    <div className="project-card">
-      <h4 className="project-card-title">
-        {title}
-        {link && <span className="external-link-icon" title="Opens project webpage">↗</span>}
-      </h4>
+    <div className={`project-card${spotlight ? ' spotlight-card' : ''}`}>
+      {link ? (
+        <a href={link} target="_blank" rel="noopener noreferrer" className="project-title-link">
+          <h4 className="project-card-title">{title} <span className="external-link-icon">↗</span></h4>
+        </a>
+      ) : (
+        <h4 className="project-card-title">{title}</h4>
+      )}
       <div className="project-card-row">
         <div className="project-card-image-col">
           {link ? (

@@ -13,8 +13,7 @@ function App() {
         <div className="nav-title">Atmika Pai</div>
         <ul className="nav-links">
           <li><a href="#work">Work</a></li>
-          <li><a href="#projects">Projects</a></li>
-          <li><a href="#writings">Writings</a></li>
+          <li><a href="https://medium.com/@atmikapai" target="_blank" rel="noopener noreferrer">Writings</a></li>
           <li><a href="#atlas" className="dropdown">Atlas</a>
             <ul className="dropdown-content">
               <li><a href="#vacations">Vacations</a></li>
