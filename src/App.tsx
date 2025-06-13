@@ -1,7 +1,11 @@
+import React, { useState } from 'react';
 import MapboxGlobe from './components/MapboxGlobe';
+import Sidebar from './components/Sidebar';
 import './App.css';
 
 function App() {
+  const [selectedCity, setSelectedCity] = useState<string | null>(null);
+
   return (
     <div>
       {/* Navigation Bar */}
@@ -19,17 +23,16 @@ function App() {
           </li>
         </ul>
       </nav>
-      {/* Map section fits between header and footer */}
-      <div className="map-wrapper">
-        <MapboxGlobe />
-      </div>
-      <div className="overlay">
-        <h3>Projects Around the World</h3>
-        <p>Interactive globe showing my project locations</p>
+      {/* Main content: Map and Sidebar */}
+      <div className="main-content">
+        <div className="map-wrapper">
+          <MapboxGlobe onCitySelect={setSelectedCity} />
+        </div>
+        <Sidebar selectedCity={selectedCity} onClearCity={() => setSelectedCity(null)} />
       </div>
       {/* Footer */}
       <footer className="footer">
-        <span>Built with Vite + React.js + Mapbox GL JS</span>
+        <span>Built with Cursor + Vite + React.js + Mapbox GL JS</span>
       </footer>
     </div>
   );

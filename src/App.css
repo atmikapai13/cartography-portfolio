@@ -184,6 +184,7 @@ body {
   width: 100vw;
   height: auto;
   z-index: 0;
+  margin-left: 32px;
 }
 
 /* Update MapboxGlobe container to fill .map-wrapper */
@@ -205,12 +206,15 @@ body {
   color: #f8f6f0;
 }
 .project-card {
-  margin: 0.5rem;
-  position: relative;
-  border-radius: 8px;
-  overflow: hidden;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-  transition: transform 0.2s ease;
+  background: #232323;
+  border-radius: 14px;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.07);
+  padding: 18px 18px 18px 18px;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  align-items: stretch;
+  transition: box-shadow 0.15s;
 }
 
 .project-card:hover {
@@ -221,6 +225,11 @@ body {
   display: block;
   text-decoration: none;
   color: inherit;
+  transition: transform 0.2s ease-in-out;
+}
+
+.project-image-link:hover {
+  transform: scale(1.05);
 }
 
 .project-image {
@@ -390,4 +399,183 @@ body {
   text-align: center;
   margin: 0;
   padding: 1rem;
+}
+
+/* Sidebar styles */
+.sidebar {
+  width: 340px;
+  background: #181818;
+  color: #f7f6f2;
+  position: relative;
+  height: 100%;
+  overflow-y: auto;
+  z-index: 10;
+  box-shadow: -2px 0 8px rgba(0,0,0,0.08);
+  padding: 24px 16px 24px 16px;
+  display: flex;
+  flex-direction: column;
+  transition: none;
+  scrollbar-width: none; /* Firefox */
+}
+.sidebar::-webkit-scrollbar {
+  display: none; /* Chrome, Safari, Opera */
+}
+
+.sidebar-title {
+  font-size: 1.4rem;
+  font-weight: bold;
+  margin-bottom: 18px;
+  letter-spacing: 0.5px;
+}
+.sidebar-project-list {
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+}
+.sidebar-project-card-wrapper {
+  transition: transform 0.12s;
+}
+.sidebar-project-card-wrapper:hover {
+  transform: translateY(-2px) scale(1.02);
+}
+
+/* ProjectCard styles */
+.project-card-title {
+  font-size: 1.15rem;
+  font-weight: 700;
+  margin: 0 0 8px 0;
+  color: #f7f6f2;
+  width: 100%;
+}
+.project-card-row {
+  display: flex;
+  flex-direction: row;
+  align-items: flex-start;
+  gap: 14px;
+}
+.project-card-image-col {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  min-width: 80px;
+}
+.project-card-image-large {
+  width: 80px;
+  height: 80px;
+  object-fit: cover;
+  border-radius: 10px;
+  background: #111;
+  margin-bottom: 8px;
+}
+.project-card-description {
+  flex: 1 1 0;
+  font-size: 1rem;
+  color: #e0e0e0;
+  margin: 0;
+  line-height: 1.4;
+  align-self: flex-start;
+  padding-top: 0;
+}
+.project-card-links {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  margin-top: 6px;
+}
+.project-link, .github-link {
+  font-size: 0.85rem;
+  color: #e0e0e0;
+  text-decoration: underline dotted;
+  opacity: 0.95;
+  transition: color 0.15s, opacity 0.15s;
+}
+.project-link:hover, .github-link:hover {
+  color: #ffffff;
+  opacity: 1;
+}
+
+/* Main content flex layout */
+.main-content {
+  display: flex;
+  flex-direction: row;
+  height: calc(100vh - 64px - 48px); /* navbar 64px, footer 48px */
+  position: relative;
+  margin: 0;
+  padding: 0;
+}
+.map-wrapper {
+  flex: 1 1 0;
+  min-width: 0;
+  height: 100%;
+  position: relative;
+}
+.sidebar {
+  position: fixed;
+  top: 50px; /* height of navbar */
+  right: 0;
+  height: calc(100vh - 50px - 48px); /* minus navbar and footer */
+  width: 340px;
+  background: #181818;
+  color: #f7f6f2;
+  position: relative;
+  height: 100%;
+  overflow-y: auto;
+  z-index: 10;
+  box-shadow: -2px 0 8px rgba(0,0,0,0.08);
+  padding: 24px 16px 24px 16px;
+  display: flex;
+  flex-direction: column;
+  transition: none;
+}
+
+@media (max-width: 900px) {
+  .sidebar {
+    width: 100vw;
+    position: static;
+    box-shadow: none;
+    padding: 12px 4vw;
+    min-height: 220px;
+    max-height: 320px;
+    border-radius: 0 0 18px 18px;
+  }
+  .main-content {
+    flex-direction: column-reverse;
+    height: auto;
+  }
+  .map-wrapper {
+    min-height: 350px;
+    height: 60vw;
+  }
+}
+
+.sidebar-subtitle {
+  font-size: 0.85rem;
+  font-style: italic;
+  color: #d3d3d3;
+  margin-bottom: 10px;
+  margin-top: 0;
+}
+
+.clickable-title {
+  cursor: pointer;
+  transition: color 0.15s, text-decoration 0.15s;
+}
+.clickable-title:hover {
+  text-decoration: underline dotted;
+  color: #4ab3ff;
+}
+
+.project-title-link {
+  text-decoration: none;
+  color: inherit;
+  transition: color 0.2s ease-in-out;
+}
+.project-title-link:hover {
+  color: #007bff;
+}
+
+.external-link-icon {
+  font-size: 0.8em;
+  margin-left: 4px;
+  opacity: 0.7;
 }
