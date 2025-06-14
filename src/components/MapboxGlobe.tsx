@@ -27,11 +27,10 @@ const project_cities = [
 mapboxgl.accessToken = "pk.eyJ1IjoiYXRtaWthcGFpMTMiLCJhIjoiY21idHR4eTJpMDdhMjJsb20zNmZheTZ6ayJ9.d_bQSBzesyiCUMA-YHRoIA";
 
 interface MapboxGlobeProps {
-  selectedProject?: any;
   onCitySelect?: (city: string | null) => void;
 }
 
-export default function MapboxGlobe({ selectedProject, onCitySelect }: MapboxGlobeProps) {
+export default function MapboxGlobe({ onCitySelect }: MapboxGlobeProps) {
   const mapContainer = useRef<HTMLDivElement>(null);
   const mapRef = useRef<mapboxgl.Map | null>(null);
 

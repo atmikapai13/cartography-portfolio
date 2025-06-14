@@ -4,7 +4,6 @@ import ProjectCard from './ProjectCard';
 
 interface SidebarProps {
   selectedCity?: string | null;
-  onClearCity?: () => void;
 }
 
 const experienceCategories = [
@@ -13,7 +12,7 @@ const experienceCategories = [
   { label: 'Travel', value: 'Travel' },
 ];
 
-const Sidebar: React.FC<SidebarProps> = ({ selectedCity, onClearCity }) => {
+const Sidebar: React.FC<SidebarProps> = ({ selectedCity }) => {
   const [selectedTech, setSelectedTech] = useState<string>('');
   const [selectedCategory, setSelectedCategory] = useState<string>('Work');
 

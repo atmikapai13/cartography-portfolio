@@ -27,10 +27,10 @@ const ProjectCard: React.FC<ProjectCardProps> = ({ title, image, description, li
         <div className="project-card-image-col" style={{ flex: '0 0 auto', display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
           {link ? (
             <a href={link} target="_blank" rel="noopener noreferrer" className="project-image-link">
-              <img src={`/assets/${image}`} alt={title} className="project-card-image-large" />
+              <img src={image} alt={title} className="project-card-image-large" />
             </a>
           ) : (
-            <img src={`/assets/${image}`} alt={title} className="project-card-image-large" />
+            <img src={image} alt={title} className="project-card-image-large" />
           )}
           {role && (
             <div style={{ width: '100%', textAlign: 'left', marginTop: '6px' }}>

@@ -94,14 +94,14 @@ body {
   justify-content: space-between;
 }
 .nav-title {
-  font-size: 0.5rem;
+  font-size: 1.05rem;
   font-weight: 700;
   color: #f8f6f0;
   margin-left: 2.5rem;
-  letter-spacing: .15em;
-  margin-top: 1.05rem;
-  letter-spacing: 0.15em;
-  font-family: "Arial"; /* "Snell Roundhand", "Apple Chancery", "Papyrus", "Comic Sans MS" */
+  letter-spacing: ç.5em;
+  margin-top:1.0rem;
+  letter-spacing: 0.5em;
+  font-family: "Arial"; /* "Arial", Snell Roundhand", "Apple Chancery", "Papyrus", "Comic Sans MS" */
 }
 .nav-links {
   display: flex;
@@ -163,18 +163,16 @@ body {
 }
 
 /* Footer */
-.footer {
-  position: fixed;
-  bottom: 0;
-  left: 0;
-  width: 100vw;
-  background: #151515;
-  color: #f8f6f0;
-  text-align: center;
-  padding: 0.5rem 0;
-  font-size: 0.1rem;
-  z-index: 100;
-  letter-spacing: 0.03em;
+footer {
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  gap: 20px;
+  padding: 2px 0 2px 40px;
+  background: rgba(0,0,0,0.04);
+  position: static;
+  width: 100%;
+  margin-top: 55px;
 }
 
 /* Wrapper for the map to fit between header and footer */
