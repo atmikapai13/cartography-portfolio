@@ -3,12 +3,12 @@
     "id": 1,
     "title": "NYC AlgoMatcher",
     "city": "New York",
-    "description": "An interactive website to help NYC residents identify which city agency algorithms, as reported under Local Law 35, may process their data",
+    "description": "NYC AlgoMatcher is a website that helps New Yorkers understand which city algorithms might use their personal data to inform local decision-making, legislation, and budgeting. Read Local Law 35 to learn more.",
     "link": "https://nyc-algo-matcher.vercel.app/",
     "github": null,
     "image": "1.png",
     "spotlight": true,
-    "tech_stack": ["Web Development", "HCI"],
+    "tech_stack": ["Web Dev", "HCI", "Product Development"],
     "experience": "Projects",
     "work_experience": ["Projects"]
   },
@@ -16,19 +16,19 @@
     "id": 2,
     "title": "NYC Iconic Run Clubs",
     "city": "New York",
-    "description": "At 2025 Open Data Week, I attended Dan DeWitz's session on mapping NYC's best sandwiches with AI, featuring a playful site inspired by a New York Times list. Fresh off a half marathon, I created a healthier homage, a map of run clubs across New York City.",
+    "description": "Inspired by Dan DeWitz's map of NY Time's 57 Sandwiches That Define New York City, I created a healthier homage: a map of run clubs in NYC.",
     "link": "https://atmikapai13.github.io/iconic-runclubs-nyc/",
     "github": "https://github.com/aap253/iconic-runclubs-nyc",
     "image": "2.png",
     "spotlight": false,
-    "tech_stack": ["Web Development"],
+    "tech_stack": ["Web Dev"],
     "work_experience": ["Projects"]
   },
   {
     "id": 3,
     "title": "Transit Deserts in NYC",
     "city": "New York",
-    "description": "I mapped the NYC subway network system (network, nodes, flows, and agents) using GTFS data and ArcGIS Pro's Network Analyst Toolkit to assess dead transit zones in a city often hailed for having the nation's best transit system.",
+    "description": "This map identifies dead transit zones by visualizing NYC subway system's network architecture composed of nodes, flows, and agents.",
     "link": "https://www.youtube.com/watch?v=3O_3suJZR7A",
     "github": null,
     "image": "3.png",
@@ -37,10 +37,22 @@
     "work_experience": ["Projects"]
   },
   {
+    "id": 9,
+    "title": "MakAR Tool",
+    "city": "New York",
+    "description": "MakAR is an Augmented Reality application for Meta Orion Smart Glasses, designed for use in the MakerLAB at Cornell Tech. It provides on-demand guidance for students and novice designers who’ve completed orientation but need support with advanced tools like laser cutters and 3D printers.",
+    "link": "https://youtu.be/XIyegVX8nrM",
+    "github": null,
+    "image": "9.png",
+    "spotlight": true,
+    "tech_stack": ["AR/VR", "Product Development"],
+    "work_experience": ["Projects"]
+  },
+  {
     "id": 4,
     "title": "Predictive Maintenance of NYC Subways",
     "city": "New York",
-    "description": "I co-designed a predictive maintenance framework using linear models, tree-based algorithms, and K-Means clustering to quantify disruption probabilities, passenger delays, and identify high-impact subway lines. I presented the findings as a white paper to the NYC Open Data Team during Open Data Week to support prioritized MTA intervention.",
+    "description": "I built a predictive maintenance framework using linear and tree-based models to predict passenger delays and subway disruptions. Using K-Means clustering helped identify most vulnerable subway lines to overall transit network. I presented my findings at 2025 NYC Open Data Week.",
     "link": "https://drive.google.com/file/d/1zMYCgKBVHw_3ogIhbPMZD92TFE36Dcbp/view?usp=sharing",
     "github": null,
     "image": "4.png",
@@ -50,14 +62,14 @@
   },
   {
     "id": 5,
-    "title": "IntelliBART",
+    "title": "IntelliBART Database",
     "city": ["San Francisco", "Berkeley", "Oakland"],
-    "description": "I independently built IntelliBART, a relational database management system (RDBMS) integrating Bay Area Rapid Transit (BART) ridership data with GTFS geospatial files. I designed an ETL pipeline and robust database schema to help urban data enthusiasts explore and analyze transit trends.",
+    "description": "IntelliBART is a relational database management system that integrates BART ridership data with GTFS feeds, enabling seamless geospatial and temporal analysis of transit patterns across the Bay Area.",
     "link": "https://medium.com/bay-area-transit-tales-from-an-urban-analyst",
     "github": "https://medium.com/bay-area-transit-tales-from-an-urban-analyst/sql-database-for-bart-ridership-and-scheduling-data-8fadb40efc51",
     "image": "5.jpg",
     "spotlight": true,
-    "tech_stack": ["GIS", "Database Design"],
+    "tech_stack": ["GIS", "Database Design", "Product Development"],
     "work_experience": ["Projects"]
   },
   {
@@ -72,18 +84,19 @@
     "tech_stack": ["ML"],
     "work_experience": ["Projects"]
   },
-  
   {
-    "id": 9,
-    "title": "MakAR Tool",
+    "id": 14,
+    "title": "Urban Tech Hub",
     "city": "New York",
-    "description": "MakAR is an AR tool that shows step-by-step instructions through Orion's smart glasses to help designers and students in Cornell Tech's MakerLAB use lab equipment safely and on their own. Lab staff can also update instructions through a dashboard to keep things running smoothly.",
-    "link": "https://youtu.be/XIyegVX8nrM",
+    "description": "Developed data-driven sustainable tree-planting strategies using QGIS, directly influencing decisions made by New Yorkers for Parks",
+    "link": "https://drive.google.com/file/d/1nUElvpsu3StJxUv4dWGkUcD0va3OIBE1/view?usp=sharing",
     "github": null,
-    "image": "9.png",
-    "spotlight": true,
-    "tech_stack": ["AR/VR"],
-    "work_experience": ["Projects"]
+    "image": "14.png",
+    "spotlight": false,
+    "tech_stack": ["GIS"],
+    "work_experience": ["Work"],
+    "role": "Researcher",
+    "date": "2024—"
   },
   {
     "id": 10,
@@ -109,20 +122,7 @@
     "tech_stack": ["HCI"],
     "work_experience": ["Projects"]
   },
-  {
-    "id": 12,
-    "title": "Taxonomic Database System of Hawaiian Species",
-    "city": "Hawaii",
-    "description": "Co-digitized Elwood Zimmerman's seven multivolume series on Hawaiian insect taxonomy into a database in Microsoft Access; Organized taxonomical information and species interrelationships into a digitally accessible and searchable format",
-    "link": "https://nature.berkeley.edu/evolab/atmika-pai-2/",
-    "github": null,
-    "image": "12.png",
-    "spotlight": false,
-    "tech_stack": ["Database Design"],
-    "work_experience": ["Work"],
-    "role": "Researcher",
-    "date": "2018 - 2020"
-  },
+  
   {
     "id": 13,
     "title": "Project Manager at Microfinance at Berkeley",
@@ -134,20 +134,6 @@
     "spotlight": false,
     "tech_stack": null,
     "work_experience": ["Projects"]
-  },
-  {
-    "id": 14,
-    "title": "Urban Tech Hub",
-    "city": "New York",
-    "description": "Developed data-driven sustainable tree-planting strategies using QGIS, directly influencing decisions made by New Yorkers for Parks",
-    "link": "https://drive.google.com/file/d/1nUElvpsu3StJxUv4dWGkUcD0va3OIBE1/view?usp=sharing",
-    "github": null,
-    "image": "14.png",
-    "spotlight": false,
-    "tech_stack": ["GIS"],
-    "work_experience": ["Work"],
-    "role": "Researcher",
-    "date": "Aug 2024 -"
   },
   {
     "id": 15,
@@ -173,7 +159,7 @@
     "tech_stack": ["Product Management", "Product Development"],
     "work_experience": ["Work"],
     "role": "Product Analyst",
-    "date": "Jul 2022- Jun 2024"
+    "date": "2022—2024"
   },
   {
     "id": 17,
@@ -187,21 +173,7 @@
     "tech_stack": ["Product Management", "Product Development"],
     "work_experience": ["Work"],
     "role": "AI & Data Intern",
-    "date": "2025"
-  },
-  {
-    "id": 18,
-    "title": "CSAA Insurance Group",
-    "city": ["Maryland"],
-    "description": "xxx",
-    "link": null,
-    "github": null,
-    "image": "15.jpg",
-    "spotlight": true,
-    "tech_stack": ["Product Development"],
-    "work_experience": ["Work"],
-    "role": "Summer Intern",
-    "date": "Jun - Aug 2020"
+    "date": "Summer 2025"
   },
   {
     "id": 19,
@@ -215,7 +187,7 @@
     "tech_stack": ["Product Management"],
     "work_experience": ["Work"],
     "role": "Summer Intern",
-    "date": "Jun - Aug 2021"
+    "date": "Summer 2021"
   },
   {
     "id": 8,
@@ -226,10 +198,24 @@
     "github": null,
     "image": "8.png",
     "spotlight": false,
-    "tech_stack": ["Conference"],
     "work_experience": ["Work", "Travel"],
     "role": "Student Liason",
-    "date": "2025"
+    "date": "Summer 2025",
+    "tech_stack": ["GIS"]
+  },
+  {
+    "id": 18,
+    "title": "CSAA Insurance Group",
+    "city": ["Maryland"],
+    "description": "xxx",
+    "link": null,
+    "github": null,
+    "image": "15.jpg",
+    "spotlight": true,
+    "tech_stack": ["Product Development"],
+    "work_experience": ["Work"],
+    "role": "Summer Intern",
+    "date": "Summer 2020"
   },
   {
     "id": 7,
@@ -239,11 +225,25 @@
     "link": null,
     "github": null,
     "image": "7.png",
-    "tech_stack": ["Conference"],
     "work_experience": ["Work", "Travel"],
     "role": "Student Liason",
-    "date": "2025",
-    "spotlight": false
+    "date": "Spring 2025",
+    "spotlight": false,
+    "tech_stack": ["GIS"]
+  },
+  {
+    "id": 12,
+    "title": "Taxonomic Database System of Hawaiian Species",
+    "city": "Hawaii",
+    "description": "Co-digitized Elwood Zimmerman's seven multivolume series on Hawaiian insect taxonomy into a database in Microsoft Access; Organized taxonomical information and species interrelationships into a digitally accessible and searchable format",
+    "link": "https://nature.berkeley.edu/evolab/atmika-pai-2/",
+    "github": null,
+    "image": "12.png",
+    "spotlight": false,
+    "tech_stack": ["Database Design"],
+    "work_experience": ["Work"],
+    "role": "Researcher",
+    "date": "2018—2020"
   }
   
 ]
