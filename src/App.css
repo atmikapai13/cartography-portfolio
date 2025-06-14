@@ -414,6 +414,11 @@ footer {
   overflow-y: auto;
   box-shadow: -2px 0 8px #1a2a4f22;
   z-index: 10;
+  scrollbar-width: none; /* Firefox */
+  -ms-overflow-style: none;  /* IE and Edge */
+}
+.sidebar::-webkit-scrollbar {
+  display: none; /* Chrome, Safari and Opera */
 }
 
 .sidebar-title {
