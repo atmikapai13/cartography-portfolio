@@ -94,14 +94,16 @@ body {
   justify-content: space-between;
 }
 .nav-title {
-  font-size: 1.05rem;
+  font-size: 2.0rem;
   font-weight: 700;
   color: #f8f6f0;
   margin-left: 2.5rem;
-  letter-spacing: ç.5em;
-  margin-top:1.0rem;
-  letter-spacing: 0.5em;
-  font-family: "Arial"; /* "Arial", Snell Roundhand", "Apple Chancery", "Papyrus", "Comic Sans MS" */
+  text-align: center;
+  letter-spacing: 0.00em;
+  margin-top:0.0rem;
+  letter-spacing: 0.00em;
+  font-family: "Snell Roundhand"; /* "Arial", Snell Roundhand", "Apple Chancery", "Papyrus", "Comic Sans MS" */
+  font-weight: 1000;
 }
 .nav-links {
   display: flex;
@@ -185,7 +187,7 @@ footer {
   width: 100vw;
   height: auto;
   z-index: 0;
-  margin-left: 32px;
+  margin-left: 0px;
 }
 
 /* Update MapboxGlobe container to fill .map-wrapper */
