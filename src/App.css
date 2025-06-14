@@ -84,7 +84,7 @@ body {
   top: 0;
   left: 0;
   width: 100vw;
-  background: #151515;
+  background: #15151500;
   color: #f8f6f0;
   padding: 1rem 0;
   z-index: 100;
@@ -94,11 +94,14 @@ body {
   justify-content: space-between;
 }
 .nav-title {
-  font-size: 1.8rem;
+  font-size: 0.5rem;
   font-weight: 700;
   color: #f8f6f0;
   margin-left: 2.5rem;
-  letter-spacing: 0.03em;
+  letter-spacing: .15em;
+  margin-top: 1.05rem;
+  letter-spacing: 0.15em;
+  font-family: "Arial"; /* "Snell Roundhand", "Apple Chancery", "Papyrus", "Comic Sans MS" */
 }
 .nav-links {
   display: flex;
@@ -168,7 +171,7 @@ body {
   background: #151515;
   color: #f8f6f0;
   text-align: center;
-  padding: 0.7rem 0;
+  padding: 0.5rem 0;
   font-size: 0.1rem;
   z-index: 100;
   letter-spacing: 0.03em;
@@ -177,7 +180,7 @@ body {
 /* Wrapper for the map to fit between header and footer */
 .map-wrapper {
   position: absolute;
-  top: 50px; /* height of navbar */
+  top: 50px; 
   bottom: 34px; /* height of footer */
   left: 0;
   right: 0;
@@ -198,7 +201,7 @@ body {
 
 /* Mapbox canvas background */
 .mapboxgl-canvas {
-  background: #222 !important;
+  background: #18181800 !important;
 }
 
 .project-popup {
@@ -394,7 +397,7 @@ body {
 
 .project-popup p {
   color:#f8f6f0;
-  font-family: Arial, Verdana, sans-serif;
+  font-family: inherit;
   font-size: 1rem;
   text-align: center;
   margin: 0;
@@ -403,22 +406,16 @@ body {
 
 /* Sidebar styles */
 .sidebar {
+  background: #141414;
+  color: #f5f5e6;
   width: 340px;
-  background: #181818;
-  color: #f7f6f2;
-  position: relative;
-  height: 100%;
+  height: 100vh;
+  position: fixed;
+  top: 0;
+  right: 0;
   overflow-y: auto;
+  box-shadow: -2px 0 8px #1a2a4f22;
   z-index: 10;
-  box-shadow: -2px 0 8px rgba(0,0,0,0.08);
-  padding: 24px 16px 24px 16px;
-  display: flex;
-  flex-direction: column;
-  transition: none;
-  scrollbar-width: none; /* Firefox */
-}
-.sidebar::-webkit-scrollbar {
-  display: none; /* Chrome, Safari, Opera */
 }
 
 .sidebar-title {
@@ -453,12 +450,7 @@ body {
   align-items: flex-start;
   gap: 14px;
 }
-.project-card-image-col {
-  display: flex;
-  flex-direction: column;
-  align-items: flex-start;
-  min-width: 80px;
-}
+
 .project-card-image-large {
   width: 80px;
   height: 80px;
@@ -514,14 +506,13 @@ body {
   top: 50px; /* height of navbar */
   right: 0;
   height: calc(100vh - 50px - 48px); /* minus navbar and footer */
-  width: 340px;
-  background: #181818;
+  background: #18181800;
   color: #f7f6f2;
   position: relative;
   height: 100%;
   overflow-y: auto;
   z-index: 10;
-  box-shadow: -2px 0 8px rgba(0,0,0,0.08);
+  box-shadow: -2px 0 8px #1a2a4f22;
   padding: 24px 16px 24px 16px;
   display: flex;
   flex-direction: column;
@@ -581,31 +572,38 @@ body {
 }
 
 .spotlight-section {
-  margin-bottom: 18px;
-}
-.spotlight-heading {
-  font-size: 0.98rem;
-  font-weight: 700;
-  color: #c6e04b;
-  letter-spacing: 0.5px;
-  margin-bottom: 8px;
-  text-align: left;
-  text-shadow: 0 1px 8px #c6e04b44;
+  margin-bottom: 13px;
 }
 .spotlight-card {
-  border: 2px solid #c6e04b;
-  box-shadow: 0 0 12px 2px #c6e04b55;
-  animation: spotlight-glow 1.5s infinite alternate;
-  background: linear-gradient(90deg, #232323 80%, #c6e04b22 100%);
+  position: relative;
+  background: linear-gradient(90deg, #232323 80%, #4b7fe022 100%);
+}
+.spotlight-badge {
+  position: absolute;
+  top: 8px;
+  right: 8px;
+  background: #00a9fe; /* light blue */
+  color: #fff; /* white star */
+  border-radius: 50%;
+  width: 20px;
+  height: 20px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 0.95rem;
+  font-weight: bold;
+  border: 2px solid #1a2a4f; /* dark blue border */
+  box-shadow: 0 1px 4px #1a2a4f44;
+  z-index: 2;
 }
 @keyframes spotlight-glow {
-  0% { box-shadow: 0 0 4px 1px #c6e04b22; }
-  100% { box-shadow: 0 0 10px 2px #c6e04b66; }
+  0% { box-shadow: 0 0 4px 1px #4b9fff22; }
+  100% { box-shadow: 0 0 10px 2px #0d75d0a1; }
 }
 
 .spotlight-card:hover {
-  border-color: #eaffb0;
-  box-shadow: 0 0 24px 6px #c6e04bcc;
+  border-color: #4b9fff22;
+  box-shadow: 0 0 24px 6px #0d75d0a1;
 }
 
 .show-all-btn {
@@ -646,10 +644,17 @@ body {
   appearance: none;
 }
 .tech-stack-dropdown:focus {
-  border: 1.5px solid #c6e04b;
-  box-shadow: 0 0 0 2px #c6e04b33;
+  border: 1.5px solid #4bc5e0;
+  box-shadow: 0 0 0 2px #4b9fff33;
 }
 .tech-stack-dropdown option {
   background: #000;
   color: #f5f5e6;
+}
+
+.below-map-nav {
+  width: 100%;
+  display: flex;
+  justify-content: flex-end;
+  padding: 18px 40px 0 0;
 }

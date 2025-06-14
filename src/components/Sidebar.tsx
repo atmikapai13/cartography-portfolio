@@ -7,15 +7,15 @@ interface SidebarProps {
   onClearCity?: () => void;
 }
 
-const Sidebar: React.FC<SidebarProps> = ({ selectedCity, onClearCity }) => {
-  // Collect all unique tech stacks
-  const allTechStacks = Array.from(
-    new Set(
-      projects.flatMap((p) => (Array.isArray(p.tech_stack) ? p.tech_stack : []))
-    )
-  ).sort();
+const experienceCategories = [
+  { label: 'Work', value: 'Work' },
+  { label: 'Projects', value: 'Projects' },
+  { label: 'Travel', value: 'Travel' },
+];
 
+const Sidebar: React.FC<SidebarProps> = ({ selectedCity, onClearCity }) => {
   const [selectedTech, setSelectedTech] = useState<string>('');
+  const [selectedCategory, setSelectedCategory] = useState<string>('Work');
 
   // Filter by city first
   const filteredProjects = selectedCity
@@ -28,10 +28,28 @@ const Sidebar: React.FC<SidebarProps> = ({ selectedCity, onClearCity }) => {
       })
     : projects;
 
+  // Filter by work_experience category
+  const categoryFilteredProjects = filteredProjects.filter((p) => {
+    let workExpArr: string[] = [];
+    if (Array.isArray(p.work_experience)) {
+      workExpArr = p.work_experience;
+    } else if (typeof p.work_experience === 'string') {
+      workExpArr = [p.work_experience];
+    }
+    return workExpArr.map((w) => (w || '').toLowerCase()).includes(selectedCategory.toLowerCase());
+  });
+
+  // Collect all unique tech stacks for the current filtered category
+  const allTechStacks = Array.from(
+    new Set(
+      categoryFilteredProjects.flatMap((p) => (Array.isArray(p.tech_stack) ? p.tech_stack : []))
+    )
+  ).sort();
+
   // Then filter by tech stack
   const techFilteredProjects = selectedTech
-    ? filteredProjects.filter((p) => Array.isArray(p.tech_stack) && p.tech_stack.includes(selectedTech))
-    : filteredProjects;
+    ? categoryFilteredProjects.filter((p) => Array.isArray(p.tech_stack) && p.tech_stack.includes(selectedTech))
+    : categoryFilteredProjects;
 
   let spotlightProjects: typeof projects = [];
   let otherProjects: typeof projects = [];
@@ -43,25 +61,78 @@ const Sidebar: React.FC<SidebarProps> = ({ selectedCity, onClearCity }) => {
     otherProjects = techFilteredProjects;
   }
 
+  // Legend text for the blue badge
+  let badgeLegend = '';
+  if (selectedCategory.toLowerCase() === 'work') badgeLegend = 'Full-time';
+  else if (selectedCategory.toLowerCase() === 'projects') badgeLegend = 'Spotlights';
+  else if (selectedCategory.toLowerCase() === 'travel') badgeLegend = 'International';
+
   return (
-    <aside className="sidebar">
-      <h3 className="sidebar-title" style={{ marginBottom: '0px' }}>My Work Across Cities</h3>
-      <p className="sidebar-subtitle">Tap a city on the globe or topic below to filter and explore.</p>
-      {/* Tech stack dropdown */}
-      <div style={{ marginBottom: 12 }}>
-        <div style={{ display: 'inline-flex', gap: 8, flexWrap: 'wrap', verticalAlign: 'middle' }}>
+    <aside className="sidebar" style={{ paddingTop: 8 }}>
+      <h3 className="sidebar-title" style={{ marginBottom: '0px', fontSize: '1.50rem', marginTop: 0 }}>My Work Across Cities</h3>
+      <p className="sidebar-subtitle" style={{ fontSize: '0.78rem', marginBottom: 6, marginTop: 0, maxWidth: 320 }}>
+        Explore by zooming into a city, clicking on a pin, or filtering below.
+      </p>
+      {/* Ballot-style category selector */}
+      <div style={{ display: 'flex', alignItems: 'center', gap: 14, marginBottom: 10, marginTop: 2 }}>
+        {experienceCategories.map((cat) => (
+          <label key={cat.value} style={{ display: 'flex', alignItems: 'center', cursor: 'pointer', gap: 5, fontSize: '0.91rem', color: '#f5f5e6', fontWeight: 500 }}>
+            <input
+              type="radio"
+              name="experience-category"
+              value={cat.value}
+              checked={selectedCategory === cat.value}
+              onChange={() => setSelectedCategory(cat.value)}
+              style={{ display: 'none' }}
+            />
+            <span
+              style={{
+                display: 'inline-block',
+                width: 12,
+                height: 12,
+                borderRadius: '50%',
+                border: '2px solid #00a9fe',
+                background: selectedCategory === cat.value ? '#00a9fe' : 'transparent',
+                boxSizing: 'border-box',
+                marginRight: 1,
+                transition: 'background 0.2s, border 0.2s',
+                position: 'relative',
+              }}
+            >
+              {selectedCategory === cat.value && (
+                <span
+                  style={{
+                    display: 'block',
+                    width: 5.5,
+                    height: 5.5,
+                    borderRadius: '50%',
+                    background: '#fff',
+                    position: 'absolute',
+                    top: 1.5,
+                    left: 1.5,
+                  }}
+                />
+              )}
+            </span>
+            {cat.label}
+          </label>
+        ))}
+      </div>
+      {/* Tech stack filter */}
+      <div style={{ marginBottom: 8 }}>
+        <div style={{ display: 'inline-flex', gap: 6, flexWrap: 'wrap', verticalAlign: 'middle' }}>
           <button
             type="button"
             onClick={() => setSelectedTech('')}
             style={{
-              background: selectedTech === '' ? '#f5f5e6' : '#000',
-              color: selectedTech === '' ? '#000' : '#f5f5e6',
-              border: '1.5px solid #444',
-              borderRadius: 8,
-              padding: '1px 8px',
-              fontSize: '0.92rem',
+              background: selectedTech === '' ? '#00a9fe' : '#000',
+              color: selectedTech === '' ? '#fff' : '#f5f5e6',
+              border: '1.2px solid #444',
+              borderRadius: 7,
+              padding: '0px 7px',
+              fontSize: '0.85rem',
               fontStyle: 'italic',
-              minHeight: 18,
+              minHeight: 15,
               cursor: 'pointer',
               fontWeight: selectedTech === '' ? 700 : 400,
               transition: 'background 0.2s, color 0.2s',
@@ -75,14 +146,14 @@ const Sidebar: React.FC<SidebarProps> = ({ selectedCity, onClearCity }) => {
               type="button"
               onClick={() => setSelectedTech(stack)}
               style={{
-                background: selectedTech === stack ? '#f5f5e6' : '#000',
-                color: selectedTech === stack ? '#000' : '#f5f5e6',
-                border: '1.5px solid #444',
-                borderRadius: 8,
-                padding: '1px 8px',
-                fontSize: '0.92rem',
+                background: selectedTech === stack ? '#00a9fe' : '#000',
+                color: selectedTech === stack ? '#fff' : '#f5f5e6',
+                border: '1.2px solid #444',
+                borderRadius: 7,
+                padding: '0px 7px',
+                fontSize: '0.85rem',
                 fontStyle: 'italic',
-                minHeight: 18,
+                minHeight: 15,
                 cursor: 'pointer',
                 fontWeight: selectedTech === stack ? 700 : 400,
                 transition: 'background 0.2s, color 0.2s',
@@ -93,16 +164,33 @@ const Sidebar: React.FC<SidebarProps> = ({ selectedCity, onClearCity }) => {
           ))}
         </div>
       </div>
+      {/* Spotlight badge legend */}
+      <div style={{ display: 'flex', alignItems: 'center', gap: 5, marginBottom: 8, marginTop: 2, justifyContent: 'flex-end' }}>
+        <div style={{ display: 'flex', alignItems: 'center', height: 14 }}>
+          <div style={{
+            width: 14,
+            height: 14,
+            borderRadius: '50%',
+            background: '#00a9fe',
+            display: 'flex',
+            alignItems: 'center',
+            justifyContent: 'center',
+            color: '#fff',
+            fontSize: 10,
+            fontWeight: 'bold',
+            boxShadow: '0 0 3px 1px #00a9fe44',
+          }}>★</div>
+        </div>
+        <span style={{ color: '#e0e0e0', fontSize: '0.85rem', fontWeight: 500 }}>{badgeLegend}</span>
+      </div>
       {selectedCity && (
         <div style={{ marginBottom: 10 }}>
-          <span style={{ fontWeight: 600, fontSize: '1.1rem' }}>{selectedCity}</span>
-          <button className="show-all-btn" onClick={onClearCity} style={{ marginLeft: 12 }}>Show All</button>
+          {/* Removed city name display */}
         </div>
       )}
       <div className="sidebar-project-list">
         {(!selectedCity && spotlightProjects.length > 0) && (
           <div className="spotlight-section">
-            <div className="spotlight-heading">Spotlight Projects</div>
             <div className="sidebar-project-list">
               {spotlightProjects.map((project) => (
                 <div key={project.id} className="sidebar-project-card-wrapper">
@@ -112,6 +200,8 @@ const Sidebar: React.FC<SidebarProps> = ({ selectedCity, onClearCity }) => {
                     description={project.description || undefined}
                     link={project.link || undefined}
                     spotlight={true}
+                    role={Array.isArray(project.work_experience) ? (project.work_experience.includes('Work') ? project.role : undefined) : (project.work_experience === 'Work' ? project.role : undefined)}
+                    date={Array.isArray(project.work_experience) ? (project.work_experience.includes('Work') ? project.date : undefined) : (project.work_experience === 'Work' ? project.date : undefined)}
                   />
                 </div>
               ))}
@@ -120,7 +210,7 @@ const Sidebar: React.FC<SidebarProps> = ({ selectedCity, onClearCity }) => {
         )}
         {otherProjects.length === 0 && selectedCity && (
           <div style={{ color: '#bbb', fontStyle: 'italic', marginTop: 12, marginBottom: 12 }}>
-            No projects here yet.
+            No projects here yet. Pick a different experience like 'Travel'.
           </div>
         )}
         {otherProjects.map((project) => (
@@ -131,6 +221,8 @@ const Sidebar: React.FC<SidebarProps> = ({ selectedCity, onClearCity }) => {
               description={project.description || undefined}
               link={project.link || undefined}
               spotlight={project.spotlight}
+              role={Array.isArray(project.work_experience) ? (project.work_experience.includes('Work') ? project.role : undefined) : (project.work_experience === 'Work' ? project.role : undefined)}
+              date={Array.isArray(project.work_experience) ? (project.work_experience.includes('Work') ? project.date : undefined) : (project.work_experience === 'Work' ? project.date : undefined)}
             />
           </div>
         ))}

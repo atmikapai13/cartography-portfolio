@@ -6,24 +6,29 @@ import placeData from '../places.json';
 
 // Project cities data
 const project_cities = [
-    { id: 1, name: "New York", country: "USA", longitude: -74.006, latitude: 40.7128 },
-    { id: 2, name: "Hawaii", country: "USA", longitude: -155.5828, latitude: 19.8968 },
-    { id: 3, name: "San Francisco", country: "USA", longitude: -122.4194, latitude: 37.7749 },
-    { id: 4, name: "Mumbai", country: "India", longitude: 72.8777, latitude: 19.0760 },
+    { id: 1, name: "New York", country: "USA", longitude: -73.95483256602007, latitude: 40.7558514702378 }, 
+    { id: 2, name: "Hawaii", country: "USA", longitude: -155.5828, latitude: 19.8968},
+    { id: 3, name: "San Francisco", country: "USA", longitude: -122.4471, latitude: 37.7739 }, 
+    { id: 4, name: "Mumbai", country: "India", longitude: 72.8679, latitude: 19.1144 },
     { id: 5, name: "San Diego", country: "USA", longitude: -117.1611, latitude: 32.7157 },
     { id: 6, name: "Palm Springs", country: "USA", longitude: -116.5453, latitude: 33.8303 },
-    { id: 7, name: "Berkeley", country: "USA", longitude: -122.2727, latitude: 37.8715 },
-    { id: 9, name: "Sydney", country: "Australia", longitude: 151.2093, latitude: -33.8688 },
-    { id: 10, name: "Singapore", country: "Singapore", longitude: 103.8198, latitude: 1.3521 },
+    { id: 7, name: "Berkeley", country: "USA", longitude: -122.2568, latitude: 37.8676},
+    { id: 8, name: "Oakland", country: "USA", longitude: -122.2695, latitude: 37.8038 },
+    { id: 9, name: "Sydney", country: "Australia", longitude: 151.15115, latitude: -33.75535},
+    { id: 10, name: "Singapore", country: "Singapore", longitude: 103.88870, latitude: 1.31748 },
     { id: 11, name: "Yokohama", country: "Japan", longitude: 139.6380, latitude: 35.4437 },
     { id: 12, name: "West Hollywood", country: "USA", longitude: -118.3617, latitude: 34.0900 },
+    { id: 13, name: "Walnut Creek", country: "USA", longitude: -122.05825, latitude: 37.93023 },
+    { id: 14, name: "Arizona", country: "USA", longitude: -112.185986, latitude: 33.538652 },
+    { id: 15, name: "Nevada", country: "USA", longitude: -116.4194, latitude: 38.8026 },
+    { id: 16, name: "Utah", country: "USA", longitude: -111.0937, latitude: 39.32098 },
   ];
 
 mapboxgl.accessToken = "pk.eyJ1IjoiYXRtaWthcGFpMTMiLCJhIjoiY21idHR4eTJpMDdhMjJsb20zNmZheTZ6ayJ9.d_bQSBzesyiCUMA-YHRoIA";
 
 interface MapboxGlobeProps {
   selectedProject?: any;
-  onCitySelect?: (city: string) => void;
+  onCitySelect?: (city: string | null) => void;
 }
 
 export default function MapboxGlobe({ selectedProject, onCitySelect }: MapboxGlobeProps) {
@@ -35,7 +40,7 @@ export default function MapboxGlobe({ selectedProject, onCitySelect }: MapboxGlo
 
     const map = new mapboxgl.Map({
       container: mapContainer.current,
-      style: "mapbox://styles/mapbox/satellite-v9",
+      style: "mapbox://styles/mapbox/satellite-streets-v11", //satellite-v9
       projection: "globe",
       center: [-90, 0],
       zoom: 1.5,
@@ -85,10 +90,10 @@ export default function MapboxGlobe({ selectedProject, onCitySelect }: MapboxGlo
         source: "cities",
         paint: {
           "circle-radius": 5,
-          "circle-color": "#e74c3c",
+          "circle-color": "#ed462b",
           "circle-stroke-width": 1,
-          "circle-stroke-color": "#e2e8f0",
-          "circle-opacity": 0.9,
+          "circle-stroke-color": "#000000",
+          "circle-opacity": 1.0,
         },
       });
 
@@ -98,8 +103,8 @@ export default function MapboxGlobe({ selectedProject, onCitySelect }: MapboxGlo
         source: "cities",
         layout: {
           "text-field": ["get", "name"],
-          "text-size": 11,
-          "text-offset": [0, 1.5],
+          "text-size": 12,
+          "text-offset": [0, 1.2],
           "text-anchor": "top",
         },
         paint: {
@@ -139,6 +144,7 @@ export default function MapboxGlobe({ selectedProject, onCitySelect }: MapboxGlo
         // Resume rotation when popup closes
         popup.on('close', () => {
           rotationEnabled = true;
+          if (onCitySelect) onCitySelect(null);
         });
       });
 
@@ -189,26 +195,6 @@ export default function MapboxGlobe({ selectedProject, onCitySelect }: MapboxGlo
 
     return () => map.remove();
   }, []);
-
-  // Fly to project location when selectedProject changes
-  useEffect(() => {
-    if (!selectedProject || !mapRef.current) return;
-    console.log('Selected project city:', selectedProject.city);
-    console.log('Available cities:', project_cities.map(c => c.name));
-    const city = project_cities.find(
-      (c) => c.name.trim().toLowerCase() === selectedProject.city.trim().toLowerCase()
-    );
-    if (city) {
-      console.log('Found city match:', city);
-      mapRef.current.flyTo({
-        center: [city.longitude, city.latitude],
-        zoom: 4,
-        essential: true,
-      });
-    } else {
-      console.warn('No city match found for:', selectedProject.city);
-    }
-  }, [selectedProject]);
 
   return (
     <div

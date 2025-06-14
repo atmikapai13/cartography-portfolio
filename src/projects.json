@@ -8,7 +8,9 @@
     "github": null,
     "image": "1.png",
     "spotlight": true,
-    "tech_stack": ["Web Development", "Survey Design"]
+    "tech_stack": ["Web Development", "HCI"],
+    "experience": "Projects",
+    "work_experience": ["Projects"]
   },
   {
     "id": 2,
@@ -19,7 +21,8 @@
     "github": "https://github.com/aap253/iconic-runclubs-nyc",
     "image": "2.png",
     "spotlight": false,
-    "tech_stack": ["Web Development"]
+    "tech_stack": ["Web Development"],
+    "work_experience": ["Projects"]
   },
   {
     "id": 3,
@@ -30,84 +33,69 @@
     "github": null,
     "image": "3.png",
     "spotlight": false,
-    "tech_stack": ["GIS"]
+    "tech_stack": ["GIS"],
+    "work_experience": ["Projects"]
   },
   {
     "id": 4,
-    "title": "Predictive Maintenance of NYC Subway Disruptions",
+    "title": "Predictive Maintenance of NYC Subways",
     "city": "New York",
     "description": "I co-designed a predictive maintenance framework using linear models, tree-based algorithms, and K-Means clustering to quantify disruption probabilities, passenger delays, and identify high-impact subway lines. I presented the findings as a white paper to the NYC Open Data Team during Open Data Week to support prioritized MTA intervention.",
     "link": "https://drive.google.com/file/d/1zMYCgKBVHw_3ogIhbPMZD92TFE36Dcbp/view?usp=sharing",
     "github": null,
     "image": "4.png",
     "spotlight": true,
-    "tech_stack": ["ML", "GIS"]
+    "tech_stack": ["ML", "GIS"],
+    "work_experience": ["Projects"]
   },
   {
     "id": 5,
-    "title": "IntelliBART Database Management System",
-    "city": ["San Francisco", "Berkeley"],
+    "title": "IntelliBART",
+    "city": ["San Francisco", "Berkeley", "Oakland"],
     "description": "I independently built IntelliBART, a relational database management system (RDBMS) integrating Bay Area Rapid Transit (BART) ridership data with GTFS geospatial files. I designed an ETL pipeline and robust database schema to help urban data enthusiasts explore and analyze transit trends.",
     "link": "https://medium.com/bay-area-transit-tales-from-an-urban-analyst",
     "github": "https://medium.com/bay-area-transit-tales-from-an-urban-analyst/sql-database-for-bart-ridership-and-scheduling-data-8fadb40efc51",
     "image": "5.jpg",
     "spotlight": true,
-    "tech_stack": ["GIS", "Database Design"]
+    "tech_stack": ["GIS", "Database Design"],
+    "work_experience": ["Projects"]
   },
   {
     "id": 6,
-    "title": "BART Ridership Analytics",
+    "title": "Forecasting BART Ridership",
     "city": ["San Francisco", "Berkeley"],
-    "description": "Inspired by Ben Wellington's I Quant NYC and Abhishek Roy's Commute Chronicles, I took a deep dive into Bay Area transit ridership trends, leveraging novel methodologies in advanced ML and time-series forecasting.",
+    "description": "Inspired by Ben Wellington's I Quant NYC and Abhishek Roy's Commute Chronicles, I took a deep dive into Bay Area transit ridership trends, leveraging advanced ML and time-series forecasting to assess whether ridership would return to pre-pandemic levels.",
     "link": "https://medium.com/bay-area-transit-tales-from-an-urban-analyst",
     "github": "https://medium.com/bay-area-transit-tales-from-an-urban-analyst/forecasting-bart-ridership-sarmix-vs-prophet-8fdfae5f24bc",
     "image": "6.png",
     "spotlight": false,
-    "tech_stack": ["ML"]
+    "tech_stack": ["ML"],
+    "work_experience": ["Projects"]
   },
-  {
-    "id": 7,
-    "title": "ESRI Developer & Technology Summit 2025",
-    "city": "San Diego",
-    "description": "Supported event logistics as a student assistant while gaining exposure to emerging GIS technologies and geospatial applications of AI and LLMs",
-    "link": null,
-    "github": null,
-    "image": "7.png",
-    "spotlight": false,
-    "tech_stack": ["GIS"]
-  },
-  {
-    "id": 8,
-    "title": "ESRI User Conference 2025",
-    "city": "Palm Springs",
-    "description": "Supported event logistics as a student assistant while gaining exposure to emerging GIS technologies and geospatial applications of AI and LLMs",
-    "link": "https://medium.com/@atmikapai/notes-on-2025-esri-developer-technology-summit-75cd4b496d5d",
-    "github": null,
-    "image": "8.png",
-    "spotlight": false,
-    "tech_stack": ["GIS"]
-  },
+  
   {
     "id": 9,
-    "title": "MakAR for Cornell Tech's MakerLAB",
+    "title": "MakAR Tool",
     "city": "New York",
-    "description": "MakAR is an AR tool that shows step-by-step instructions through smart glasses to help new makers use lab equipment safely and on their own. Lab staff can update instructions through a dashboard to keep things running smoothly.",
+    "description": "MakAR is an AR tool that shows step-by-step instructions through Orion's smart glasses to help designers and students in Cornell Tech's MakerLAB use lab equipment safely and on their own. Lab staff can also update instructions through a dashboard to keep things running smoothly.",
     "link": "https://youtu.be/XIyegVX8nrM",
     "github": null,
     "image": "9.png",
     "spotlight": true,
-    "tech_stack": ["AR/VR"]
+    "tech_stack": ["AR/VR"],
+    "work_experience": ["Projects"]
   },
   {
     "id": 10,
     "title": "Impact of Selective Migration Policies on Foreign Student Migration and Patenting in the USA",
-    "city": ["Berkeley", "Mumbai", "Yokohama", "Singapore", "Sydney"],
+    "city": ["Berkeley", "Mumbai"],
     "description": "Researched history of visa programs (F-1, OPT-STEM, H1-B) to identify suitable intervention periods and control groups; Conducted Difference-in-Difference analysis with three intervention periods to assess impacts over time and authored paper",
     "link": "https://drive.google.com/file/d/1dCk9VlXqLSW0PUJBzkQAA1ljaWDabbw7/view",
     "github": null,
     "image": "10.png",
     "spotlight": false,
-    "tech_stack": ["ML"]
+    "tech_stack": ["ML"],
+    "work_experience": ["Projects"]
   },
   {
     "id": 11,
@@ -118,7 +106,8 @@
     "github": null,
     "image": "11.png",
     "spotlight": false,
-    "tech_stack": ["Survey Design"]
+    "tech_stack": ["HCI"],
+    "work_experience": ["Projects"]
   },
   {
     "id": 12,
@@ -129,7 +118,10 @@
     "github": null,
     "image": "12.png",
     "spotlight": false,
-    "tech_stack": ["Database Design"]
+    "tech_stack": ["Database Design"],
+    "work_experience": ["Work"],
+    "role": "Researcher",
+    "date": "2018 - 2020"
   },
   {
     "id": 13,
@@ -140,18 +132,22 @@
     "github": null,
     "image": "13.png",
     "spotlight": false,
-    "tech_stack": null
+    "tech_stack": null,
+    "work_experience": ["Projects"]
   },
   {
     "id": 14,
-    "title": "Tree-planting strategies in NYC",
+    "title": "Urban Tech Hub",
     "city": "New York",
     "description": "Developed data-driven sustainable tree-planting strategies using QGIS, directly influencing decisions made by New Yorkers for Parks",
     "link": "https://drive.google.com/file/d/1nUElvpsu3StJxUv4dWGkUcD0va3OIBE1/view?usp=sharing",
     "github": null,
     "image": "14.png",
     "spotlight": false,
-    "tech_stack": ["GIS"]
+    "tech_stack": ["GIS"],
+    "work_experience": ["Work"],
+    "role": "Researcher",
+    "date": "Aug 2024 -"
   },
   {
     "id": 15,
@@ -162,6 +158,92 @@
     "github": null,
     "image": "15.jpg",
     "spotlight": false,
-    "tech_stack": ["ML"]
+    "tech_stack": ["ML"],
+    "work_experience": ["Projects"]
+  },
+  {
+    "id": 16,
+    "title": "CSAA Insurance Group",
+    "city": ["Walnut Creek", "Arizona", "Nevada", "Utah"],
+    "description": "xxx",
+    "link": null,
+    "github": null,
+    "image": "15.jpg",
+    "spotlight": true,
+    "tech_stack": ["Product Management", "Product Development"],
+    "work_experience": ["Work"],
+    "role": "Product Analyst",
+    "date": "Jul 2022- Jun 2024"
+  },
+  {
+    "id": 17,
+    "title": "Tata Consultancy Services",
+    "city": ["New Jersey", "Mumbai"],
+    "description": "xxx",
+    "link": null,
+    "github": null,
+    "image": "15.jpg",
+    "spotlight": true,
+    "tech_stack": ["Product Management", "Product Development"],
+    "work_experience": ["Work"],
+    "role": "AI & Data Intern",
+    "date": "2025"
+  },
+  {
+    "id": 18,
+    "title": "CSAA Insurance Group",
+    "city": ["Maryland"],
+    "description": "xxx",
+    "link": null,
+    "github": null,
+    "image": "15.jpg",
+    "spotlight": true,
+    "tech_stack": ["Product Development"],
+    "work_experience": ["Work"],
+    "role": "Summer Intern",
+    "date": "Jun - Aug 2020"
+  },
+  {
+    "id": 19,
+    "title": "CSAA Insurance Group",
+    "city": ["San Francisco"],
+    "description": "xxx",
+    "link": null,
+    "github": null,
+    "image": "15.jpg",
+    "spotlight": true,
+    "tech_stack": ["Product Management"],
+    "work_experience": ["Work"],
+    "role": "Summer Intern",
+    "date": "Jun - Aug 2021"
+  },
+  {
+    "id": 8,
+    "title": "ESRI User Conference 2025",
+    "city": "Palm Springs",
+    "description": "Helped run event logistics, while networking and learning about emerging GIS, AI, and LLM tools",
+    "link": "https://medium.com/@atmikapai/notes-on-2025-esri-developer-technology-summit-75cd4b496d5d",
+    "github": null,
+    "image": "8.png",
+    "spotlight": false,
+    "tech_stack": ["Conference"],
+    "work_experience": ["Work", "Travel"],
+    "role": "Student Liason",
+    "date": "2025"
+  },
+  {
+    "id": 7,
+    "title": "ESRI Developer & Technology Summit 2025",
+    "city": "San Diego",
+    "description": "Helped run event logistics, while networking and learning about emerging GIS, AI, and LLM tools",
+    "link": null,
+    "github": null,
+    "image": "7.png",
+    "tech_stack": ["Conference"],
+    "work_experience": ["Work", "Travel"],
+    "role": "Student Liason",
+    "date": "2025",
+    "spotlight": false
   }
+  
 ]
