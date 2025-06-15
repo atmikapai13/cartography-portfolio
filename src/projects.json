@@ -215,7 +215,7 @@
   {
     "id": 16,
     "title": "CSAA Insurance Group, an AAA Insurer",
-    "city": ["Walnut Creek", "Arizona", "Nevada", "Utah", "Oakland"],
+    "city": ["Walnut Creek", "Arizona", "Nevada", "Utah", "Oakland", "San Francisco"],
     "description": "I was one of two product analysts overseeing Personal Lines Auto and Property Insurance in AZ, NV, and UT. For these states, I built the 3-year financial plan, improved geographic risk segmentation in the pricing algorithm, and delivered monthly performance updates to the senior leadership. I also supported the migration of data assets from SAS to the cloud-based Snowflake platform.",
     "link": "https://csaa-insurance.aaa.com/content/aaa-ie/b2c/en/homepage.html/",
     "github": null,
