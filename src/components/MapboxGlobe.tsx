@@ -22,6 +22,7 @@ const project_cities = [
     { id: 14, name: "Arizona", country: "USA", longitude: -112.185986, latitude: 33.538652 },
     { id: 15, name: "Nevada", country: "USA", longitude: -116.4194, latitude: 38.8026 },
     { id: 16, name: "Utah", country: "USA", longitude: -111.0937, latitude: 39.32098 },
+    { id: 17, name: "New Jersey", country: "USA", longitude: -74.4057, latitude: 40.0583 },
   ];
 
 mapboxgl.accessToken = "pk.eyJ1IjoiYXRtaWthcGFpMTMiLCJhIjoiY21idHR4eTJpMDdhMjJsb20zNmZheTZ6ayJ9.d_bQSBzesyiCUMA-YHRoIA";

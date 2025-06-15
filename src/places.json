@@ -2,49 +2,79 @@
   {
     "city": "New York",
     "date": "July 2024 onwards",
-    "place_description": "I moved to NYC to pursue a Master's in Information Systems with a focus in urban tech at Cornell Tech. I live on Roosevelt Island, a thin strip of land between Manhattan and Queens. Here, I got to work on some cool projects that deepened my understanding of emerging technologies and urban planning."
+    "place_description": "I moved to NYC to pursue a Master's in Information Systems with a focus in urban tech at Cornell Tech. Here, I got to work on some cool projects that deepened my understanding of emerging technologies and urban planning."
   },
   {
     "city": "Berkeley",
-    "date": "August 2018-July 2024",
-    "place_description": "I spent my early twenties in Berkeley and Oakland, California. I earned a B.A. in Data Science and Economics from the University of California, Berkeley, and began my career at an insurance firm. \n\nLiving in the long shadow of Silicon Valley shaped my understanding of how the world works and who runs it.\n\nStill, the sun hits different in California. \n\nCue Phantom Planet's \"California.\""
+    "date": "August 2018-May 2022",
+    "place_description": "I spent my early twenties in Berkeley, where I earned a B.A. in Data Science and Economics from the University of California, Berkeley. \n\nLiving in the long shadow of Silicon Valley shaped my understanding of how the world works and who runs it.\n\nStill, the sun hits different in California. \n\nCue Phantom Planet's \"California.\""
+  },
+  {
+    "city": "Oakland",
+    "date": "August 2022-July 2024",
+    "place_description": "I spent my early twenties in Oakland, California, where I began my career at an insurance firm. \n\nCue Childish Gambino's \"III. Telegraph Ave.\""
+  },
+  {
+    "city": "San Francisco",
+    "place_description": "While I never lived in San Francisco, the city left a lasting impression on me. I spent the pandemic years here and saw how a tech-centered economy can sometimes leave other industries and institutions behind. Even then, it was here that I first explored public transit data and open-source urban analytics, focusing much of my early work on the Bay Area Rapid Transit (BART) system."
   },
   {
     "city": "Mumbai",
     "date": "2004-2006; 2013-2018",
-    "place_description": "Mumbai is my home; it's where my parents live. I'm Konkani, and my dad's side of the family is from Karnataka. I completed my high school years here, so I have an adolescent bond with the city. It's the city of dreams, and boy, did I dream."
+    "place_description": "Mumbai is where my parents live, so it is a home of sorts. I completed my high school years here."
   },
   {
     "city": "Hawaii",
-    "place_description": "I visited Oahu and Maui in Hawaii when I lived in California. I got to work on a cool taxonomy project when I was a research asssitant at UC Berkeley's Essig Museum of Entomology."
+    "place_description": "I got to work on a cool taxonomy project when I was a research asssitant at UC Berkeley's Essig Museum of Entomology. A couple years later, I visited Oahu and Maui with some friends."
   },
   {
     "city": "Yokohama",
     "date": "2006-2008",
-    "place_description": "Konichiwa! My parents and I lived in Yokohama, Japan for two years. I remember little of it, but I do remember travelling a lot on the local transit with my mom. I think my appreication for public transit began here."
+    "place_description": "My parents and I lived in Yokohama for two years. I remember riding on the local subways and bullet trains with my mom. Looking back, this is probably where my appreciation for public transit first began. ."
   },
   {
     "city": "Singapore",
     "date": "2008-2012",
-    "place_description": "After Japan, my parents and I moved to Singapore. Singapore is a haven for urban enthusiasts. I loved the city's public transit system and the greenery. I know it's a small country, and it is difficult to scale its amenities to a country like United States or India. But it did lay a strong foundation for what a city can offer to its residents when it is well planned."
+    "place_description": "After Japan, my parents and I moved to Singapore. It’s a small country, so I know it’s hard to compare to places like the U.S. or India, but it showed me what’s possible when a city is thoughtfully planned."
   },
   {
     "city": "Sydney",
     "date": "2012-2013",
-    "place_description": "After Singapore, my parents and I moved to Sydney. Sydney was a different ballgame altogether. The car haven was challenging for my mom and I who were used to walking everywhere. Also, it was an isolating expeirence, haivng lived in hustling and bustling cities for so long. On the other hand, it was one of the most beautiful cities I've ever seen."
+    "place_description": "After Singapore, my parents and I moved to Sydney—a different ballgame altogether. The car-centric lifestyle was a bit tough for my mom and me, since we were used to walking everywhere. It felt isolating after living in such pedestrian-friendly cities, but it was also one of the most beautiful places I’ve ever seen."
   },
   {
     "city": "San Diego",
     "date": "2025",
-    "place_description": "I was selected as a student assistant for ESRI's User Conference, one of the world's largest GIS conferences, in San Diego, California."
+    "place_description": "I was selected as a student assistant for ESRI's User Conference, one of the world's largest GIS conferences, held in San Diego, California."
   },
   {
     "city": "Palm Springs",
     "date": "2025",
-    "place_description": "I was selected as a student assistant for ESRI's Developer & Technology Summit in Palm Springs, California. I loved Palm Springs. Maybe, I'll move there when I am ready to retire."
+    "place_description": "I was selected as a student assistant for ESRI's Developer & Technology Summit in Palm Springs, California. I really enjoyed Palm Springs!"
   },
   {
-    "city": "San Francisco",
-    "place_description": "While I never lived here, I do have friends who live here. I've visited a few times, and I love the city. I've also worked on a few projects here."
+    "city": "Arizona",
+    "place_description": "As a product analyst for an insurance firm, I was responsible for Personal Lines Auto and Property insurance for Arizona, Nevada, and Utah. While I never got to visit these states, I did get to work on some cool projects that helped me understand the ins and outs of the insurance industry."
+  },
+  {
+    "city": "Nevada",
+    "place_description": "As a product analyst for an insurance firm, I was responsible for Personal Lines Auto and Property insurance for Arizona, Nevada, and Utah. While I never got to visit these states, I did get to work on some cool projects that helped me understand the ins and outs of the insurance industry."
+  },
+  {
+    "city": "Utah",
+    "place_description": "As a product analyst for an insurance firm, I was responsible for Personal Lines Auto and Property insurance for Arizona, Nevada, and Utah. While I never got to visit these states, I did get to work on some cool projects that helped me understand the ins and outs of the insurance industry."
+  },
+  {
+    "city": "Walnut Creek",
+    "place_description": "My office was in Walnut Creek when I worked as a product analyst at an insurance firm."
+  },
+  {
+    "city": "West Hollywood",
+    "place_description": ""
+  },
+  {
+    "city": "New Jersey",
+    "place_description": ""
   }
+
 ]

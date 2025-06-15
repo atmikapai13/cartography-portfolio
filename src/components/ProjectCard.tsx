@@ -8,9 +8,10 @@ interface ProjectCardProps {
   spotlight?: boolean;
   role?: string;
   date?: string;
+  tech_stack2?: string;
 }
 
-const ProjectCard: React.FC<ProjectCardProps> = ({ title, image, description, link, spotlight, role, date }) => {
+const ProjectCard: React.FC<ProjectCardProps> = ({ title, image, description, link, spotlight, role, date, tech_stack2 }) => {
   return (
     <div className={`project-card${spotlight ? ' spotlight-card' : ''}`}>
       {spotlight && (
@@ -23,19 +24,21 @@ const ProjectCard: React.FC<ProjectCardProps> = ({ title, image, description, li
       ) : (
         <h4 className="project-card-title">{title}</h4>
       )}
-      <div className="project-card-row" style={{ display: 'flex', alignItems: 'flex-start', gap: '24px' }}>
+      <div className="project-card-row" style={{ display: 'flex', alignItems: 'flex-start', gap: '10px', flexDirection: image ? 'row' : 'column' }}>
         <div className="project-card-image-col" style={{ flex: '0 0 auto', display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
-          {link ? (
-            <a href={link} target="_blank" rel="noopener noreferrer" className="project-image-link">
+          {image && (
+            link ? (
+              <a href={link} target="_blank" rel="noopener noreferrer" className="project-image-link">
+                <img src={image} alt={title} className="project-card-image-large" />
+              </a>
+            ) : (
               <img src={image} alt={title} className="project-card-image-large" />
-            </a>
-          ) : (
-            <img src={image} alt={title} className="project-card-image-large" />
+            )
           )}
           {role && (
-            <div style={{ width: '100%', textAlign: 'left', marginTop: '6px' }}>
+            <div style={{ width: '100%', textAlign: 'left', marginTop: '0px' }}>
               <div className="project-role" style={{
-                fontSize: '0.95rem',
+                fontSize: '1rem',
                 color: '#f5f5e6',
                 fontWeight: 'bold',
                 fontStyle: 'normal',
@@ -44,9 +47,9 @@ const ProjectCard: React.FC<ProjectCardProps> = ({ title, image, description, li
               </div>
               {date && (
                 <div className="project-date" style={{
-                  fontSize: '0.85rem',
+                  fontSize: '0.75rem',
                   color: '#e0e0e0',
-                  marginTop: '2px',
+                  marginTop: '0px',
                   fontWeight: 400,
                   fontStyle: 'italic',
                 }}>
@@ -56,8 +59,15 @@ const ProjectCard: React.FC<ProjectCardProps> = ({ title, image, description, li
             </div>
           )}
         </div>
-        <div className="project-card-description-col" style={{ flex: '1 1 0', display: 'flex' }}>
+        <div className="project-card-description-col" style={{ flex: '1 1 0', display: 'flex', flexDirection: 'column' }}>
           {description && <p className="project-card-description" style={{ margin: 0 }}>{description}</p>}
+          {tech_stack2 && (
+            <div style={{ width: '100%', textAlign: 'left', marginTop: '6px', marginLeft: 0 }}>
+              <div className="project-tech-stack2" style={{ fontSize: '0.85rem', color: '#a5d6fa', fontWeight: 500, fontStyle: 'italic' }}>
+                <span style={{ fontWeight: 700, color: '#a5d6fa', fontStyle: 'normal' ,fontSize: '0.5rem'}}>Tech Stack:</span> <span style={{ fontStyle: 'italic', color: '#a5d6fa' , fontSize: '0.50rem'}}>{tech_stack2}</span>
+              </div>
+            </div>
+          )}
         </div>
       </div>
     </div>
