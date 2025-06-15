@@ -41,7 +41,7 @@
   {
     "id": 3,
     "title": "Transit Deserts in NYC",
-    "city": "New York",
+    "city": "New York,",
     "description": "This map identifies dead transit zones by visualizing NYC subway system's network architecture, namely nodes, flows, and agents, using ArcGIS Pro and Network Analyst Toolkit.",
     "link": "https://www.youtube.com/watch?v=3O_3suJZR7A",
     "github": null,
@@ -54,7 +54,7 @@
   {
     "id": 9,
     "title": "MakAR AR Experience",
-    "city": "New York",
+    "city": ["New York","Roosevelt Island"],
     "description": "MakAR is an Augmented Reality application for Meta Orion Smart Glasses, designed for use in the MakerLAB at Cornell Tech. It provides on-demand guidance for students and neophyte designers working with advanced equipment like laser cutters and 3D printers.",
     "link": "https://youtu.be/XIyegVX8nrM",
     "github": null,
@@ -80,7 +80,7 @@
   {
     "id": 6,
     "title": "Forecasting Transit Ridership in the Bay Area",
-    "city": ["San Francisco", "Berkeley"],
+    "city": ["San Francisco", "Berkeley", "Oakland"],
     "description": "Inspired by Ben Wellington's I Quant NYC and Abhishek Roy's Commute Chronicles, I took a deep dive into Bay Area transit ridership trends. Using time-series forecasting, I assessed whether ridership would return to pre-pandemic levels.",
     "link": "https://medium.com/bay-area-transit-tales-from-an-urban-analyst",
     "github": "https://medium.com/bay-area-transit-tales-from-an-urban-analyst/forecasting-bart-ridership-sarmix-vs-prophet-8fdfae5f24bc",
@@ -93,7 +93,7 @@
   {
     "id": 14,
     "title": "Urban Tech Hub, NYC",
-    "city": "New York",
+    "city": ["New York", "Roosevelt Island"],
     "description": "The Urban Tech Hub at Cornell Tech is an academic think tank advancing human-centered technology for urban challenges. I work with professors to design and implement tech solutions for public and private partners, focusing on sustainability and urban innovation. Recent projects include developing tree-planting strategies for extreme heat mitigation and building a global resilience dashboard.",
     "link": "https://urban.tech.cornell.edu/",
     "image": "/cartography-portfolio/assets/14.png",
@@ -121,7 +121,7 @@
   {
     "id": 20,
     "title": "Tree Planting Strategies for Extreme Heat Mitigation",
-    "city": "New York",
+    "city": ["New York", "Brooklyn (BK11)", "Brooklyn (BK17)", "Bronx (BX5)", "Manhattan (MN10)", "Queens (QN2)", "Lower Manhattan"],
     "description": "I developed sustainable tree-planting strategies in 5 NYC community districts using geospatial modeling, directly supporting decision-making by the NGO New Yorkers for Parks.",
     "link": "https://drive.google.com/file/d/1nUElvpsu3StJxUv4dWGkUcD0va3OIBE1/view",
     "github": null,
@@ -200,7 +200,7 @@
   {
     "id": 17,
     "title": "Tata Consultancy Services",
-    "city": ["New Jersey", "Mumbai"],
+    "city": ["New Jersey"],
     "description": "I am developing AWS QuickSight app with ML analytics to drive real-time, data-driven decision-making for an Insurtech client",
     "link": null,
     "github": null,
@@ -215,7 +215,7 @@
   {
     "id": 16,
     "title": "CSAA Insurance Group, an AAA Insurer",
-    "city": ["Walnut Creek", "Arizona", "Nevada", "Utah"],
+    "city": ["Walnut Creek", "Arizona", "Nevada", "Utah", "Oakland"],
     "description": "I was one of two product analysts overseeing Personal Lines Auto and Property Insurance in AZ, NV, and UT. For these states, I built the 3-year financial plan, improved geographic risk segmentation in the pricing algorithm, and delivered monthly performance updates to the senior leadership. I also supported the migration of data assets from SAS to the cloud-based Snowflake platform.",
     "link": "https://csaa-insurance.aaa.com/content/aaa-ie/b2c/en/homepage.html/",
     "github": null,

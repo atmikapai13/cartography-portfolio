@@ -91,7 +91,10 @@ const Sidebar: React.FC<SidebarProps> = ({ selectedCity }) => {
               name="experience-category"
               value={cat.value}
               checked={selectedCategory === cat.value}
-              onChange={() => setSelectedCategory(String(cat.value))}
+              onChange={() => {
+                setSelectedCategory(String(cat.value));
+                setShowAllProjects(false);
+              }}
               style={{ display: 'none' }}
             />
             <span
@@ -132,7 +135,10 @@ const Sidebar: React.FC<SidebarProps> = ({ selectedCity }) => {
         <div style={{ display: 'inline-flex', gap: 6, flexWrap: 'wrap', verticalAlign: 'middle' }}>
           <button
             type="button"
-            onClick={() => setSelectedTech('')}
+            onClick={() => {
+              setSelectedTech('');
+              setShowAllProjects(false);
+            }}
             style={{
               background: selectedTech === '' ? '#00a9fe' : '#000',
               color: selectedTech === '' ? '#fff' : '#f5f5e6',
@@ -153,7 +159,10 @@ const Sidebar: React.FC<SidebarProps> = ({ selectedCity }) => {
             <button
               key={stack}
               type="button"
-              onClick={() => setSelectedTech(String(stack))}
+              onClick={() => {
+                setSelectedTech(String(stack));
+                setShowAllProjects(false);
+              }}
               style={{
                 background: selectedTech === stack ? '#00a9fe' : '#000',
                 color: selectedTech === stack ? '#fff' : '#f5f5e6',

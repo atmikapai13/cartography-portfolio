@@ -16,12 +16,12 @@
   },
   {
     "city": "San Francisco",
-    "place_description": "While I never lived in San Francisco, the city left a lasting impression on me. I spent the pandemic years here and saw how a tech-centered economy can sometimes leave other industries and institutions behind. Even then, it was here that I first explored public transit data and open-source urban analytics, focusing much of my early work on the Bay Area Rapid Transit (BART) system."
+    "place_description": "While I never lived in San Francisco, the city left a lasting impression on me. I spent the pandemic years here and observed how a city built around tech can sometimes leave other industries and institutions by the wayside. Even then, it was here that I first explored public transit data and open-source urban analytics, focusing much of my early work on the Bay Area Rapid Transit (BART) system."
   },
   {
     "city": "Mumbai",
     "date": "2004-2006; 2013-2018",
-    "place_description": "Mumbai is where my parents live, so it is a home of sorts. I completed my high school years here."
+    "place_description": "Mumbai is where my parents live, so it is the closest to a home. I completed my high school years here!"
   },
   {
     "city": "Hawaii",
@@ -35,12 +35,12 @@
   {
     "city": "Singapore",
     "date": "2008-2012",
-    "place_description": "After Japan, my parents and I moved to Singapore. It’s a small country, so I know it’s hard to compare to places like the U.S. or India, but it showed me what’s possible when a city is thoughtfully planned."
+    "place_description": "After Japan, my parents and I moved to Singapore. It's a small country, so I know it's hard to compare to places like the U.S. or India, but it showed me what's possible when a city is thoughtfully planned."
   },
   {
     "city": "Sydney",
     "date": "2012-2013",
-    "place_description": "After Singapore, my parents and I moved to Sydney—a different ballgame altogether. The car-centric lifestyle was a bit tough for my mom and me, since we were used to walking everywhere. It felt isolating after living in such pedestrian-friendly cities, but it was also one of the most beautiful places I’ve ever seen."
+    "place_description": "After Singapore, my parents and I moved to Sydney—a different ballgame altogether. The car-centric lifestyle was a bit tough for my mom and me, since we were used to walking everywhere. It felt isolating after living in such pedestrian-friendly cities, but it was also one of the most beautiful places I've ever seen."
   },
   {
     "city": "San Diego",
@@ -75,6 +75,45 @@
   {
     "city": "New Jersey",
     "place_description": ""
+  },
+  {
+    "city": "Roosevelt Island",
+    "date": "July 2024-present",
+    "place_description": "Cornell Tech's campus is located on Roosevelt Island, a thing strip of land island in the East River between Manhattan and Queens. This is also where I live."
+  },
+  {
+    "city": "Brooklyn (BK11)",
+    "place_description": "I identified optimal tree planting locations in Brooklyn's Community District 11 using land surface temperature data from Sentinel EO Hub's Landsat 8 LIDAR (shown in red) and Michael Treglia's 'practical canopy' framework, which considers land use, cover, and infrastructure constraints (shown in green). This map presents the results of that analysis for BK11 community district.",
+    "image": "/cartography-portfolio/assets/extremeheat_BK11.png"
+  },
+  {
+    "city": "Brooklyn (BK17)",
+    "place_description": "I identified optimal tree planting locations in Brooklyn's Community District 11 using land surface temperature data (Sentinel EO Hub's Landsat 8 LIDAR) and Michael Treglia's 'practical canopy' framework, which considers land use, cover, and infrastructure constraints. This map presents the results of that analysis for BK17 community district.",
+    "image": "/cartography-portfolio/assets/extremeheat_BK17.png"
+  },
+  {
+    "city": "Bronx (BX5)",
+    "place_description": "I identified optimal tree planting locations in Bronx's Community District 5 using land surface temperature data from Sentinel EO Hub's Landsat 8 LIDAR (shown in red) and Michael Treglia's 'practical canopy' framework, which considers land use, cover, and infrastructure constraints (shown in green). This map presents the results of that analysis for BX5 community district.",
+    "image": "/cartography-portfolio/assets/extremeheat_BX5.png"
+  },
+  {
+    "city": "Manhattan (MN10)",
+    "place_description": "I identified optimal tree planting locations in Queens' Community District 2 using land surface temperature data from Sentinel EO Hub's Landsat 8 LIDAR (shown in red) and Michael Treglia's 'practical canopy' framework, which considers land use, cover, and infrastructure constraints (shown in green). This map presents the results of that analysis for MN10 community district.",
+    "image": "/cartography-portfolio/assets/extremeheat_MN10.png"
+  },
+  {
+    "city": "Queens (QN2)",
+    "place_description": "I identified optimal tree planting locations in Queens' Community District 2 using land surface temperature data from Sentinel EO Hub's Landsat 8 LIDAR (shown in red) and Michael Treglia's 'practical canopy' framework, which considers land use, cover, and infrastructure constraints (shown in green). This map presents the results of that analysis for QN2 community district.",
+    "image": "/cartography-portfolio/assets/extremeheat_QN2.png"
+  },
+  {
+    "city": "Lower Manhattan",
+    "place_description": "I identified optimal tree planting locations in Lower Manhattan using land surface temperature data from Sentinel EO Hub's Landsat 8 LIDAR (shown in red) and Michael Treglia's 'practical canopy' framework, which considers land use, cover, and infrastructure constraints (shown in green). This map shows the two metrics across NYC.",
+    "image": "/cartography-portfolio/assets/extremeheat.png"
+  },
+  {
+    "city": "Christchurch",
+    "date": "January 2025",
+    "place_description": "I got to visit New Zealand with my parents. I really loved this country. It is fascinating how they rebuilt Christchurch after the 2011 earthquake. Look at the <a href=\"https://www.youtube.com/watch?v=tgydPEA86HA\" target=\"_blank\" rel=\"noopener noreferrer\">video</a> I shot of Border Collie and Hunt Away dogs herding sheep in Agrodome, Rotorua in the North Island!"
   }
-
 ]
