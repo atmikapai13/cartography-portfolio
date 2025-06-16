@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import projects from '../projects.json';
 import ProjectCard from './ProjectCard';
 
@@ -15,6 +15,36 @@ const Sidebar: React.FC<SidebarProps> = ({ selectedCity }) => {
   const [selectedTech, setSelectedTech] = useState<string>('');
   const [selectedCategory, setSelectedCategory] = useState<string>('Work');
   const [showAllProjects, setShowAllProjects] = useState(false);
+
+  // Auto-select the correct work_experience filter when a city is selected
+  useEffect(() => {
+    if (selectedCity) {
+      // Find all projects for this city
+      const cityProjects = projects.filter((p) => {
+        if (Array.isArray(p.city)) {
+          return p.city.map((c) => c.trim().toLowerCase()).includes(selectedCity.trim().toLowerCase());
+        } else {
+          return p.city.trim().toLowerCase() === selectedCity.trim().toLowerCase();
+        }
+      });
+      // Check if any are 'Work' or 'Projects'
+      const hasWork = cityProjects.some((p) => {
+        const arr = Array.isArray(p.work_experience) ? p.work_experience : [p.work_experience];
+        return arr.map((w) => (w || '').toLowerCase()).includes('work');
+      });
+      const hasProjects = cityProjects.some((p) => {
+        const arr = Array.isArray(p.work_experience) ? p.work_experience : [p.work_experience];
+        return arr.map((w) => (w || '').toLowerCase()).includes('projects');
+      });
+      if (hasWork && selectedCategory !== 'Work') {
+        setSelectedCategory('Work');
+        setShowAllProjects(false);
+      } else if (!hasWork && hasProjects && selectedCategory !== 'Projects') {
+        setSelectedCategory('Projects');
+        setShowAllProjects(false);
+      }
+    }
+  }, [selectedCity]);
 
   // Filter by city first
   const filteredProjects = selectedCity
