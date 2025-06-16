@@ -165,7 +165,7 @@ export default function MapboxGlobe({ onCitySelect }: MapboxGlobeProps) {
         // Center popup on globe for mobile, on pin for desktop, with Y offset for mobile
         const isMobile = window.innerWidth <= 600;
         const center = map.getCenter();
-        const offsetLat = 12.5; // Move 10 degrees south
+        const offsetLat = 17; // Move 10 degrees south
         const popupLngLat = isMobile
           ? { lng: center.lng, lat: center.lat - offsetLat }
           : e.lngLat;

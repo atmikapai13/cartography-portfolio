@@ -797,4 +797,22 @@ footer {
     box-shadow: 0 -2px 12px #00000022;
   }
   body { padding-bottom: 60px !important; }
+  .sidebar {
+    position: static !important;
+    width: 100vw !important;
+    height: auto !important;
+    /* Remove overflow-y and max-height from .sidebar */
+    box-shadow: none !important;
+    padding: 12px 4vw 24px 4vw !important;
+    min-height: 220px;
+    border-radius: 0 0 18px 18px;
+    margin-bottom: 0;
+    background: #141414 !important;
+  }
+  /* Sidebar project list scroll area: ensure it ends above the fixed footer */
+  .sidebar-scroll {
+    overflow-y: auto !important;
+    max-height: calc(100vh - 520px) !important; /* 320px = header + filters + footer, adjust as needed */
+    padding-bottom: 24px !important;
+  }
 }

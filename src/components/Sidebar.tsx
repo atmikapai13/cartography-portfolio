@@ -236,35 +236,38 @@ const Sidebar: React.FC<SidebarProps> = ({ selectedCity }) => {
           {/* Removed city name display */}
         </div>
       )}
-      <div className="sidebar-project-list">
-        {otherProjects.length === 0 && selectedCity && (
-          <div style={{ color: '#bbb', fontStyle: 'italic', marginTop: 12, marginBottom: 12 , fontSize: '0.5rem'}}>
-            No projects here yet!
-          </div>
-        )}
-        {(showAllProjects ? allSidebarProjects : allSidebarProjects.slice(0, 5)).map((project) => (
-          <div key={project.id} className="sidebar-project-card-wrapper">
-            <ProjectCard
-              title={project.title ?? ''}
-              image={project.image ?? ''}
-              description={project.description || undefined}
-              link={project.link || undefined}
-              spotlight={project.spotlight}
-              role={Array.isArray(project.work_experience) ? (project.work_experience.includes('Work') ? project.role : undefined) : (project.work_experience === 'Work' ? project.role : undefined)}
-              date={Array.isArray(project.work_experience) ? (project.work_experience.includes('Work') ? project.date : undefined) : (project.work_experience === 'Work' ? project.date : undefined)}
-              tech_stack2={project.tech_stack2}
-            />
-          </div>
-        ))}
-        {allSidebarProjects.length > 5 && !showAllProjects && (
-          <button
-            className="show-all-btn"
-            style={{ margin: '16px auto 0 auto', display: 'block', fontSize: '0.92rem', padding: '4px 16px', borderRadius: 12, border: 'none', background: '#00a9fe', color: '#fff', cursor: 'pointer' }}
-            onClick={() => setShowAllProjects(true)}
-          >
-            Show more
-          </button>
-        )}
+      {/* Project list scrollable area */}
+      <div className="sidebar-scroll">
+        <div className="sidebar-project-list">
+          {otherProjects.length === 0 && selectedCity && (
+            <div style={{ color: '#bbb', fontStyle: 'italic', marginTop: 12, marginBottom: 12 , fontSize: '0.5rem'}}>
+              No projects here yet!
+            </div>
+          )}
+          {(showAllProjects ? allSidebarProjects : allSidebarProjects.slice(0, 5)).map((project) => (
+            <div key={project.id} className="sidebar-project-card-wrapper">
+              <ProjectCard
+                title={project.title ?? ''}
+                image={project.image ?? ''}
+                description={project.description || undefined}
+                link={project.link || undefined}
+                spotlight={project.spotlight}
+                role={Array.isArray(project.work_experience) ? (project.work_experience.includes('Work') ? project.role : undefined) : (project.work_experience === 'Work' ? project.role : undefined)}
+                date={Array.isArray(project.work_experience) ? (project.work_experience.includes('Work') ? project.date : undefined) : (project.work_experience === 'Work' ? project.date : undefined)}
+                tech_stack2={project.tech_stack2}
+              />
+            </div>
+          ))}
+          {allSidebarProjects.length > 5 && !showAllProjects && (
+            <button
+              className="show-all-btn"
+              style={{ margin: '16px auto 0 auto', display: 'block', fontSize: '0.92rem', padding: '4px 16px', borderRadius: 12, border: 'none', background: '#00a9fe', color: '#fff', cursor: 'pointer' }}
+              onClick={() => setShowAllProjects(true)}
+            >
+              Show more
+            </button>
+          )}
+        </div>
       </div>
     </aside>
   );
