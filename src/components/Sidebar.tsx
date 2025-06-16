@@ -239,7 +239,7 @@ const Sidebar: React.FC<SidebarProps> = ({ selectedCity }) => {
       <div className="sidebar-project-list">
         {otherProjects.length === 0 && selectedCity && (
           <div style={{ color: '#bbb', fontStyle: 'normal', marginTop: 12, marginBottom: 12 , fontSize: '0.5rem'}}>
-            Toggle between Work and Projects to find an experience!
+            No projects here yet!
           </div>
         )}
         {(showAllProjects ? allSidebarProjects : allSidebarProjects.slice(0, 5)).map((project) => (
