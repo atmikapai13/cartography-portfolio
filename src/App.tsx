@@ -3,22 +3,8 @@ import MapboxGlobe from './components/MapboxGlobe';
 import Sidebar from './components/Sidebar';
 import './App.css';
 
-function isMobileOrTablet() {
-  if (typeof navigator === 'undefined') return false;
-  return /Mobi|Android|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini|Tablet|Mobile/i.test(navigator.userAgent);
-}
-
 function App() {
   const [selectedCity, setSelectedCity] = useState<string | null>(null);
-
-  if (isMobileOrTablet()) {
-    return (
-      <div style={{ minHeight: '100vh', display: 'flex', alignItems: 'center', justifyContent: 'center', background: '#181818', color: '#f5f5e6', fontSize: '1.3rem', textAlign: 'center', padding: 32, fontStyle: 'italic', flexDirection: 'column' }}>
-        <span style={{ fontSize: '3rem', marginBottom: '1.2rem' }}>🌎</span>
-        For the best experience, please view this website on a desktop.
-      </div>
-    );
-  }
 
   return (
       <div>

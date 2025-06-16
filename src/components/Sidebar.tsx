@@ -238,7 +238,7 @@ const Sidebar: React.FC<SidebarProps> = ({ selectedCity }) => {
       )}
       <div className="sidebar-project-list">
         {otherProjects.length === 0 && selectedCity && (
-          <div style={{ color: '#bbb', fontStyle: 'normal', marginTop: 12, marginBottom: 12 , fontSize: '0.5rem'}}>
+          <div style={{ color: '#bbb', fontStyle: 'italic', marginTop: 12, marginBottom: 12 , fontSize: '0.5rem'}}>
             No projects here yet!
           </div>
         )}

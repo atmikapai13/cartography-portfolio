@@ -50,19 +50,20 @@ export default function MapboxGlobe({ onCitySelect }: MapboxGlobeProps) {
   useEffect(() => {
     if (!mapContainer.current) return;
 
+    const isMobile = window.innerWidth <= 600;
     const map = new mapboxgl.Map({
       container: mapContainer.current,
       style: "mapbox://styles/mapbox/satellite-streets-v11", //satellite-v9
       projection: "globe",
       center: [-90, 0],
-      zoom: 1.5,
+      zoom: isMobile ? 0.3 : 1.85,
       bearing: 0,
       pitch: 0,
-      minZoom: 1.8,
+      minZoom: isMobile ? 0.1 : 1.85,
+      attributionControl: false,
     });
     mapRef.current = map;
 
-    map.addControl(new mapboxgl.NavigationControl());
 
     map.on("style.load", () => {
       console.log("Loaded projects:", projects);
@@ -161,8 +162,15 @@ export default function MapboxGlobe({ onCitySelect }: MapboxGlobeProps) {
 
         // Pause rotation when popup opens
         rotationEnabled = false;
+        // Center popup on globe for mobile, on pin for desktop, with Y offset for mobile
+        const isMobile = window.innerWidth <= 600;
+        const center = map.getCenter();
+        const offsetLat = 12.5; // Move 10 degrees south
+        const popupLngLat = isMobile
+          ? { lng: center.lng, lat: center.lat - offsetLat }
+          : e.lngLat;
         const popup = new mapboxgl.Popup({ maxWidth: '420px' })
-          .setLngLat(e.lngLat)
+          .setLngLat(popupLngLat)
           .setHTML(popupContent)
           .addTo(map);
         // Resume rotation when popup closes
