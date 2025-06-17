@@ -559,7 +559,7 @@ footer {
     margin-bottom: 0.3rem;
   }
   .sidebar-subtitle {
-    font-size: 0.5rem !important;
+    font-size: 0.8rem !important;
     margin-bottom: 6px;
   }
   .sidebar-project-list {
@@ -624,6 +624,51 @@ footer {
   /* Radio label font */
   .sidebar label {
     font-size: 0.6rem !important;
+  }
+  .ballot-row {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    margin-bottom: 10px;
+    margin-top: 2px;
+    min-height: 0;
+    justify-content: flex-start;
+  }
+  .clear-filters-btn {
+    position: static;
+    display: inline-block;
+    margin: 0 0 0 auto;
+    padding: 0 12px;
+    border-radius: 12px;
+    border: none;
+    background: #232323;
+    color: #a5d6fa;
+    font-weight: 700;
+    font-size: 0.6rem;
+    line-height: 1.6;
+    letter-spacing: 0.01em;
+    cursor: pointer;
+    box-shadow: 0 1px 4px #1a2a4f22;
+    transition: background 0.15s, color 0.15s;
+    height: 22px;
+    vertical-align: middle;
+  }
+  .clear-filters-btn:hover {
+    background: #1a1a1a;
+    color: #fff;
+  }
+  .ballot-row label {
+    line-height: 1.6;
+    font-size: 0.6rem;
+    height: 22px;
+    display: flex;
+    align-items: center;
+  }
+}
+
+@media (min-width: 901px) {
+  .clear-filters-btn {
+    display: none !important;
   }
 }
 

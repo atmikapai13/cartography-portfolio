@@ -4,6 +4,7 @@ import ProjectCard from './ProjectCard';
 
 interface SidebarProps {
   selectedCity?: string | null;
+  setSelectedCity?: (city: string | null) => void;
 }
 
 const experienceCategories = [
@@ -11,7 +12,7 @@ const experienceCategories = [
   { label: 'Projects', value: 'Projects' }
 ];
 
-const Sidebar: React.FC<SidebarProps> = ({ selectedCity }) => {
+const Sidebar: React.FC<SidebarProps> = ({ selectedCity, setSelectedCity }) => {
   const [selectedTech, setSelectedTech] = useState<string>('');
   const [selectedCategory, setSelectedCategory] = useState<string>('Work');
   const [showAllProjects, setShowAllProjects] = useState(false);
@@ -112,53 +113,70 @@ const Sidebar: React.FC<SidebarProps> = ({ selectedCity }) => {
       <p className="sidebar-subtitle" style={{ marginBottom: 6, marginTop: 0, maxWidth: 400, fontStyle: 'italic' }}>
         Explore by zooming in or clicking on a city, or filtering below:
       </p>
-      {/* Ballot-style category selector */}
-      <div style={{ display: 'flex', alignItems: 'center', gap: 14, marginBottom: 10, marginTop: 2 }}>
-        {experienceCategories.map((cat) => (
-          <label key={cat.value} style={{ display: 'flex', alignItems: 'center', cursor: 'pointer', gap: 5, fontSize: '0.91rem', color: '#f5f5e6', fontWeight: 500 }}>
-            <input
-              type="radio"
-              name="experience-category"
-              value={cat.value}
-              checked={selectedCategory === cat.value}
-              onChange={() => {
-                setSelectedCategory(String(cat.value));
-                setShowAllProjects(false);
-              }}
-              style={{ display: 'none' }}
-            />
-            <span
-              style={{
-                display: 'inline-block',
-                width: 12,
-                height: 12,
-                borderRadius: '50%',
-                border: '2px solid #00a9fe',
-                background: selectedCategory === cat.value ? '#00a9fe' : 'transparent',
-                boxSizing: 'border-box',
-                marginRight: 1,
-                transition: 'background 0.2s, border 0.2s',
-                position: 'relative',
-              }}
-            >
-              {selectedCategory === cat.value && (
-                <span
-                  style={{
-                    display: 'block',
-                    width: 5.5,
-                    height: 5.5,
-                    borderRadius: '50%',
-                    background: '#fff',
-                    position: 'absolute',
-                    top: 1.5,
-                    left: 1.5,
-                  }}
-                />
-              )}
-            </span>
-            {cat.label}
-          </label>
-        ))}
+      {/* Ballot-style category selector and Clear Filters (mobile) */}
+      <div className="ballot-row">
+        <div style={{ display: 'flex', alignItems: 'center', gap: 14 }}>
+          {experienceCategories.map((cat) => (
+            <label key={cat.value} style={{ display: 'flex', alignItems: 'center', cursor: 'pointer', gap: 5, fontSize: '0.91rem', color: '#f5f5e6', fontWeight: 500 }}>
+              <input
+                type="radio"
+                name="experience-category"
+                value={cat.value}
+                checked={selectedCategory === cat.value}
+                onChange={() => {
+                  setSelectedCategory(String(cat.value));
+                  setShowAllProjects(false);
+                }}
+                style={{ display: 'none' }}
+              />
+              <span
+                style={{
+                  display: 'inline-block',
+                  width: 12,
+                  height: 12,
+                  borderRadius: '50%',
+                  border: '2px solid #00a9fe',
+                  background: selectedCategory === cat.value ? '#00a9fe' : 'transparent',
+                  boxSizing: 'border-box',
+                  marginRight: 1,
+                  transition: 'background 0.2s, border 0.2s',
+                  position: 'relative',
+                }}
+              >
+                {selectedCategory === cat.value && (
+                  <span
+                    style={{
+                      display: 'block',
+                      width: 5.5,
+                      height: 5.5,
+                      borderRadius: '50%',
+                      background: '#fff',
+                      position: 'absolute',
+                      top: 1.5,
+                      left: 1.5,
+                    }}
+                  />
+                )}
+              </span>
+              {cat.label}
+            </label>
+          ))}
+        </div>
+        {/* Clear Filters Button (mobile only) */}
+        <button
+          type="button"
+          className="clear-filters-btn"
+          onClick={() => {
+            setSelectedCategory('Work');
+            setSelectedTech('');
+            setShowAllProjects(false);
+            if (typeof window !== 'undefined' && window.innerWidth <= 900 && setSelectedCity) {
+              setSelectedCity(null);
+            }
+          }}
+        >
+          Clear Filters
+        </button>
       </div>
       {/* Tech stack filter */}
       <div style={{ marginBottom: 8 }}>
