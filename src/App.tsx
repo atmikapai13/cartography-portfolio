@@ -1,10 +1,47 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import MapboxGlobe from './components/MapboxGlobe';
 import Sidebar from './components/Sidebar';
 import './App.css';
 
 function App() {
   const [selectedCity, setSelectedCity] = useState<string | null>(null);
+  const [showMobileApp, setShowMobileApp] = useState(false);
+  const [isMobile, setIsMobile] = useState(false);
+
+  useEffect(() => {
+    const checkMobile = () => setIsMobile(window.innerWidth <= 900);
+    checkMobile();
+    window.addEventListener('resize', checkMobile);
+    return () => window.removeEventListener('resize', checkMobile);
+  }, []);
+
+  if (isMobile && !showMobileApp) {
+    return (
+      <div style={{ minHeight: '100vh', background: '#151515', color: '#f8f6f0', display: 'flex', flexDirection: 'column', justifyContent: 'center', alignItems: 'center', padding: 32, textAlign: 'center' }}>
+        <div style={{ fontSize: '3rem', marginBottom: 12 }}>🌍</div>
+        <div style={{ fontSize: '1.2rem', fontWeight: 600, marginBottom: 24, maxWidth: 400 }}>
+          For the best interactive experience, please open this website on a desktop.
+        </div>
+        <button
+          style={{
+            background: '#232323',
+            color: '#a5d6fa',
+            fontWeight: 700,
+            fontSize: '1rem',
+            border: 'none',
+            borderRadius: 12,
+            padding: '10px 32px',
+            cursor: 'pointer',
+            marginTop: 12,
+            boxShadow: '0 1px 4px #1a2a4f22',
+          }}
+          onClick={() => setShowMobileApp(true)}
+        >
+          Next
+        </button>
+      </div>
+    );
+  }
 
   return (
       <div>

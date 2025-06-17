@@ -580,8 +580,8 @@ footer {
     height: 80px;
   }
   .map-wrapper {
-    min-height: 250px;
-    height: 250px;
+    min-height: 230px;
+    height: 230px;
     width: 100vw;
     position: static;
     margin: 0;
@@ -884,7 +884,7 @@ footer {
   /* Sidebar project list scroll area: ensure it ends above the fixed footer */
   .sidebar-scroll {
     overflow-y: auto !important;
-    max-height: calc(100vh - 545px) !important; 
+    max-height: calc(100vh - 560px) !important; 
     padding-bottom: 24px !important;
   }
 }

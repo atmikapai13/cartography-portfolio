@@ -56,10 +56,10 @@ export default function MapboxGlobe({ onCitySelect }: MapboxGlobeProps) {
       style: "mapbox://styles/mapbox/satellite-streets-v11", //satellite-v9
       projection: "globe",
       center: [-110, 25],
-      zoom: isMobile ? 0.48 : 1.85,
+      zoom: isMobile ? 0.40 : 1.85,
       bearing: 0,
       pitch: 0,
-      minZoom: isMobile ? 0.48 : 1.85,
+      minZoom: isMobile ? 0.40 : 1.85,
       attributionControl: false,
     });
     mapRef.current = map;
