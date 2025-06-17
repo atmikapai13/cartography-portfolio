@@ -7,7 +7,7 @@
   {
     "city": "Berkeley",
     "date": "August 2018-May 2022",
-    "place_description": "I spent my early twenties in Berkeley, where I earned a B.A. in Data Science and Economics from the University of California, Berkeley. \n\nLiving in the long shadow of Silicon Valley shaped my understanding of how the world works and who runs it.\n\nStill, the sun hits different in California. Here's a playlist I made, an ode to <a href=\"https://open.spotify.com/playlist/6UADKvCNvJOQggMG8TEfV3?si=2dc111eb8bc44a59\" target=\"_blank\" rel=\"noopener noreferrer\">California.</a>"
+    "place_description": "I spent my early twenties in Berkeley, where I earned a B.A. in Data Science and Economics from the University of California, Berkeley. \n\nLiving in the long shadow of Silicon Valley shaped my understanding of how the world works and who runs it.\n\nStill, the sun hits different in California. Here's a very indie, Berkeley-centric <a href=\"https://open.spotify.com/playlist/1aUq0gXQwcXCWbmpLqDK0Y?si=0191428cf5104043\" target=\"_blank\" rel=\"noopener noreferrer\">playlist</a> I made."
   },
   {
     "city": "Cafenated, North Berkeley",
@@ -17,7 +17,7 @@
   {
     "city": "Oakland",
     "date": "August 2022-July 2024",
-    "place_description": "I spent my early twenties in Oakland, California, where I began my career at an insurance firm. \n\nCue Childish Gambino's \"III. Telegraph Ave.\""
+    "place_description": "I spent my early twenties in Oakland, California, where I began my career at an insurance firm. Here's a playlist I made, an ode to <a href=\"https://open.spotify.com/playlist/6UADKvCNvJOQggMG8TEfV3?si=2dc111eb8bc44a59\" target=\"_blank\" rel=\"noopener noreferrer\">California.</a>"
   },
   {
     "city": "San Francisco",
@@ -35,17 +35,17 @@
   {
     "city": "Yokohama",
     "date": "2006-2008",
-    "place_description": "My parents and I lived in Yokohama for two years. I remember riding on the local subways and bullet trains with my mom. Looking back, this is probably where my appreciation for public transit first began. ."
+    "place_description": "My parents and I lived in Yokohama for two years. I remember riding on the local subways and bullet trains with my mom. Looking back, this is probably where my appreciation for public transit first began."
   },
   {
     "city": "Singapore",
     "date": "2008-2012",
-    "place_description": "After Japan, my parents and I moved to Singapore. It's a small country, so I know it's hard to compare to places like the U.S. or India, but it showed me what's possible when a city is thoughtfully planned."
+    "place_description": "After Japan, my parents and I moved to Singapore. It's a small country, so I know it's hard to compare to places like the U.S. or India, but it showed me what's possible when a city is thoughtfully planned. Here's a <a href=\"https://open.spotify.com/playlist/525WRgwziKIrfQY9chZ6c6?si=de8173ea23bf4c1f\" target=\"_blank\" rel=\"noopener noreferrer\">playlist</a> that captures my adolescent mind when I lived there."
   },
   {
     "city": "Sydney",
     "date": "2012-2013",
-    "place_description": "After Singapore, my parents and I moved to Sydney—a different ballgame altogether. The car-centric lifestyle was a bit tough for my mom and me, since we were used to walking everywhere. It felt isolating after living in such pedestrian-friendly cities, but it was also one of the most beautiful places I've ever seen."
+    "place_description": "After Singapore, my parents and I moved to Sydney—a different ballgame altogether. The car-centric lifestyle was a bit tough for my mom and me, since we were used to walking everywhere. It felt isolating after living in such pedestrian-friendly cities, but it was also one of the most beautiful places I've ever seen. Here's a <a href=\"https://open.spotify.com/playlist/18d898u6NOd4pFKiA4O9QP?si=12ff53a599134c99\" target=\"_blank\" rel=\"noopener noreferrer\">playlist</a> I made to really capture the milieu when I lived there."
   },
   {
     "city": "San Diego",
@@ -75,7 +75,8 @@
   },
   {
     "city": "West Hollywood",
-    "place_description": "Some Urban Tech students and I investigated smart city initiatives in West Hollywood, including smart buses, nodes, and streetlights, and proposed a post-pandemic plan to sustain and expand them. Here's a <a href=\"https://docs.google.com/presentation/d/12oTSDSqduQpqlfIaITrERdzDXeJ0nlA6CQtvTHFjfg4/edit?usp=sharing\" target=\"_blank\" rel=\"noopener noreferrer\">presentation</a> I made!"
+    "image": "/cartography-portfolio/assets/weho.png",
+    "place_description": "Some Urban Tech students and I investigated smart city initiatives in West Hollywood, including smart buses, nodes, and streetlights, and proposed a post-pandemic plan to sustain and expand them. Here's a <a href=\"https://docs.google.com/presentation/d/12oTSDSqduQpqlfIaITrERdzDXeJ0nlA6CQtvTHFjfg4/edit?usp=sharing\" target=\"_blank\" rel=\"noopener noreferrer\">presentation</a> we made."
   },
   {
     "city": "New Jersey",
