@@ -167,8 +167,6 @@ export default function MapboxGlobe({ onCitySelect }: MapboxGlobeProps) {
         // Pause rotation when popup opens
         rotationEnabled = false;
         // Center popup on globe for mobile, on pin for desktop, with Y offset for mobile
-        const center = map.getCenter();
-        const offsetLat = 10; // Move 10 degrees south
         const popupLngLat = e.lngLat;
         const popup = new mapboxgl.Popup({ maxWidth: '420px' })
           .setLngLat(popupLngLat)
