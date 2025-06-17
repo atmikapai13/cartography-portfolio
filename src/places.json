@@ -16,7 +16,7 @@
   },
   {
     "city": "San Francisco",
-    "place_description": "While I never lived in San Francisco, the city left a lasting impression on me. I spent the pandemic years here and observed how a city built around tech can sometimes leave other industries and institutions by the wayside. Even then, it was here that I first explored public transit data and open-source urban analytics, focusing much of my early work on the Bay Area Rapid Transit (BART) system."
+    "place_description": "While I never lived in San Francisco, the city left a lasting impression on me. I spent the pandemic years here and observed how a city built around tech can sometimes leave other industries and institutions by the wayside. Be that as it may, it was here that I first explored public transit data and open-source urban analytics, with much of my early work focused on the Bay Area Rapid Transit (BART) system."
   },
   {
     "city": "Mumbai",
@@ -83,32 +83,32 @@
   },
   {
     "city": "Brooklyn (BK11)",
-    "place_description": "I identified optimal tree planting locations in Brooklyn's Community District 11 using land surface temperature data from Sentinel EO Hub's Landsat 8 LIDAR (shown in red) and Michael Treglia's 'practical canopy' framework, which considers land use, cover, and infrastructure constraints (shown in green). This map presents the results of that analysis for BK11 community district.",
+    "place_description": "I identified optimal tree planting locations using land surface temperature data from Sentinel EO Hub's Landsat 8 LIDAR (shown in red) and Michael Treglia's 'practical canopy' framework, which considers land use, cover, and infrastructure constraints (shown in green). This map presents the results of that analysis for BK11 community district.",
     "image": "/cartography-portfolio/assets/extremeheat_BK11.png"
   },
   {
     "city": "Brooklyn (BK17)",
-    "place_description": "I identified optimal tree planting locations in Brooklyn's Community District 11 using land surface temperature data (Sentinel EO Hub's Landsat 8 LIDAR) and Michael Treglia's 'practical canopy' framework, which considers land use, cover, and infrastructure constraints. This map presents the results of that analysis for BK17 community district.",
+    "place_description": "I identified optimal tree planting locations using land surface temperature data (Sentinel EO Hub's Landsat 8 LIDAR) and Michael Treglia's 'practical canopy' framework, which considers land use, cover, and infrastructure constraints. This map presents the results of that analysis for BK17 community district.",
     "image": "/cartography-portfolio/assets/extremeheat_BK17.png"
   },
   {
     "city": "Bronx (BX5)",
-    "place_description": "I identified optimal tree planting locations in Bronx's Community District 5 using land surface temperature data from Sentinel EO Hub's Landsat 8 LIDAR (shown in red) and Michael Treglia's 'practical canopy' framework, which considers land use, cover, and infrastructure constraints (shown in green). This map presents the results of that analysis for BX5 community district.",
+    "place_description": "I identified optimal tree planting locations using land surface temperature data from Sentinel EO Hub's Landsat 8 LIDAR (shown in red) and Michael Treglia's 'practical canopy' framework, which considers land use, cover, and infrastructure constraints (shown in green). This map presents the results of that analysis for BX5 community district.",
     "image": "/cartography-portfolio/assets/extremeheat_BX5.png"
   },
   {
     "city": "Manhattan (MN10)",
-    "place_description": "I identified optimal tree planting locations in Queens' Community District 2 using land surface temperature data from Sentinel EO Hub's Landsat 8 LIDAR (shown in red) and Michael Treglia's 'practical canopy' framework, which considers land use, cover, and infrastructure constraints (shown in green). This map presents the results of that analysis for MN10 community district.",
+    "place_description": "I identified optimal tree planting locations using land surface temperature data from Sentinel EO Hub's Landsat 8 LIDAR (shown in red) and Michael Treglia's 'practical canopy' framework, which considers land use, cover, and infrastructure constraints (shown in green). This map presents the results of that analysis for MN10 community district.",
     "image": "/cartography-portfolio/assets/extremeheat_MN10.png"
   },
   {
     "city": "Queens (QN2)",
-    "place_description": "I identified optimal tree planting locations in Queens' Community District 2 using land surface temperature data from Sentinel EO Hub's Landsat 8 LIDAR (shown in red) and Michael Treglia's 'practical canopy' framework, which considers land use, cover, and infrastructure constraints (shown in green). This map presents the results of that analysis for QN2 community district.",
+    "place_description": "I identified optimal tree planting locations using land surface temperature data from Sentinel EO Hub's Landsat 8 LIDAR (shown in red) and Michael Treglia's 'practical canopy' framework, which considers land use, cover, and infrastructure constraints (shown in green). This map presents the results of that analysis for QN2 community district.",
     "image": "/cartography-portfolio/assets/extremeheat_QN2.png"
   },
   {
     "city": "Lower Manhattan",
-    "place_description": "I identified optimal tree planting locations in Lower Manhattan using land surface temperature data from Sentinel EO Hub's Landsat 8 LIDAR (shown in red) and Michael Treglia's 'practical canopy' framework, which considers land use, cover, and infrastructure constraints (shown in green). This map shows the two metrics across NYC.",
+    "place_description": "I identified optimal tree planting locations in the five boroughs of NYC using land surface temperature data from Sentinel EO Hub's Landsat 8 LIDAR (shown in red) and Michael Treglia's 'practical canopy' framework, which considers land use, cover, and infrastructure constraints (shown in green). This map shows the two metrics across NYC.",
     "image": "/cartography-portfolio/assets/extremeheat.png"
   },
   {
