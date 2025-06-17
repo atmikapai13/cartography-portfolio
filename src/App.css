@@ -884,7 +884,7 @@ footer {
   /* Sidebar project list scroll area: ensure it ends above the fixed footer */
   .sidebar-scroll {
     overflow-y: auto !important;
-    max-height: calc(100vh - 535px) !important; 
+    max-height: calc(100vh - 545px) !important; 
     padding-bottom: 24px !important;
   }
 }
