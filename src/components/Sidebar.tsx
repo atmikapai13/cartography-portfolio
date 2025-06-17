@@ -108,8 +108,8 @@ const Sidebar: React.FC<SidebarProps> = ({ selectedCity }) => {
 
   return (
     <aside className="sidebar" style={{ paddingTop: 8 }}>
-      <h3 className="sidebar-title" style={{  fontFamily: 'Arial', marginBottom: '0px', fontSize: '1.7rem', marginTop: 0 }}>Cartographies of My Work</h3> 
-      <p className="sidebar-subtitle" style={{ fontSize: '0.05rem', marginBottom: 6, marginTop: 0, maxWidth: 400, fontStyle: 'italic' }}>
+      <h3 className="sidebar-title" style={{  fontFamily: 'Arial', marginBottom: '0px', marginTop: 0 }}>Cartographies of My Work</h3> 
+      <p className="sidebar-subtitle" style={{ marginBottom: 6, marginTop: 0, maxWidth: 400, fontStyle: 'italic' }}>
         Explore by zooming in or clicking on a city, or filtering below:
       </p>
       {/* Ballot-style category selector */}

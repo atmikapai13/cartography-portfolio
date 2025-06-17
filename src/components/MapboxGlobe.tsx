@@ -55,11 +55,11 @@ export default function MapboxGlobe({ onCitySelect }: MapboxGlobeProps) {
       container: mapContainer.current,
       style: "mapbox://styles/mapbox/satellite-streets-v11", //satellite-v9
       projection: "globe",
-      center: [-90, 0],
-      zoom: isMobile ? 0.08 : 1.85,
+      center: [-110, 25],
+      zoom: isMobile ? 0.48 : 1.85,
       bearing: 0,
       pitch: 0,
-      minZoom: isMobile ? 0.08 : 1.85,
+      minZoom: isMobile ? 0.48 : 1.85,
       attributionControl: false,
     });
     mapRef.current = map;
@@ -140,6 +140,10 @@ export default function MapboxGlobe({ onCitySelect }: MapboxGlobeProps) {
         if (!cityName) return;
         if (onCitySelect) onCitySelect(cityName);
 
+        // Disable popups on mobile
+        const isMobile = window.innerWidth <= 600;
+        if (isMobile) return;
+
         // Find city info (place_description and date)
         const cityData = (placeData as any[]).find(
           (entry) => entry.city.trim().toLowerCase() === cityName.trim().toLowerCase()
@@ -163,12 +167,9 @@ export default function MapboxGlobe({ onCitySelect }: MapboxGlobeProps) {
         // Pause rotation when popup opens
         rotationEnabled = false;
         // Center popup on globe for mobile, on pin for desktop, with Y offset for mobile
-        const isMobile = window.innerWidth <= 600;
         const center = map.getCenter();
-        const offsetLat = 17; // Move 10 degrees south
-        const popupLngLat = isMobile
-          ? { lng: center.lng, lat: center.lat - offsetLat }
-          : e.lngLat;
+        const offsetLat = 10; // Move 10 degrees south
+        const popupLngLat = e.lngLat;
         const popup = new mapboxgl.Popup({ maxWidth: '420px' })
           .setLngLat(popupLngLat)
           .setHTML(popupContent)

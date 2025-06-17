@@ -94,7 +94,7 @@ body {
   justify-content: space-between;
 }
 .nav-title {
-  font-size: 2.0rem;
+  font-size: 1.7rem;
   font-weight: 700;
   color: #f8f6f0;
   margin-left: 2.5rem;
@@ -424,7 +424,7 @@ footer {
 }
 
 .sidebar-title {
-  font-size: 1.4rem;
+  font-size: 1.7rem;
   font-weight: bold;
   margin-bottom: 18px;
   letter-spacing: 0.5px;
@@ -554,12 +554,12 @@ footer {
     margin-bottom: 0;
   }
   .sidebar-title {
-    font-size: 0.75rem;
+    font-size: 1.5rem !important;
     margin-top: 0.2rem;
     margin-bottom: 0.3rem;
   }
   .sidebar-subtitle {
-    font-size: 0.8rem;
+    font-size: 0.5rem !important;
     margin-bottom: 6px;
   }
   .sidebar-project-list {
