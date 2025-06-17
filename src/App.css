@@ -531,7 +531,7 @@ footer {
     min-width: 0;
   }
   .nav-title {
-    font-size: 1.2rem;
+    font-size: 1.0rem;
     margin: 0.5rem 0;
     text-align: center;
     width: 100%;
@@ -554,16 +554,16 @@ footer {
     margin-bottom: 0;
   }
   .sidebar-title {
-    font-size: 1.05rem;
+    font-size: 0.75rem;
     margin-top: 0.2rem;
     margin-bottom: 0.3rem;
   }
   .sidebar-subtitle {
     font-size: 0.8rem;
-    margin-bottom: 8px;
+    margin-bottom: 6px;
   }
   .sidebar-project-list {
-    gap: 10px;
+    gap: 8px;
   }
   .project-card {
     padding: 10px;
@@ -606,6 +606,24 @@ footer {
   .spotlight-card:hover {
     box-shadow: none !important;
     border-color: inherit !important;
+  }
+  /* Filter buttons */
+  .sidebar button,
+  .sidebar .tech-stack-dropdown-label {
+    font-size: 0.6rem !important;
+  }
+  /* Badge legend */
+  .sidebar .spotlight-badge {
+    font-size: 0.6rem !important;
+    width: 16px;
+    height: 16px;
+  }
+  .sidebar .spotlight-badge + span {
+    font-size: 0.6rem !important;
+  }
+  /* Radio label font */
+  .sidebar label {
+    font-size: 0.6rem !important;
   }
 }
 
@@ -821,7 +839,7 @@ footer {
   /* Sidebar project list scroll area: ensure it ends above the fixed footer */
   .sidebar-scroll {
     overflow-y: auto !important;
-    max-height: calc(100vh - 525px) !important; 
+    max-height: calc(100vh - 535px) !important; 
     padding-bottom: 24px !important;
   }
 }
