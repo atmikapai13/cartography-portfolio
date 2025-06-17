@@ -13,6 +13,7 @@ const project_cities = [
     { id: 5, name: "San Diego", country: "USA", longitude: -117.1611, latitude: 32.7157 },
     { id: 6, name: "Palm Springs", country: "USA", longitude: -116.5453, latitude: 33.8303 },
     { id: 7, name: "Berkeley", country: "USA", longitude: -122.2549, latitude: 37.8676},
+    { id: 26, name: "Cafenated, North Berkeley", country: "USA", longitude: -122.2725, latitude: 37.8759 },
     { id: 8, name: "Oakland", country: "USA", longitude: -122.27208, latitude: 37.80903 },
     { id: 9, name: "Sydney", country: "Australia", longitude: 151.15115, latitude: -33.75535},
     { id: 10, name: "Singapore", country: "Singapore", longitude: 103.88870, latitude: 1.31748 },
@@ -24,6 +25,7 @@ const project_cities = [
     { id: 16, name: "Utah", country: "USA", longitude: -111.0937, latitude: 39.32098 },
     { id: 17, name: "New Jersey", country: "USA", longitude: -74.4057, latitude: 40.0583 },
     { id: 18, name: "Roosevelt Island", country: "USA", longitude: -73.95630, latitude: 40.75581 },
+    { id: 27, name: "Cafe Aviva, Roosevelt Island", country: "USA", longitude: -73.9478, latitude: 40.7605 },
     { id: 19, name: "Brooklyn (BK11)", country: "USA", borough: "Brooklyn", longitude: -73.9332, latitude: 40.6536 },
     { id: 20, name: "Brooklyn (BK17)", country: "USA", borough: "Brooklyn", longitude: -73.9225, latitude: 40.6496 },
     { id: 21, name: "Bronx (BX5)", country: "USA", borough: "Bronx", longitude: -73.9020, latitude: 40.8317 },
@@ -31,10 +33,12 @@ const project_cities = [
     { id: 23, name: "Queens (QN2)", country: "USA", borough: "Queens", longitude: -73.9326, latitude: 40.7612 },
     { id: 24, name: "Lower Manhattan", country: "USA", longitude: -74.0090, latitude: 40.7075 },
     { id: 25, name: "Christchurch", country: "New Zealand", longitude: 172.6306, latitude: -43.5321 },
+    { id: 28, name: "London", country: "USA", longitude: 0.1281, latitude: 51.5080 },
   ];
 
 const zoomGatedCities = ["Walnut Creek", "Roosevelt Island", "New Jersey", "Oakland", "Berkeley", "West Hollywood",
-  "Brooklyn (BK11)", "Brooklyn (BK17)", "Bronx (BX5)", "Manhattan (MN10)", "Queens (QN2)", "Lower Manhattan", "Christchurch"
+  "Brooklyn (BK11)", "Brooklyn (BK17)", "Bronx (BX5)", "Manhattan (MN10)", "Queens (QN2)", 
+  "Lower Manhattan", "Christchurch", "Cafenated, North Berkeley", "Cafe Aviva, Roosevelt Island", "London"
 ];
 
 mapboxgl.accessToken = "pk.eyJ1IjoiYXRtaWthcGFpMTMiLCJhIjoiY21idHR4eTJpMDdhMjJsb20zNmZheTZ6ayJ9.d_bQSBzesyiCUMA-YHRoIA";
@@ -102,8 +106,16 @@ export default function MapboxGlobe({ onCitySelect }: MapboxGlobeProps) {
         type: "circle",
         source: "cities",
         paint: {
-          "circle-radius": 5,
-          "circle-color": "#ed462b",
+          "circle-radius": [
+            "case",
+            ["in", ["get", "name"], ["literal", zoomGatedCities]], 3.5,
+            5
+          ],
+          "circle-color": [
+            "case",
+            ["in", ["get", "name"], ["literal", zoomGatedCities]], "#ffbfb5",
+            "#ed462b"
+          ],
           "circle-stroke-width": 1,
           "circle-stroke-color": "#000000",
           "circle-opacity": 1.0,
@@ -156,7 +168,7 @@ export default function MapboxGlobe({ onCitySelect }: MapboxGlobeProps) {
           popupContent += `<div class="city-description">`;
           popupContent += `<h3 style='margin-bottom: 6px; text-align:center;'>${cityName}</h3>`;
           if (cityData.image) {
-            popupContent += `<img src='${cityData.image}' alt='${cityName}' style='display:block;margin:0 auto 10px auto;max-width:250px;width:100%;height:auto;border-radius:10px;' />`;
+            popupContent += `<img src='${cityData.image}' alt='${cityName}' style='display:block;margin:0 auto 10px auto;max-width:250px; width:100%;height:auto;border-radius:10px;' />`;
           }
           popupContent += `<div style='font-size:0.98rem;color:#bdbdbd;margin-bottom:8px;text-align:center;'><em>${cityData.date || ''}</em></div>`;
           popupContent += `<div style='font-size:1.05rem;color:#e0e0e0;text-align:center;'>${cityData.place_description || ''}</div>`;
@@ -168,7 +180,7 @@ export default function MapboxGlobe({ onCitySelect }: MapboxGlobeProps) {
         rotationEnabled = false;
         // Center popup on globe for mobile, on pin for desktop, with Y offset for mobile
         const popupLngLat = e.lngLat;
-        const popup = new mapboxgl.Popup({ maxWidth: '420px' })
+        const popup = new mapboxgl.Popup({ maxWidth: '450px' })
           .setLngLat(popupLngLat)
           .setHTML(popupContent)
           .addTo(map);

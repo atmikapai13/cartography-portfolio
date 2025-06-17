@@ -298,21 +298,9 @@
     "tech_stack2": "iMovie"
   },
   {
-    "id": 23,
-    "title": "Smart City Initiatives in West Hollywood",
-    "city": "West Hollywood",
-    "description": "Urban Tech students and I investigated smart city initiatives in West Hollywood, including smart buses, nodes, and streetlights, and proposed a post-pandemic plan to sustain and expand them.",
-    "link": "https://docs.google.com/presentation/d/12oTSDSqduQpqlfIaITrERdzDXeJ0nlA6CQtvTHFjfg4/edit?usp=sharing",
-    "github": null,
-    "image": "/cartography-portfolio/assets/23.png",
-    "spotlight": false,
-    "tech_stack": ["GIS"],
-    "work_experience": ["Projects"]
-  },
-  {
     "id": 13,
     "title": "Project Manager @ Microfinance at Berkeley",
-    "city": "Berkeley",
+    "city": ["Berkeley", "Cafenated, North Berkeley"],
     "description": "I led a team of four to help two small businesses in Berkeley build e-commerce platforms by prototyping websites in Figma. I adapted project goals and team expectations in response to the pandemic, ensuring successful delivery and strong team morale.",
     "link": "https://microfinanceatberkeley.com/",
     "github": null,

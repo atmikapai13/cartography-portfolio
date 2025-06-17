@@ -7,7 +7,12 @@
   {
     "city": "Berkeley",
     "date": "August 2018-May 2022",
-    "place_description": "I spent my early twenties in Berkeley, where I earned a B.A. in Data Science and Economics from the University of California, Berkeley. \n\nLiving in the long shadow of Silicon Valley shaped my understanding of how the world works and who runs it.\n\nStill, the sun hits different in California. \n\nCue Phantom Planet's \"California.\""
+    "place_description": "I spent my early twenties in Berkeley, where I earned a B.A. in Data Science and Economics from the University of California, Berkeley. \n\nLiving in the long shadow of Silicon Valley shaped my understanding of how the world works and who runs it.\n\nStill, the sun hits different in California. Here's a playlist I made, an ode to <a href=\"https://open.spotify.com/playlist/6UADKvCNvJOQggMG8TEfV3?si=2dc111eb8bc44a59\" target=\"_blank\" rel=\"noopener noreferrer\">California.</a>"
+  },
+  {
+    "city": "Cafenated, North Berkeley",
+    "image": "/cartography-portfolio/assets/cafenated.png",
+    "place_description": "As a project manager at Microfinance at Berkeley, a small business consulting club at UC Berkeley, I led a website redesign for a local café that was transforming its patio into an event venue. The café wanted to enhance its existing website to allow customers to view and book the patio space online. Working closely with the owner, our team designed and prototyped the full booking experience, aligning it with the café’s brand and business goals. Check out the <a href=\"https://www.figma.com/proto/58uCZ0OF3uRz9eCCmaFG0n/Cafenated-Patio--Copy-?node-id=24-2&p=f&t=yLW82Aj5xihTGzwr-1&scaling=scale-down&content-scaling=fixed&page-id=0%3A1\" target=\"_blank\" rel=\"noopener noreferrer\">Figma prototype</a> we created!"
   },
   {
     "city": "Oakland",
@@ -70,7 +75,7 @@
   },
   {
     "city": "West Hollywood",
-    "place_description": ""
+    "place_description": "Some Urban Tech students and I investigated smart city initiatives in West Hollywood, including smart buses, nodes, and streetlights, and proposed a post-pandemic plan to sustain and expand them. Here's a <a href=\"https://docs.google.com/presentation/d/12oTSDSqduQpqlfIaITrERdzDXeJ0nlA6CQtvTHFjfg4/edit?usp=sharing\" target=\"_blank\" rel=\"noopener noreferrer\">presentation</a> I made!"
   },
   {
     "city": "New Jersey",
@@ -79,7 +84,13 @@
   {
     "city": "Roosevelt Island",
     "date": "July 2024-present",
-    "place_description": "Cornell Tech's campus is located on Roosevelt Island, a thing strip of land island in the East River between Manhattan and Queens. This is also where I live."
+    "place_description": "Cornell Tech's campus is located on Roosevelt Island, a thin strip of land island in the East River between Manhattan and Queens. This is also where I live."
+  },
+  {
+    "city": "Cafe Aviva, Roosevelt Island",
+    "date": "September 2024",
+    "image": "/cartography-portfolio/assets/cafe_aviva.png",
+    "place_description": "As part of my HCI & Design coursework, I collaborated with a team of MS students to design a new e-commerce website for the soon-to-launch Café Aviva on Roosevelt Island. We spoke with the owner, Alon Kruvi, to understand his goals, aesthetic preferences, and the atmosphere he envisioned for the café. Next, we created a high-fidelity prototype in Figma that reflects his brand’s style and layout. Take a look at the <a href=\"https://www.figma.com/proto/oggb8fwW0s0rt300eL0ZsU/Cafe-Aviva-Prototype?node-id=1-6&starting-point-node-id=1%3A6&scaling=scale-down&content-scaling=fixed&t=umlMfbUz3BdTsZNQ-1\" target=\"_blank\" rel=\"noopener noreferrer\">prototype!</a>."
   },
   {
     "city": "Brooklyn (BK11)",
@@ -114,6 +125,11 @@
   {
     "city": "Christchurch",
     "date": "January 2025",
-    "place_description": "I got to visit New Zealand with my parents. I really loved this country. It is fascinating how they rebuilt Christchurch after the 2011 earthquake. Look at the <a href=\"https://www.youtube.com/watch?v=tgydPEA86HA\" target=\"_blank\" rel=\"noopener noreferrer\">video</a> I shot of Border Collie and Hunt Away dogs herding sheep in Agrodome, Rotorua in the North Island!"
+    "place_description": "I got to visit New Zealand with my parents. I really loved this country. It is fascinating how they rebuilt Christchurch after the 2011 earthquake. Look at the <a href=\"https://www.youtube.com/watch?v=tgydPEA86HA\" target=\"_blank\" rel=\"noopener noreferrer\">video</a> I shot of Border Collie and Hunt Away dogs herding sheep in Agrodome, Rotorua in the North Island! Here's a <a href=\"https://open.spotify.com/playlist/0ip84tD0XEaMdr2YyHeDpQ?si=78c2b472c7e841d3\" target=\"_blank\" rel=\"noopener noreferrer\">playlist</a> I made when I was visiting!"
+  },
+  {
+    "city": "London",
+    "date": "June 2024",
+    "place_description": "Here's a <a href=\"https://open.spotify.com/playlist/63uV7EESnxrHDFNRCD3c8W?si=9b42c7401a9e4600\" target=\"_blank\" rel=\"noopener noreferrer\">playlist</a> I've been tinkering with! I really enjoyed Tower of London and the British Museum."
   }
 ]
