@@ -5,8 +5,8 @@ import './App.css';
 
 function App() {
   const [selectedCity, setSelectedCity] = useState<string | null>(null);
-  const [showMobileApp, setShowMobileApp] = useState(false);
   const [isMobile, setIsMobile] = useState(false);
+  const [showDisclaimer, setShowDisclaimer] = useState(true);
 
   useEffect(() => {
     const checkMobile = () => setIsMobile(window.innerWidth <= 900);
@@ -15,13 +15,55 @@ function App() {
     return () => window.removeEventListener('resize', checkMobile);
   }, []);
 
-  if (isMobile && !showMobileApp) {
-    return (
-      <div style={{ minHeight: '100vh', background: '#151515', color: '#f8f6f0', display: 'flex', flexDirection: 'column', justifyContent: 'center', alignItems: 'center', padding: 32, textAlign: 'center' }}>
+  // Disclaimer popup component
+  const DisclaimerPopup = () => (
+    <div style={{ 
+      position: 'fixed',
+      top: 0,
+      left: 0,
+      width: '100%',
+      height: '100%',
+      backgroundColor: 'rgba(0, 0, 0, 0.7)',
+      display: 'flex',
+      justifyContent: 'center',
+      alignItems: 'center',
+      zIndex: 1000,
+    }}
+    onClick={() => setShowDisclaimer(false)}
+    >
+      <div 
+        style={{ 
+          background: '#151515', 
+          color: '#f8f6f0', 
+          padding: '40px',
+          borderRadius: '16px',
+          textAlign: 'center',
+          maxWidth: '500px',
+          margin: '20px',
+          border: '1px solid #333',
+          boxShadow: '0 8px 32px rgba(0, 0, 0, 0.5)',
+        }}
+        onClick={(e) => e.stopPropagation()}
+      >
         <div style={{ fontSize: '3rem', marginBottom: 12 }}>🌍</div>
-        <div style={{ fontSize: '1.2rem', fontWeight: 600, marginBottom: 24, maxWidth: 400 }}>
-          For the best interactive experience, please open this website on a desktop.
+        <div style={{ fontSize: '1.4rem', fontWeight: 700, marginBottom: 16, color: '#a5d6fa' }}>
+          Hello World!<br />
+          Welcome to Atmika's portfolio.
         </div>
+        <div style={{ fontSize: '1rem', lineHeight: '1.6', marginBottom: 24, textAlign: 'center' }}>
+          I'm a Cornell Tech grad student, studying Information Systems with a focus on Urban Tech. Trained as a data scientist, I'm drawn to GIS, HCI, and design.
+        </div>
+        <div style={{ fontSize: '1rem', lineHeight: '1.6', marginBottom: 24, textAlign: 'center' }}>
+          Having lived in cities around the world, I've come to see maps as a way of making sense of place. This portfolio brings together work shaped by each of those places.
+        </div>
+        <div style={{ fontSize: '1.1rem', fontWeight: 600, marginBottom: 24, color: '#f8f6f0' }}>
+          To explore, click a city on the map or filter using the navigation pane on the right.
+        </div>
+        {isMobile && (
+          <div style={{ fontSize: '0.8rem', fontWeight: 600, marginBottom: 16, color: '#ff6b6b', textAlign: 'center' }}>
+            For the best experience, open this website on a desktop!
+          </div>
+        )}
         <button
           style={{
             background: '#232323',
@@ -35,16 +77,17 @@ function App() {
             marginTop: 12,
             boxShadow: '0 1px 4px #1a2a4f22',
           }}
-          onClick={() => setShowMobileApp(true)}
+          onClick={() => setShowDisclaimer(false)}
         >
-          Next
+          Get Started
         </button>
       </div>
-    );
-  }
+    </div>
+  );
 
   return (
-      <div>
+    <>
+      <div style={{ opacity: showDisclaimer ? 0.7 : 1, transition: 'opacity 0.3s ease' }}>
       {/* Navigation Bar */}
       <nav className="navbar" style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', width: '100%' }}>
         {/* Header */}
@@ -89,6 +132,8 @@ function App() {
         </div>
       </footer>
       </div>
+      {showDisclaimer && <DisclaimerPopup />}
+    </>
   );
 }
 
