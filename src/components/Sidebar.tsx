@@ -108,7 +108,7 @@ const Sidebar: React.FC<SidebarProps> = ({ selectedCity, setSelectedCity }) => {
   else if (selectedCategory.toLowerCase() === 'travel') badgeLegend = 'International';
 
   return (
-    <aside className="sidebar" style={{ paddingTop: 8 }}>
+    <aside className="sidebar" style={{ paddingTop: 0 }}>
       <h3 className="sidebar-title" style={{  fontFamily: 'Arial', marginBottom: '0px', marginTop: 0 }}>Cartographies of My Work</h3> 
       <p className="sidebar-subtitle" style={{ marginBottom: 6, marginTop: 0, maxWidth: 400, fontStyle: 'italic'}}>
         Explore by zooming in or clicking on a city, or filtering below:
