@@ -56,9 +56,9 @@ function App() {
           padding: '20px',
           borderRadius: '16px',
           textAlign: 'center',
-          width: '400px',
+          width: '500px',
           maxWidth: '90vw',
-          height: '350px',
+          height: '420px',
           margin: '20px',
           border: '1px solid #333',
           boxShadow: '0 8px 32px rgba(0, 0, 0, 0.5)',
@@ -66,10 +66,28 @@ function App() {
           flexDirection: 'column',
           alignItems: 'center',
           justifyContent: 'space-between',
-          boxSizing: 'border-box'
+          boxSizing: 'border-box',
+          position: 'relative'
         }}
         onClick={(e) => e.stopPropagation()}
       >
+        <button
+          onClick={() => setShowDisclaimer(false)}
+          style={{
+            position: 'absolute',
+            top: '15px',
+            right: '15px',
+            background: 'none',
+            border: 'none',
+            color: '#aaa',
+            fontSize: '1.5rem',
+            cursor: 'pointer',
+            lineHeight: 1,
+            padding: 5
+          }}
+        >
+          &times;
+        </button>
         {/* Top: Globe */}
         <div style={{ fontSize: '3rem', flexShrink: 0 }}>🌍</div>
 
@@ -77,14 +95,14 @@ function App() {
         <div style={{ flex: 1, display: 'flex', flexDirection: 'column', justifyContent: 'center', width: '100%', overflowY: 'auto', padding: '0 10px' }}>
           {disclaimerPage === 1 && (
             <>
-              <div style={{ fontSize: isMobile ? '1.0rem' : '1.4rem', fontWeight: 700, marginBottom: 8, color: '#a5d6fa' }}>
+              <div style={{ fontSize: isMobile ? '0.9rem' : '1.4rem', fontWeight: 700, marginBottom: 8, color: '#a5d6fa' }}>
                 Hello, World!<br />
                 Welcome to Atmika's portfolio.
               </div>
-              <div style={{ fontSize: isMobile ? '0.8rem' : '1rem', lineHeight: '1.4', marginBottom: 10, textAlign: 'center' }}>
+              <div style={{ fontSize: isMobile ? '0.7rem' : '1rem', lineHeight: '1.4', marginBottom: 10, textAlign: 'center' }}>
                 I'm a Cornell Tech grad student, studying Information Systems with a focus on Urban Tech. Trained as a data scientist, I'm drawn to GIS, HCI, and design.
               </div>
-              <div style={{ fontSize: isMobile ? '0.8rem' : '1rem', lineHeight: '1.4', marginBottom: 16, textAlign: 'center' }}>
+              <div style={{ fontSize: isMobile ? '0.7rem' : '1rem', lineHeight: '1.4', marginBottom: 5, textAlign: 'center' }}>
                 Having lived in cities around the world, I've come to see maps as a way of making sense of place. This portfolio brings together work shaped by each of those places.
               </div>
             </>
@@ -92,86 +110,82 @@ function App() {
 
           {disclaimerPage === 2 && (
             <>
-              <div style={{ fontSize: isMobile ? '0.8rem' : '1rem', fontWeight: 600, marginBottom: 20, lineHeight: '1.4'}}>
+            <div style={{ fontSize: isMobile ? '0.7rem' : '1rem', fontWeight: 600, marginBottom: 12, lineHeight: '1.4'}}>
                 To explore, click a city on the map or filter in the navigation panel.
               </div>
-              {isMobile && (
-                <div style={{ fontSize: '0.8rem', fontWeight: 600, color: '#ff6b6b', textAlign: 'center', marginBottom: 0 }}>
-                  And for the best experience, open this website on a desktop!
-                  <button onClick={handleShare} style={{ background: 'none', border: 'none', paddingLeft: '8px', cursor: 'pointer', fontSize: '0.5rem', verticalAlign: 'middle' }}>
-                    📤
-                  </button>
-                </div>
-              )}
+                {!isMobile && (
+                  <img 
+                    src="public/assets/tutorial.gif" 
+                    alt="Portfolio navigation tutorial" 
+                    style={{ width: '85%', maxHeight: '80%', borderRadius: '8px', marginBottom: '5px' , alignSelf: 'center'}}
+                  />
+                )}
+              
+              
+                {isMobile && (
+                  <div style={{ fontSize: '0.7rem', fontWeight: 600, color: '#ff6b6b', textAlign: 'center', marginBottom: '5px' }}>
+                    And for the best experience, open this website on a desktop!
+                    <button onClick={handleShare} style={{ background: 'none', border: 'none', paddingLeft: '8px', cursor: 'pointer', fontSize: '0.5rem', verticalAlign: 'middle' }}>
+                      📤
+                    </button>
+                  </div>
+                )}
             </>
           )}
         </div>
 
         {/* Bottom: Dots and Buttons */}
-        <div style={{flexShrink: 0, width: '100%'}}>
-          <div style={{ display: 'flex', justifyContent: 'center', gap: '8px', marginBottom: '20px' }}>
+        <div style={{
+          flexShrink: 0, 
+          width: '100%', 
+          display: 'flex', 
+          justifyContent: 'space-between', 
+          alignItems: 'center',
+          padding: '0 10px',
+          boxSizing: 'border-box'
+        }}>
+          {/* Back Arrow */}
+          <button 
+            style={{
+              background: 'none',
+              border: 'none',
+              color: '#f8f6f0',
+              fontSize: '2rem',
+              cursor: 'pointer',
+              visibility: disclaimerPage === 1 ? 'hidden' : 'visible',
+              padding: '10px'
+            }}
+            onClick={() => disclaimerPage > 1 && setDisclaimerPage(disclaimerPage - 1)}
+          >
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><polyline points="15 18 9 12 15 6"></polyline></svg>
+          </button>
+
+          {/* Pagination Dots */}
+          <div style={{ display: 'flex', justifyContent: 'center', gap: '8px' }}>
             <span style={{ height: '8px', width: '8px', backgroundColor: disclaimerPage === 1 ? '#a5d6fa' : '#555', borderRadius: '50%' }}></span>
             <span style={{ height: '8px', width: '8px', backgroundColor: disclaimerPage === 2 ? '#a5d6fa' : '#555', borderRadius: '50%' }}></span>
           </div>
-          
-          {disclaimerPage === 1 && (
-            <button
-              style={{
-                background: '#232323',
-                color: '#a5d6fa',
-                fontWeight: 700,
-                fontSize: isMobile ? '0.8rem' : '1rem',
-                border: 'none',
-                borderRadius: 12,
-                padding: isMobile ? '8px 24px' : '10px 32px',
-                cursor: 'pointer',
-                boxShadow: '0 1px 4px #1a2a4f22',
-                width: '100%'
-              }}
-              onClick={() => setDisclaimerPage(2)}
-            >
-              Next
-            </button>
-          )}
 
-          {disclaimerPage === 2 && (
-            <div style={{display: 'flex', gap: '15px', width: '100%'}}>
-              <button
-                style={{
-                  background: '#3a3a3a',
-                  color: '#f8f6f0',
-                  fontWeight: 700,
-                  fontSize: isMobile ? '0.8rem' : '1rem',
-                  border: '1px solid #555',
-                  borderRadius: 12,
-                  padding: isMobile ? '8px 24px' : '10px 32px',
-                  cursor: 'pointer',
-                  boxShadow: '0 1px 4px #1a2a4f22',
-                  flex: 1
-                }}
-                onClick={() => setDisclaimerPage(1)}
-              >
-                Back
-              </button>
-              <button
-                style={{
-                  background: '#232323',
-                  color: '#a5d6fa',
-                  fontWeight: 700,
-                  fontSize: isMobile ? '0.8rem' : '1rem',
-                  border: 'none',
-                  borderRadius: 12,
-                  padding: isMobile ? '8px 24px' : '10px 32px',
-                  cursor: 'pointer',
-                  boxShadow: '0 1px 4px #1a2a4f22',
-                  flex: 1
-                }}
-                onClick={() => setShowDisclaimer(false)}
-              >
-                Get Started
-              </button>
-            </div>
-          )}
+          {/* Forward Arrow */}
+          <button 
+            style={{
+              background: 'none',
+              border: 'none',
+              color: '#a5d6fa',
+              fontSize: '2rem',
+              cursor: 'pointer',
+              padding: '10px'
+            }}
+            onClick={() => {
+              if (disclaimerPage === 2) {
+                setShowDisclaimer(false);
+              } else {
+                setDisclaimerPage(disclaimerPage + 1);
+              }
+            }}
+          >
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><polyline points="9 18 15 12 9 6"></polyline></svg>
+          </button>
         </div>
       </div>
     </div>
