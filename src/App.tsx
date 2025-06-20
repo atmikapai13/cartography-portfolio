@@ -95,14 +95,14 @@ function App() {
         <div style={{ flex: 1, display: 'flex', flexDirection: 'column', justifyContent: 'center', width: '100%', overflowY: 'auto', padding: '0 10px' }}>
           {disclaimerPage === 1 && (
             <>
-              <div style={{ fontSize: isMobile ? '1.2rem' : '1.4rem', fontWeight: 700, marginBottom: 8, color: '#a5d6fa' }}>
+              <div style={{ fontSize: isMobile ? '1.0rem' : '1.4rem', fontWeight: 700, marginBottom: 8, color: '#a5d6fa' }}>
                 Hello, World!<br />
                 Welcome to Atmika's portfolio.
               </div>
-              <div style={{ fontSize: isMobile ? '0.9rem' : '1rem', lineHeight: '1.4', marginBottom: 10, textAlign: 'center' }}>
+              <div style={{ fontSize: isMobile ? '0.8rem' : '1rem', lineHeight: '1.4', marginBottom: 10, textAlign: 'center' }}>
                 I'm a Cornell Tech grad student, studying Information Systems with a focus on Urban Tech. Trained as a data scientist, I'm drawn to GIS, HCI, and design.
               </div>
-              <div style={{ fontSize: isMobile ? '0.9rem' : '1rem', lineHeight: '1.4', marginBottom: 5, textAlign: 'center' }}>
+              <div style={{ fontSize: isMobile ? '0.8rem' : '1rem', lineHeight: '1.4', marginBottom: 5, textAlign: 'center' }}>
                 Having lived in cities around the world, I've come to see maps as a way of making sense of place. This portfolio brings together work shaped by each of those places.
               </div>
             </>
@@ -110,7 +110,7 @@ function App() {
 
           {disclaimerPage === 2 && (
             <>
-            <div style={{ fontSize: isMobile ? '0.9rem' : '1rem', fontWeight: 600, marginBottom: 12, lineHeight: '1.4'}}>
+            <div style={{ fontSize: '1rem', fontWeight: 600, marginBottom: 12, lineHeight: '1.4'}}>
                 To explore, click a city on the map or filter in the navigation panel.
               </div>
                 {!isMobile && (
@@ -123,7 +123,7 @@ function App() {
               
               
                 {isMobile && (
-                  <div style={{ fontSize: '0.9rem', fontWeight: 600, color: '#ff6b6b', textAlign: 'center', marginBottom: '5px' }}>
+                  <div style={{ fontSize: '1rem', fontWeight: 600, color: '#ff6b6b', textAlign: 'center', marginBottom: '5px' }}>
                     And for the best experience, open this website on a desktop!
                     <button onClick={handleShare} style={{ background: 'none', border: 'none', paddingLeft: '8px', cursor: 'pointer', fontSize: '0.5rem', verticalAlign: 'middle' }}>
                       📤
