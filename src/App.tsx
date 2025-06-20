@@ -77,14 +77,14 @@ function App() {
         <div style={{ flex: 1, display: 'flex', flexDirection: 'column', justifyContent: 'center', width: '100%', overflowY: 'auto', padding: '0 10px' }}>
           {disclaimerPage === 1 && (
             <>
-              <div style={{ fontSize: '1.4rem', fontWeight: 700, marginBottom: 8, color: '#a5d6fa' }}>
+              <div style={{ fontSize: isMobile ? '0.8rem' : '1.4rem', fontWeight: 700, marginBottom: 8, color: '#a5d6fa' }}>
                 Hello, World!<br />
                 Welcome to Atmika's portfolio.
               </div>
-              <div style={{ fontSize: '1rem', lineHeight: '1.4', marginBottom: 10, textAlign: 'center' }}>
+              <div style={{ fontSize: isMobile ? '0.6rem' : '1rem', lineHeight: '1.4', marginBottom: 10, textAlign: 'center' }}>
                 I'm a Cornell Tech grad student, studying Information Systems with a focus on Urban Tech. Trained as a data scientist, I'm drawn to GIS, HCI, and design.
               </div>
-              <div style={{ fontSize: '1rem', lineHeight: '1.4', marginBottom: 16, textAlign: 'center' }}>
+              <div style={{ fontSize: isMobile ? '0.6rem' : '1rem', lineHeight: '1.4', marginBottom: 16, textAlign: 'center' }}>
                 Having lived in cities around the world, I've come to see maps as a way of making sense of place. This portfolio brings together work shaped by each of those places.
               </div>
             </>
@@ -92,13 +92,13 @@ function App() {
 
           {disclaimerPage === 2 && (
             <>
-              <div style={{ fontSize: '1.2rem', fontWeight: 600, marginBottom: 20, lineHeight: '1.4'}}>
+              <div style={{ fontSize: isMobile ? '0.6rem' : '1rem', fontWeight: 600, marginBottom: 20, lineHeight: '1.4'}}>
                 To explore, click a city on the map or filter in the navigation panel.
               </div>
               {isMobile && (
                 <div style={{ fontSize: '1rem', fontWeight: 600, color: '#ff6b6b', textAlign: 'center', marginBottom: 0 }}>
                   And for the best experience, open this website on a desktop!
-                  <button onClick={handleShare} style={{ background: 'none', border: 'none', paddingLeft: '8px', cursor: 'pointer', fontSize: '1rem', verticalAlign: 'middle' }}>
+                  <button onClick={handleShare} style={{ background: 'none', border: 'none', paddingLeft: '8px', cursor: 'pointer', fontSize: '0.5rem', verticalAlign: 'middle' }}>
                     📤
                   </button>
                 </div>
@@ -120,10 +120,10 @@ function App() {
                 background: '#232323',
                 color: '#a5d6fa',
                 fontWeight: 700,
-                fontSize: '1rem',
+                fontSize: isMobile ? '0.8rem' : '1rem',
                 border: 'none',
                 borderRadius: 12,
-                padding: '10px 32px',
+                padding: isMobile ? '8px 24px' : '10px 32px',
                 cursor: 'pointer',
                 boxShadow: '0 1px 4px #1a2a4f22',
                 width: '100%'
@@ -141,10 +141,10 @@ function App() {
                   background: '#3a3a3a',
                   color: '#f8f6f0',
                   fontWeight: 700,
-                  fontSize: '1rem',
+                  fontSize: isMobile ? '0.6rem' : '1rem',
                   border: '1px solid #555',
                   borderRadius: 12,
-                  padding: '10px 32px',
+                  padding: isMobile ? '8px 24px' : '10px 32px',
                   cursor: 'pointer',
                   boxShadow: '0 1px 4px #1a2a4f22',
                   flex: 1
@@ -158,10 +158,10 @@ function App() {
                   background: '#232323',
                   color: '#a5d6fa',
                   fontWeight: 700,
-                  fontSize: '1rem',
+                  fontSize: isMobile ? '0.6rem' : '1rem',
                   border: 'none',
                   borderRadius: 12,
-                  padding: '10px 32px',
+                  padding: isMobile ? '8px 24px' : '10px 32px',
                   cursor: 'pointer',
                   boxShadow: '0 1px 4px #1a2a4f22',
                   flex: 1
