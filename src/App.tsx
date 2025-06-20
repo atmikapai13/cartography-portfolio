@@ -7,6 +7,7 @@ function App() {
   const [selectedCity, setSelectedCity] = useState<string | null>(null);
   const [isMobile, setIsMobile] = useState(false);
   const [showDisclaimer, setShowDisclaimer] = useState(true);
+  const [disclaimerPage, setDisclaimerPage] = useState(1);
 
   useEffect(() => {
     const checkMobile = () => setIsMobile(window.innerWidth <= 900);
@@ -14,6 +15,23 @@ function App() {
     window.addEventListener('resize', checkMobile);
     return () => window.removeEventListener('resize', checkMobile);
   }, []);
+
+  const handleShare = async () => {
+    if (navigator.share) {
+      try {
+        await navigator.share({
+          title: "Atmika's Portfolio",
+          text: "Check out this interactive portfolio mapping projects across the globe!",
+          url: window.location.href,
+        });
+      } catch (error) {
+        console.error('Share failed:', error);
+      }
+    } else {
+      navigator.clipboard.writeText(window.location.href);
+      alert('Link copied to clipboard!');
+    }
+  };
 
   // Disclaimer popup component
   const DisclaimerPopup = () => (
@@ -29,58 +47,132 @@ function App() {
       alignItems: 'center',
       zIndex: 1000,
     }}
-    onClick={() => setShowDisclaimer(false)}
+    // Intentionally not closing on overlay click to guide through pages
     >
       <div 
         style={{ 
           background: '#151515', 
           color: '#f8f6f0', 
-          padding: '40px',
+          padding: '20px',
           borderRadius: '16px',
           textAlign: 'center',
-          maxWidth: '500px',
+          width: '400px',
+          maxWidth: '90vw',
+          height: '350px',
           margin: '20px',
           border: '1px solid #333',
           boxShadow: '0 8px 32px rgba(0, 0, 0, 0.5)',
+          display: 'flex',
+          flexDirection: 'column',
+          alignItems: 'center',
+          justifyContent: 'space-between',
+          boxSizing: 'border-box'
         }}
         onClick={(e) => e.stopPropagation()}
       >
-        <div style={{ fontSize: '3rem', marginBottom: 12 }}>🌍</div>
-        <div style={{ fontSize: '1.4rem', fontWeight: 700, marginBottom: 16, color: '#a5d6fa' }}>
-          Hello World!<br />
-          Welcome to Atmika's portfolio.
+        {/* Top: Globe */}
+        <div style={{ fontSize: '3rem', flexShrink: 0 }}>🌍</div>
+
+        {/* Middle: Dynamic Content */}
+        <div style={{ flex: 1, display: 'flex', flexDirection: 'column', justifyContent: 'center', width: '100%' }}>
+          {disclaimerPage === 1 && (
+            <>
+              <div style={{ fontSize: '1.4rem', fontWeight: 700, marginBottom: 8, color: '#a5d6fa' }}>
+                Hello, World!<br />
+                Welcome to Atmika's portfolio.
+              </div>
+              <div style={{ fontSize: '1rem', lineHeight: '1.4', marginBottom: 10, textAlign: 'center' }}>
+                I'm a Cornell Tech grad student, studying Information Systems with a focus on Urban Tech. Trained as a data scientist, I'm drawn to GIS, HCI, and design.
+              </div>
+              <div style={{ fontSize: '1rem', lineHeight: '1.4', marginBottom: 16, textAlign: 'center' }}>
+                Having lived in cities around the world, I've come to see maps as a way of making sense of place. This portfolio brings together work shaped by each of those places.
+              </div>
+            </>
+          )}
+
+          {disclaimerPage === 2 && (
+            <>
+              <div style={{ fontSize: '1.2rem', fontWeight: 600, marginBottom: 20, lineHeight: '1.4'}}>
+                To explore, click a city on the map or filter in the navigation panel.
+              </div>
+              {isMobile && (
+                <div style={{ fontSize: '1.2rem', fontWeight: 600, color: '#ff6b6b', textAlign: 'center', marginBottom: 0 }}>
+                  And for the best experience, open this website on a desktop!
+                  <button onClick={handleShare} style={{ background: 'none', border: 'none', paddingLeft: '8px', cursor: 'pointer', fontSize: '0.5rem', verticalAlign: 'middle' }}>
+                    📤
+                  </button>
+                </div>
+              )}
+            </>
+          )}
         </div>
-        <div style={{ fontSize: '1rem', lineHeight: '1.6', marginBottom: 24, textAlign: 'center' }}>
-          I'm a Cornell Tech grad student, studying Information Systems with a focus on Urban Tech. Trained as a data scientist, I'm drawn to GIS, HCI, and design.
-        </div>
-        <div style={{ fontSize: '1rem', lineHeight: '1.6', marginBottom: 24, textAlign: 'center' }}>
-          Having lived in cities around the world, I've come to see maps as a way of making sense of place. This portfolio brings together work shaped by each of those places.
-        </div>
-        <div style={{ fontSize: '1.1rem', fontWeight: 600, marginBottom: 24, color: '#f8f6f0' }}>
-          To explore, click a city on the map or filter using the navigation pane on the right.
-        </div>
-        {isMobile && (
-          <div style={{ fontSize: '0.8rem', fontWeight: 600, marginBottom: 16, color: '#ff6b6b', textAlign: 'center' }}>
-            For the best experience, open this website on a desktop!
+
+        {/* Bottom: Dots and Buttons */}
+        <div style={{flexShrink: 0, width: '100%'}}>
+          <div style={{ display: 'flex', justifyContent: 'center', gap: '8px', marginBottom: '20px' }}>
+            <span style={{ height: '8px', width: '8px', backgroundColor: disclaimerPage === 1 ? '#a5d6fa' : '#555', borderRadius: '50%' }}></span>
+            <span style={{ height: '8px', width: '8px', backgroundColor: disclaimerPage === 2 ? '#a5d6fa' : '#555', borderRadius: '50%' }}></span>
           </div>
-        )}
-        <button
-          style={{
-            background: '#232323',
-            color: '#a5d6fa',
-            fontWeight: 700,
-            fontSize: '1rem',
-            border: 'none',
-            borderRadius: 12,
-            padding: '10px 32px',
-            cursor: 'pointer',
-            marginTop: 12,
-            boxShadow: '0 1px 4px #1a2a4f22',
-          }}
-          onClick={() => setShowDisclaimer(false)}
-        >
-          Get Started
-        </button>
+          
+          {disclaimerPage === 1 && (
+            <button
+              style={{
+                background: '#232323',
+                color: '#a5d6fa',
+                fontWeight: 700,
+                fontSize: '1rem',
+                border: 'none',
+                borderRadius: 12,
+                padding: '10px 32px',
+                cursor: 'pointer',
+                boxShadow: '0 1px 4px #1a2a4f22',
+                width: '100%'
+              }}
+              onClick={() => setDisclaimerPage(2)}
+            >
+              Next
+            </button>
+          )}
+
+          {disclaimerPage === 2 && (
+            <div style={{display: 'flex', gap: '15px', width: '100%'}}>
+              <button
+                style={{
+                  background: '#3a3a3a',
+                  color: '#f8f6f0',
+                  fontWeight: 700,
+                  fontSize: '1rem',
+                  border: '1px solid #555',
+                  borderRadius: 12,
+                  padding: '10px 32px',
+                  cursor: 'pointer',
+                  boxShadow: '0 1px 4px #1a2a4f22',
+                  flex: 1
+                }}
+                onClick={() => setDisclaimerPage(1)}
+              >
+                Back
+              </button>
+              <button
+                style={{
+                  background: '#232323',
+                  color: '#a5d6fa',
+                  fontWeight: 700,
+                  fontSize: '1rem',
+                  border: 'none',
+                  borderRadius: 12,
+                  padding: '10px 32px',
+                  cursor: 'pointer',
+                  boxShadow: '0 1px 4px #1a2a4f22',
+                  flex: 1
+                }}
+                onClick={() => setShowDisclaimer(false)}
+              >
+                Get Started
+              </button>
+            </div>
+          )}
+        </div>
       </div>
     </div>
   );
