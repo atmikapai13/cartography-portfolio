@@ -115,13 +115,11 @@ function App() {
               </div>
                 {!isMobile && (
                   <img 
-                    src="public/assets/tutorial.gif" 
+                    src="/cartography-portfolio/assets/tutorial.gif" 
                     alt="Portfolio navigation tutorial" 
                     style={{ width: '85%', maxHeight: '80%', borderRadius: '8px', marginBottom: '5px' , alignSelf: 'center'}}
                   />
                 )}
-              
-              
                 {isMobile && (
                   <div style={{ fontSize: '1rem', fontWeight: 600, color: '#ff6b6b', textAlign: 'center', marginBottom: '5px' }}>
                     And for the best experience, open this website on a desktop!
