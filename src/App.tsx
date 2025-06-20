@@ -74,7 +74,7 @@ function App() {
         <div style={{ fontSize: '3rem', flexShrink: 0 }}>🌍</div>
 
         {/* Middle: Dynamic Content */}
-        <div style={{ flex: 1, display: 'flex', flexDirection: 'column', justifyContent: 'center', width: '100%' }}>
+        <div style={{ flex: 1, display: 'flex', flexDirection: 'column', justifyContent: 'center', width: '100%', overflowY: 'auto', padding: '0 10px' }}>
           {disclaimerPage === 1 && (
             <>
               <div style={{ fontSize: '1.4rem', fontWeight: 700, marginBottom: 8, color: '#a5d6fa' }}>
@@ -96,9 +96,9 @@ function App() {
                 To explore, click a city on the map or filter in the navigation panel.
               </div>
               {isMobile && (
-                <div style={{ fontSize: '1.2rem', fontWeight: 600, color: '#ff6b6b', textAlign: 'center', marginBottom: 0 }}>
+                <div style={{ fontSize: '1rem', fontWeight: 600, color: '#ff6b6b', textAlign: 'center', marginBottom: 0 }}>
                   And for the best experience, open this website on a desktop!
-                  <button onClick={handleShare} style={{ background: 'none', border: 'none', paddingLeft: '8px', cursor: 'pointer', fontSize: '0.5rem', verticalAlign: 'middle' }}>
+                  <button onClick={handleShare} style={{ background: 'none', border: 'none', paddingLeft: '8px', cursor: 'pointer', fontSize: '1rem', verticalAlign: 'middle' }}>
                     📤
                   </button>
                 </div>
