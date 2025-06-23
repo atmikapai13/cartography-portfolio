@@ -1,4 +1,3 @@
-
 import './Ticker.css';
 
 interface City {
@@ -12,10 +11,9 @@ interface TickerProps {
   map: mapboxgl.Map | null;
   onCityClick: () => void;
   onCitySelect?: (city: string | null) => void;
-  onCreatePopup?: (cityName: string, lngLat: [number, number]) => void;
 }
 
-const Ticker = ({ items, map, onCityClick, onCitySelect, onCreatePopup }: TickerProps) => {
+const Ticker = ({ items, map, onCityClick, onCitySelect }: TickerProps) => {
   const tickerItems = [...items, ...items];
 
   const handleCityClick = (city: City) => {
@@ -33,13 +31,6 @@ const Ticker = ({ items, map, onCityClick, onCitySelect, onCreatePopup }: Ticker
           return t;
         }
       });
-      
-      // Create popup after flying to the location
-      if (onCreatePopup) {
-        setTimeout(() => {
-          onCreatePopup(city.name, [city.longitude, city.latitude]);
-        }, 1000); // Wait for the fly animation to complete
-      }
     }
   };
 
