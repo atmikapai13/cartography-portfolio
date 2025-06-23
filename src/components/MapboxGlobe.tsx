@@ -290,7 +290,7 @@ export default function MapboxGlobe({ selectedCity, onCitySelect, showDisclaimer
         ref={mapContainer}
         style={{ width: "100%", height: "100%", position: "absolute", top: 0, left: 0 }}
       />
-      {!showDisclaimer && <Ticker items={tickerCities} map={mapRef.current} onCityClick={handleTickerClick} onCitySelect={onCitySelect} onCreatePopup={createCityPopup} />}
+      {!showDisclaimer && <Ticker items={tickerCities} map={mapRef.current} onCityClick={handleTickerClick} onCitySelect={onCitySelect} />}
     </div>
   );
 } 
