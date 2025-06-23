@@ -16,6 +16,15 @@ const Sidebar: React.FC<SidebarProps> = ({ selectedCity, setSelectedCity }) => {
   const [selectedTech, setSelectedTech] = useState<string>('');
   const [selectedCategory, setSelectedCategory] = useState<string>('Work');
   const [showAllProjects, setShowAllProjects] = useState(false);
+  const [isMobile, setIsMobile] = useState(false);
+
+  // Check if mobile on mount and resize
+  useEffect(() => {
+    const checkMobile = () => setIsMobile(window.innerWidth <= 900);
+    checkMobile();
+    window.addEventListener('resize', checkMobile);
+    return () => window.removeEventListener('resize', checkMobile);
+  }, []);
 
   // Auto-select the correct work_experience filter when a city is selected
   useEffect(() => {
@@ -111,10 +120,11 @@ const Sidebar: React.FC<SidebarProps> = ({ selectedCity, setSelectedCity }) => {
     <aside className="sidebar" style={{ paddingTop: 0 }}>
       <h3 className="sidebar-title" style={{  fontFamily: 'Arial', marginBottom: '0px', marginTop: 0 }}>Cartographies of My Work</h3> 
       <p className="sidebar-subtitle" style={{ marginBottom: 6, marginTop: 0, maxWidth: 400, fontStyle: 'italic'}}>
-        Explore by zooming in or clicking on a city, or filtering below:
+        Explore by clicking on a city or filtering below:
       </p>
+      
       {/* Ballot-style category selector and Clear Filters (mobile) */}
-      <div className="ballot-row">
+      <div className="ballot-row" style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between' }}>
         <div style={{ display: 'flex', alignItems: 'center', gap: 14 }}>
           {experienceCategories.map((cat) => (
             <label key={cat.value} style={{ display: 'flex', alignItems: 'center', cursor: 'pointer', gap: 5, fontSize: '0.91rem', color: '#f5f5e6', fontWeight: 500 }}>
@@ -147,8 +157,8 @@ const Sidebar: React.FC<SidebarProps> = ({ selectedCity, setSelectedCity }) => {
                   <span
                     style={{
                       display: 'block',
-                      width: 5.5,
-                      height: 5.5,
+                      width: 4.0,
+                      height: 4.0,
                       borderRadius: '50%',
                       background: '#fff',
                       position: 'absolute',
@@ -162,7 +172,6 @@ const Sidebar: React.FC<SidebarProps> = ({ selectedCity, setSelectedCity }) => {
             </label>
           ))}
         </div>
-        {/* Clear Filters Button (mobile only) */}
         <button
           type="button"
           className="clear-filters-btn"
@@ -170,9 +179,7 @@ const Sidebar: React.FC<SidebarProps> = ({ selectedCity, setSelectedCity }) => {
             setSelectedCategory('Work');
             setSelectedTech('');
             setShowAllProjects(false);
-            if (typeof window !== 'undefined' && window.innerWidth <= 900 && setSelectedCity) {
-              setSelectedCity(null);
-            }
+            if (setSelectedCity) setSelectedCity(null);
           }}
         >
           Clear Filters
@@ -230,6 +237,7 @@ const Sidebar: React.FC<SidebarProps> = ({ selectedCity, setSelectedCity }) => {
           ))}
         </div>
       </div>
+      
       {/* Spotlight badge legend */}
       <div style={{ display: 'flex', alignItems: 'center', gap: 5, marginBottom: 8, marginTop: 2, justifyContent: 'flex-end' }}>
         <div style={{ display: 'flex', alignItems: 'center', height: 14 }}>
@@ -249,11 +257,9 @@ const Sidebar: React.FC<SidebarProps> = ({ selectedCity, setSelectedCity }) => {
         </div>
         <span style={{ color: '#e0e0e0', fontSize: '0.85rem', fontWeight: 500 }}>{badgeLegend}</span>
       </div>
-      {selectedCity && (
-        <div style={{ marginBottom: 10 }}>
-          {/* Removed city name display */}
-        </div>
-      )}
+
+      
+      
       {/* Project list scrollable area */}
       <div className="sidebar-scroll">
         <div className="sidebar-project-list">
@@ -273,6 +279,7 @@ const Sidebar: React.FC<SidebarProps> = ({ selectedCity, setSelectedCity }) => {
                 role={Array.isArray(project.work_experience) ? (project.work_experience.includes('Work') ? project.role : undefined) : (project.work_experience === 'Work' ? project.role : undefined)}
                 date={Array.isArray(project.work_experience) ? (project.work_experience.includes('Work') ? project.date : undefined) : (project.work_experience === 'Work' ? project.date : undefined)}
                 tech_stack2={project.tech_stack2}
+                city={project.city}
               />
             </div>
           ))}

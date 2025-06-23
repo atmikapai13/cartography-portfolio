@@ -10,6 +10,12 @@ function App() {
   const [disclaimerPage, setDisclaimerPage] = useState(1);
 
   useEffect(() => {
+    // Check if the user has seen the disclaimer before
+    const hasSeenDisclaimer = localStorage.getItem('hasSeenPortfolioDisclaimer');
+    if (hasSeenDisclaimer) {
+      setShowDisclaimer(false);
+    }
+
     const checkMobile = () => setIsMobile(window.innerWidth <= 900);
     checkMobile();
     window.addEventListener('resize', checkMobile);
@@ -72,7 +78,10 @@ function App() {
         onClick={(e) => e.stopPropagation()}
       >
         <button
-          onClick={() => setShowDisclaimer(false)}
+          onClick={() => {
+            setShowDisclaimer(false);
+            localStorage.setItem('hasSeenPortfolioDisclaimer', 'true');
+          }}
           style={{
             position: 'absolute',
             top: '15px',
@@ -110,14 +119,17 @@ function App() {
 
           {disclaimerPage === 2 && (
             <>
-            <div style={{ fontSize: '1rem', fontWeight: 600, marginBottom: 12, lineHeight: '1.4'}}>
-                To explore, click a city on the map or filter in the navigation panel.
+            <div style={{ fontSize: '1rem', fontWeight: 600, marginBottom: 0, lineHeight: '1.4'}}>
+                To explore, click on a city in the map or on the ticker. 
+              </div>
+              <div style={{ fontSize: '1rem', fontWeight: 600, marginBottom: 12, lineHeight: '1.4'}}>
+                Or filter in the navigation panel.
               </div>
                 {!isMobile && (
                   <img 
                     src="/cartography-portfolio/assets/tutorial.gif" 
                     alt="Portfolio navigation tutorial" 
-                    style={{ width: '85%', maxHeight: '80%', borderRadius: '8px', marginBottom: '5px' , alignSelf: 'center'}}
+                    style={{ width: '86%', maxHeight: '80%', borderRadius: '8px', marginBottom: '5px' , alignSelf: 'center'}}
                   />
                 )}
                 {isMobile && (
@@ -177,6 +189,7 @@ function App() {
             onClick={() => {
               if (disclaimerPage === 2) {
                 setShowDisclaimer(false);
+                localStorage.setItem('hasSeenPortfolioDisclaimer', 'true');
               } else {
                 setDisclaimerPage(disclaimerPage + 1);
               }
@@ -204,7 +217,7 @@ function App() {
       {/* Main content: Map and Sidebar */}
       <div className="main-content">
         <div className="map-wrapper">
-          <MapboxGlobe onCitySelect={setSelectedCity} />
+          <MapboxGlobe selectedCity={selectedCity} onCitySelect={setSelectedCity} showDisclaimer={showDisclaimer} />
         </div>
         <Sidebar selectedCity={selectedCity} setSelectedCity={setSelectedCity} />
       </div>

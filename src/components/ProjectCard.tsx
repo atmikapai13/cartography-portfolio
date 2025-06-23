@@ -9,9 +9,10 @@ interface ProjectCardProps {
   role?: string;
   date?: string;
   tech_stack2?: string;
+  city?: string | string[];
 }
 
-const ProjectCard: React.FC<ProjectCardProps> = ({ title, image, description, link, spotlight, role, date, tech_stack2 }) => {
+const ProjectCard: React.FC<ProjectCardProps> = ({ title, image, description, link, spotlight, role, date, tech_stack2, city }) => {
   return (
     <div className={`project-card${spotlight ? ' spotlight-card' : ''}`}>
       {spotlight && (
@@ -38,10 +39,10 @@ const ProjectCard: React.FC<ProjectCardProps> = ({ title, image, description, li
           {role && (
             <div style={{ width: '100%', textAlign: 'left', marginTop: '0px' }}>
               <div className="project-role" style={{
-                fontSize: '1rem',
+                fontSize: '0.9rem',
                 color: '#f5f5e6',
                 fontWeight: 'bold',
-                fontStyle: 'normal',
+                fontStyle: 'italic',
               }}>
                 {role}
               </div>
@@ -52,12 +53,31 @@ const ProjectCard: React.FC<ProjectCardProps> = ({ title, image, description, li
                   marginTop: '0px',
                   fontWeight: 400,
                   fontStyle: 'italic',
+                  paddingBottom: '3px',
                 }}>
                   {date}
                 </div>
               )}
+              
             </div>
           )}
+          {city && (
+            <div style={{
+              width: '100%',
+              textAlign: 'left',
+              marginTop: '0px',
+            }}>
+              <div className="project-city" style={{
+                fontSize: '0.1rem',
+                color: '#00000',
+                fontStyle: 'italic',
+                fontWeight: 100,
+              }}>
+                📍 {Array.isArray(city) ? city[0] : city}
+              </div>
+            </div>
+          )}
+
         </div>
         <div className="project-card-description-col" style={{ flex: '1 1 0', display: 'flex', flexDirection: 'column' }}>
           {description && <p className="project-card-description" style={{ margin: 0 }}>{description}</p>}

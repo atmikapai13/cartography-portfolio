@@ -638,14 +638,14 @@ footer {
     position: static;
     display: inline-block;
     margin: 0 0 0 auto;
-    padding: 0 12px;
+    padding: 0 8px;
     border-radius: 12px;
     border: none;
     background: #232323;
     color: #a5d6fa;
     font-weight: 700;
     font-size: 0.6rem;
-    line-height: 1.6;
+    line-height: 1.4;
     letter-spacing: 0.01em;
     cursor: pointer;
     box-shadow: 0 1px 4px #1a2a4f22;
@@ -666,10 +666,29 @@ footer {
   }
 }
 
-@media (min-width: 901px) {
-  .clear-filters-btn {
-    display: none !important;
-  }
+.clear-filters-btn {
+  margin-left: 18px;
+  padding: 0 14px;
+  border-radius: 18px;
+  border: 2px solid #00a9fe;
+  background: transparent;
+  color: #00a9fe;
+  font-weight: 700;
+  font-size: 1.05rem;
+  line-height: 1.2;
+  letter-spacing: 0.01em;
+  cursor: pointer;
+  box-shadow: none;
+  transition: background 0.15s, color 0.15s, border 0.15s;
+  height: 32px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.clear-filters-btn:hover {
+  background: #00a9fe;
+  color: #fff;
+  border: 2px solid #00a9fe;
 }
 
 .sidebar-subtitle {
@@ -886,5 +905,11 @@ footer {
     overflow-y: auto !important;
     max-height: calc(100vh - 560px) !important; 
     padding-bottom: 24px !important;
+  }
+}
+
+@media (min-width: 901px) {
+  .clear-filters-btn {
+    display: none !important;
   }
 }

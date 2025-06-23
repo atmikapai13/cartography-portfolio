@@ -3,6 +3,7 @@ import mapboxgl from "mapbox-gl";
 import "mapbox-gl/dist/mapbox-gl.css";
 import projects from "../projects.json";
 import placeData from '../places.json';
+import Ticker from './Ticker';
 
 // Project cities data
 const project_cities = [
@@ -44,12 +45,86 @@ const zoomGatedCities = ["Walnut Creek", "Roosevelt Island", "New Jersey", "Oakl
 mapboxgl.accessToken = "pk.eyJ1IjoiYXRtaWthcGFpMTMiLCJhIjoiY21idHR4eTJpMDdhMjJsb20zNmZheTZ6ayJ9.d_bQSBzesyiCUMA-YHRoIA";
 
 interface MapboxGlobeProps {
+  selectedCity: string | null;
   onCitySelect?: (city: string | null) => void;
+  showDisclaimer: boolean;
 }
 
-export default function MapboxGlobe({ onCitySelect }: MapboxGlobeProps) {
+export default function MapboxGlobe({ selectedCity, onCitySelect, showDisclaimer }: MapboxGlobeProps) {
   const mapContainer = useRef<HTMLDivElement>(null);
   const mapRef = useRef<mapboxgl.Map | null>(null);
+  const activePopup = useRef<mapboxgl.Popup | null>(null);
+  const rotationEnabled = useRef(true);
+
+  const tickerCities = project_cities
+    .filter(city => !zoomGatedCities.includes(city.name));
+
+  const handleTickerClick = () => {
+    rotationEnabled.current = false;
+  };
+
+  const createCityPopup = (cityName: string, lngLat: [number, number]) => {
+    const isMobile = window.innerWidth <= 600;
+    if (isMobile) return;
+
+    if (!mapRef.current) return;
+
+    if (activePopup.current) {
+      activePopup.current.remove();
+      activePopup.current = null;
+    }
+
+    // Find city info (place_description and date)
+    const cityData = (placeData as any[]).find(
+      (entry) => entry.city.trim().toLowerCase() === cityName.trim().toLowerCase()
+    );
+
+    let popupContent = `<div class="city-popup" style="text-align:center;">`;
+    if (!cityData) {
+      popupContent += ``;
+    } else {
+      popupContent += `<div class="city-description">`;
+      popupContent += `<h3 style='margin-bottom: 6px; text-align:center;'>${cityName}</h3>`;
+      if (cityData.image) {
+        popupContent += `<img src='${cityData.image}' alt='${cityName}' style='display:block;margin:0 auto 10px auto;max-width:250px; width:100%;height:auto;border-radius:10px;' />`;
+      }
+      popupContent += `<div style='font-size:0.98rem;color:#bdbdbd;margin-bottom:8px;text-align:center;'><em>${cityData.date || ''}</em></div>`;
+      popupContent += `<div style='font-size:1.05rem;color:#e0e0e0;text-align:center;'>${cityData.place_description || ''}</div>`;
+      popupContent += `</div>`;
+    }
+    popupContent += `</div>`;
+
+    // Pause rotation when popup opens
+    rotationEnabled.current = false;
+    
+    const popup = new mapboxgl.Popup({ maxWidth: '450px' })
+      .setLngLat(lngLat)
+      .setHTML(popupContent)
+      .addTo(mapRef.current);
+
+    activePopup.current = popup;
+    
+    // Resume rotation when popup closes
+    popup.on('close', () => {
+      rotationEnabled.current = true;
+      if (onCitySelect) onCitySelect(null);
+      activePopup.current = null;
+    });
+  };
+
+  useEffect(() => {
+    const map = mapRef.current;
+    if (!map) return;
+
+    if (selectedCity === null) {
+      // If city selection is cleared, remove the active popup but don't change the view.
+      if (activePopup.current) {
+        activePopup.current.remove();
+        activePopup.current = null;
+      }
+      rotationEnabled.current = true;
+    }
+  }, [selectedCity]);
 
   useEffect(() => {
     if (!mapContainer.current) return;
@@ -60,10 +135,10 @@ export default function MapboxGlobe({ onCitySelect }: MapboxGlobeProps) {
       style: "mapbox://styles/mapbox/satellite-streets-v11", //satellite-v9
       projection: "globe",
       center: [-110, 25],
-      zoom: isMobile ? 0.40 : 1.85,
+      zoom: isMobile ? 0.40 : 1.60,
       bearing: 0,
       pitch: 0,
-      minZoom: isMobile ? 0.40 : 1.85,
+      minZoom: isMobile ? 0.40 : 1.60,
       attributionControl: false,
     });
     mapRef.current = map;
@@ -108,12 +183,12 @@ export default function MapboxGlobe({ onCitySelect }: MapboxGlobeProps) {
         paint: {
           "circle-radius": [
             "case",
-            ["in", ["get", "name"], ["literal", zoomGatedCities]], 3.5,
+            ["in", ["get", "name"], ["literal", zoomGatedCities]], 4,
             5
           ],
           "circle-color": [
             "case",
-            ["in", ["get", "name"], ["literal", zoomGatedCities]], "#ffbfb5",
+            ["in", ["get", "name"], ["literal", zoomGatedCities]], "#ed462b",
             "#ed462b"
           ],
           "circle-stroke-width": 1,
@@ -152,43 +227,16 @@ export default function MapboxGlobe({ onCitySelect }: MapboxGlobeProps) {
         if (!cityName) return;
         if (onCitySelect) onCitySelect(cityName);
 
-        // Disable popups on mobile
-        const isMobile = window.innerWidth <= 600;
-        if (isMobile) return;
+        createCityPopup(cityName, [e.lngLat.lng, e.lngLat.lat]);
+      });
 
-        // Find city info (place_description and date)
-        const cityData = (placeData as any[]).find(
-          (entry) => entry.city.trim().toLowerCase() === cityName.trim().toLowerCase()
-        );
-
-        let popupContent = `<div class="city-popup" style="text-align:center;">`;
-        if (!cityData) {
-          popupContent += ``;
-        } else {
-          popupContent += `<div class="city-description">`;
-          popupContent += `<h3 style='margin-bottom: 6px; text-align:center;'>${cityName}</h3>`;
-          if (cityData.image) {
-            popupContent += `<img src='${cityData.image}' alt='${cityName}' style='display:block;margin:0 auto 10px auto;max-width:250px; width:100%;height:auto;border-radius:10px;' />`;
-          }
-          popupContent += `<div style='font-size:0.98rem;color:#bdbdbd;margin-bottom:8px;text-align:center;'><em>${cityData.date || ''}</em></div>`;
-          popupContent += `<div style='font-size:1.05rem;color:#e0e0e0;text-align:center;'>${cityData.place_description || ''}</div>`;
-          popupContent += `</div>`;
+      // Clear city selection when clicking on map background
+      map.on("click", (e) => {
+        // Only clear if not clicking on a city marker
+        const features = map.queryRenderedFeatures(e.point, { layers: ['city-markers'] });
+        if (features.length === 0 && onCitySelect) {
+          onCitySelect(null);
         }
-        popupContent += `</div>`;
-
-        // Pause rotation when popup opens
-        rotationEnabled = false;
-        // Center popup on globe for mobile, on pin for desktop, with Y offset for mobile
-        const popupLngLat = e.lngLat;
-        const popup = new mapboxgl.Popup({ maxWidth: '450px' })
-          .setLngLat(popupLngLat)
-          .setHTML(popupContent)
-          .addTo(map);
-        // Resume rotation when popup closes
-        popup.on('close', () => {
-          rotationEnabled = true;
-          if (onCitySelect) onCitySelect(null);
-        });
       });
 
       map.on("mouseenter", "city-markers", () => {
@@ -201,14 +249,13 @@ export default function MapboxGlobe({ onCitySelect }: MapboxGlobeProps) {
 
     // Globe rotation
     let isUserInteracting = false;
-    let rotationEnabled = true;
     const ZOOM_THRESHOLD = 2.5; // Stop rotation when zoomed in beyond this level
 
     function rotateGlobe() {
       const currentZoom = map.getZoom();
-      if (rotationEnabled && !isUserInteracting && currentZoom < ZOOM_THRESHOLD) {
+      if (rotationEnabled.current && !isUserInteracting && currentZoom < ZOOM_THRESHOLD) {
         const center = map.getCenter();
-        const newLng = ((center.lng - 0.1) + 360) % 360;
+        const newLng = ((center.lng + 0.1) + 360) % 360;
         map.setCenter([newLng, center.lat]);
       }
       setTimeout(rotateGlobe, 16.7);
@@ -218,21 +265,19 @@ export default function MapboxGlobe({ onCitySelect }: MapboxGlobeProps) {
     map.on('zoom', () => {
       const currentZoom = map.getZoom();
       if (currentZoom >= ZOOM_THRESHOLD) {
-        rotationEnabled = false;
-      } else if (!isUserInteracting) {
-        rotationEnabled = true;
+        rotationEnabled.current = false;
       }
     });
 
-    map.on("mousedown", () => { isUserInteracting = true; rotationEnabled = false; });
-    map.on("touchstart", () => { isUserInteracting = true; rotationEnabled = false; });
+    map.on("mousedown", () => { isUserInteracting = true; rotationEnabled.current = false; });
+    map.on("touchstart", () => { isUserInteracting = true; rotationEnabled.current = false; });
     map.on("mouseup", () => { 
       isUserInteracting = false; 
-      rotationEnabled = map.getZoom() < ZOOM_THRESHOLD;
+      rotationEnabled.current = map.getZoom() < ZOOM_THRESHOLD;
     });
     map.on("touchend", () => { 
       isUserInteracting = false; 
-      rotationEnabled = map.getZoom() < ZOOM_THRESHOLD;
+      rotationEnabled.current = map.getZoom() < ZOOM_THRESHOLD;
     });
     map.on("load", rotateGlobe);
 
@@ -240,9 +285,12 @@ export default function MapboxGlobe({ onCitySelect }: MapboxGlobeProps) {
   }, []);
 
   return (
-    <div
-      ref={mapContainer}
-      style={{ width: "100%", height: "100%", position: "absolute", top: 0, left: 0 }}
-    />
+    <div style={{ width: "100%", height: "100%", position: "relative" }}>
+      <div
+        ref={mapContainer}
+        style={{ width: "100%", height: "100%", position: "absolute", top: 0, left: 0 }}
+      />
+      {!showDisclaimer && <Ticker items={tickerCities} map={mapRef.current} onCityClick={handleTickerClick} onCitySelect={onCitySelect} onCreatePopup={createCityPopup} />}
+    </div>
   );
 } 
