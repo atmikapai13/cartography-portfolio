@@ -1,4 +1,4 @@
-import mapboxgl from 'mapbox-gl';
+
 import './Ticker.css';
 
 interface City {
