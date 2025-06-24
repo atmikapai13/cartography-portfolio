@@ -337,6 +337,89 @@
     "role": "Researcher",
     "date": "2018—2020",
     "tech_stack2": "Microsoft Access"
+  },
+  {
+    "id": 27,
+    "title": "Impacts of Quarantine Mandates on COVID-19 Cases in the US",
+    "city": "Berkeley",
+    "description": "Using OLS and weighted least squares (WLS) regressions on CDC data, I estimated the effects of strict quarantine mandates across six intervention windows and 3,143 U.S. counties. Model performance was evaluated with RMSE and visualized using choropleth maps. Results showed that stricter mandates reduced cases per capita by 3.3 percentage points within four months compared to more lenient policies.",
+    "link": "https://drive.google.com/file/d/1EnKz7pQ-S4qKx5A20oL9zBTvKT5iDn2K/view?usp=sharing",
+    "github": null,
+    "spotlight": false,
+    "tech_stack": ["ML", "Research"],
+    "work_experience": ["Projects"],
+    "tech_stack2": "Python (Scikit-Learn), Chloropleth, Econometrics"
+  },
+  {
+    "id": 28,
+    "title": "Empirical Examination of Kuznets Environmental Model",
+    "city": "Berkeley",
+    "description": "I verified whether the Environmental Kuznets Curve holds using OLS regression on panel data from 161 countries in R. To ensure the validity of the estimators, I tested for homoskedasticity, autocorrelation, and endogeneity. I incorporated fixed effects and instrumental variables to address omitted variable and simultaneity bias. The analysis found empirical support for a parabolic relationship between economic growth and environmental degradation.",
+    "link": "https://drive.google.com/file/d/1cWUF2O1RDB4xYchSwzJyg-nwKvlguyg3/view?usp=sharing",
+    "github": null,
+    "spotlight": false,
+    "tech_stack": ["ML", "Research"],
+    "work_experience": ["Projects"],
+    "tech_stack2": "R, Econometrics"
+  },
+  {
+    "id": 29,
+    "title": "Gaussian Classifier for Handwritten Digit Recognition",
+    "city": "Berkeley",
+    "description": "I built a Gaussian classifier to recognize handwritten digits from the MNIST dataset using SciPy and Scikit-learn. I applied Linear Discriminant Analysis to reduce dimensionality and modeled class-conditional pixel probabilities with Gaussian distributions via maximum likelihood estimation. The classifier achieved 81.7% accuracy on the test set.",
+    "link": "https://github.com/atmikapai13/CS189/blob/main/gaussian_classifiers_programv50.py",
+    "spotlight": false,
+    "tech_stack": ["ML", "Computer Vision"],
+    "work_experience": ["Projects"],
+    "tech_stack2": "Python (Scikit-Learn)"
+  },
+  {
+    "id": 30,
+    "title": "Convolutional Neural Network (CNN) Classifier for Image Classification",
+    "city": "Berkeley",
+    "description": "I developed a convolutional neural network to classify images from the CIFAR-10 dataset using PyTorch and TensorFlow. The three-layer CNN extracted hierarchical spatial features through a forward pass architecture. I fine-tuned the stride and activation functions, achieving 79.3% accuracy on the test set.",
+    "link": "https://github.com/atmikapai13/CS189/blob/main/gaussian_classifiers_programv50.py",
+    "github": null,
+    "spotlight": false,
+    "tech_stack": ["ML", "Computer Vision"],
+    "work_experience": ["Projects"],
+    "tech_stack2": "Python (PyTorch, TensorFlow)"
+  },
+  {
+    "id": 31,
+    "title": "Version Control System for Local File Management",
+    "city": "Berkeley",
+    "description": "I built a version control system in Java to manage local repositories, track file history, and enable restoration. I used Java serialization to handle file objects and implemented linked list and tree structures to store and navigate activity history.",
+    "link": "https://github.com/atmikapai13/CS61BL-Data-Structures/tree/main/Proj2%20-%20Gitlet",
+    "github": null,
+    "spotlight": false,
+    "tech_stack": null,
+    "work_experience": ["Projects"],
+    "tech_stack2": "Java, Object-Oriented Programming"
+  },
+  {
+    "id": 32,
+    "title": "2D Tile-Based World Exploration Game",
+    "city": "Berkeley",
+    "description": "I co-developed a 2D tile-based game in Java that allowed users to explore and interact with objects in pseudorandomly generated worlds. I designed classes, objects, and methods to define game entities and user behavior, applying object-oriented programming principles throughout. I also implemented a tile-based map system, a user interface, and a game loop to create a cohesive and engaging experience.",
+    "link": "https://github.com/atmikapai13/CS61BL-Data-Structures/tree/main/Proj3%20-%20BYOW",
+    "github": null,
+    "spotlight": false,
+    "tech_stack": [ "Design"],
+    "work_experience": ["Projects"],
+    "tech_stack2": "Java, Object-Oriented Programming"
+  },
+  {
+    "id": 32,
+    "title": "Recreating 2048 Game",
+    "city": "Berkeley",
+    "description": "I implemented the core game logic for a fully functional 2048 clone in Java, completing the tile merging, movement, and win/lose condition management within the grid. I ensured code quality by passing all automated tests and adhering to project style guidelines.",
+    "link": "https://github.com/atmikapai13/CS61BL-Data-Structures/tree/main/Proj0%20-%20Recreating%202048",
+    "github": null,
+    "spotlight": false,
+    "tech_stack": [ "Design"],
+    "work_experience": ["Projects"],
+    "tech_stack2": "Java, Object-Oriented Programming"
   }
 ]
 
