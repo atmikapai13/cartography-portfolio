@@ -21,7 +21,7 @@
     "github": "https://medium.com/bay-area-transit-tales-from-an-urban-analyst/sql-database-for-bart-ridership-and-scheduling-data-8fadb40efc51",
     "image": "/cartography-portfolio/assets/5.png",
     "spotlight": true,
-    "tech_stack": ["GIS", "Product Development"],
+    "tech_stack": ["GIS"],
     "work_experience": ["Projects"],
     "tech_stack2": "SQL, Python (Pandas)"
   },
@@ -60,7 +60,7 @@
     "github": null,
     "image": "/cartography-portfolio/assets/9.png",
     "spotlight": true,
-    "tech_stack": ["AR/VR", "Product Development", "Design"],
+    "tech_stack": ["AR/VR", "Design"],
     "work_experience": ["Projects"],
     "tech_stack2": "ShapesXR"
   },
@@ -155,7 +155,7 @@
     "github": null,
     "image": "/cartography-portfolio/assets/21.png",
     "spotlight": true,
-    "tech_stack": ["Design", "Product Development"],
+    "tech_stack": ["Design"],
     "work_experience": ["Projects"],
     "tech_stack2": "Figma"
   },
@@ -168,7 +168,7 @@
     "github": null,
     "image": "/cartography-portfolio/assets/22.png",
     "spotlight": false,
-    "tech_stack": ["Design", "Product Development", "GIS"],
+    "tech_stack": ["Design", "GIS"],
     "work_experience": ["Projects"],
     "tech_stack2": "Figma"
   },
@@ -423,7 +423,7 @@
     "github": null,
     "image": "/cartography-portfolio/assets/32.png",
     "spotlight": false,
-    "tech_stack": [ "Design"],
+    "tech_stack": ["Design"],
     "work_experience": ["Projects"],
     "tech_stack2": "Java, Object-Oriented Programming"
   },
