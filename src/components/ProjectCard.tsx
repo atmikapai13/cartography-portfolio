@@ -68,7 +68,7 @@ const ProjectCard: React.FC<ProjectCardProps> = ({ title, image, description, li
               marginTop: '0px',
             }}>
               <div className="project-city" style={{
-                fontSize: '0.1rem',
+                fontSize: '0.5rem',
                 color: '#00000',
                 fontStyle: 'italic',
                 fontWeight: 100,

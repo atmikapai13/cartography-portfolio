@@ -109,20 +109,20 @@ function App() {
                 Welcome to Atmika's portfolio.
               </div>
               <div style={{ fontSize: isMobile ? '0.8rem' : '1rem', lineHeight: '1.4', marginBottom: 10, textAlign: 'center' }}>
-                I'm a Cornell Tech grad student, studying Information Systems with a focus on Urban Tech. Trained as a data scientist, I'm drawn to GIS, HCI, and design.
+                I'm a Cornell Tech grad student, studying Information Systems with a focus on Urban Tech. Trained as a data scientist, I'm drawn to GIS and design.
               </div>
-              <div style={{ fontSize: isMobile ? '0.8rem' : '1rem', lineHeight: '1.4', marginBottom: 5, textAlign: 'center' }}>
-                Having lived in cities around the world, I've come to see maps as a way of making sense of place. This portfolio brings together work shaped by each of those places.
+              <div style={{ fontSize: isMobile ? '0.8rem' : '1rem', lineHeight: '1.4', marginBottom: 8, textAlign: 'center' }}>
+                Jack Dangermond says, <span style={{ fontStyle: 'italic' , fontWeight: 600}}>“Location is a way to organize, index, and retrieve our memories.”</span> I've lived in six cities (and counting), and each has shaped how I think. This portfolio traces those geographies. 
               </div>
             </>
           )}
 
           {disclaimerPage === 2 && (
             <>
-            <div style={{ fontSize: '1rem', fontWeight: 600, marginBottom: 0, lineHeight: '1.4'}}>
+            <div style={{ fontSize: '1rem', marginBottom: 0, lineHeight: '1.4'}}>
                 To explore, click on a city in the map or on the ticker. 
               </div>
-              <div style={{ fontSize: '1rem', fontWeight: 600, marginBottom: 12, lineHeight: '1.4'}}>
+              <div style={{ fontSize: '1rem', marginBottom: 12, lineHeight: '1.4'}}>
                 Or filter in the navigation panel.
               </div>
                 {!isMobile && (

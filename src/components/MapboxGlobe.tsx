@@ -135,10 +135,10 @@ export default function MapboxGlobe({ selectedCity, onCitySelect, showDisclaimer
       style: "mapbox://styles/mapbox/satellite-streets-v11", //satellite-v9
       projection: "globe",
       center: [-110, 25],
-      zoom: isMobile ? 0.40 : 1.60,
+      zoom: isMobile ? 0.30 : 1.60,
       bearing: 0,
       pitch: 0,
-      minZoom: isMobile ? 0.40 : 1.60,
+      minZoom: isMobile ? 0.30 : 1.60,
       attributionControl: false,
     });
     mapRef.current = map;
