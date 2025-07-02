@@ -1,4 +1,5 @@
 import { useState, useEffect } from 'react';
+import ReactGA from 'react-ga4';
 import MapboxGlobe from './components/MapboxGlobe';
 import Sidebar from './components/Sidebar';
 import './App.css';
@@ -10,6 +11,9 @@ function App() {
   const [disclaimerPage, setDisclaimerPage] = useState(1);
 
   useEffect(() => {
+    // Initialize Google Analytics
+    ReactGA.initialize(import.meta.env.VITE_GA_MEASUREMENT_ID || 'G-XXXXXXXXXX');
+    
     // Check if the user has seen the disclaimer before
     const hasSeenDisclaimer = localStorage.getItem('hasSeenPortfolioDisclaimer');
     if (hasSeenDisclaimer) {
@@ -23,6 +27,13 @@ function App() {
   }, []);
 
   const handleShare = async () => {
+    // Track share event
+    ReactGA.event({
+      category: 'Engagement',
+      action: 'Share Portfolio',
+      label: 'Mobile Share'
+    });
+    
     if (navigator.share) {
       try {
         await navigator.share({
@@ -37,6 +48,18 @@ function App() {
       navigator.clipboard.writeText(window.location.href);
       alert('Link copied to clipboard!');
     }
+  };
+
+  const handleCitySelect = (city: string | null) => {
+    if (city) {
+      // Track city selection
+      ReactGA.event({
+        category: 'Navigation',
+        action: 'Select City',
+        label: city
+      });
+    }
+    setSelectedCity(city);
   };
 
   // Disclaimer popup component
@@ -79,6 +102,11 @@ function App() {
       >
         <button
           onClick={() => {
+            ReactGA.event({
+              category: 'Engagement',
+              action: 'Close Disclaimer',
+              label: 'Early Close'
+            });
             setShowDisclaimer(false);
             localStorage.setItem('hasSeenPortfolioDisclaimer', 'true');
           }}
@@ -188,6 +216,11 @@ function App() {
             }}
             onClick={() => {
               if (disclaimerPage === 2) {
+                ReactGA.event({
+                  category: 'Engagement',
+                  action: 'Complete Disclaimer',
+                  label: 'Full Flow'
+                });
                 setShowDisclaimer(false);
                 localStorage.setItem('hasSeenPortfolioDisclaimer', 'true');
               } else {
@@ -217,9 +250,9 @@ function App() {
       {/* Main content: Map and Sidebar */}
       <div className="main-content">
         <div className="map-wrapper">
-          <MapboxGlobe selectedCity={selectedCity} onCitySelect={setSelectedCity} showDisclaimer={showDisclaimer} />
+          <MapboxGlobe selectedCity={selectedCity} onCitySelect={handleCitySelect} showDisclaimer={showDisclaimer} />
         </div>
-        <Sidebar selectedCity={selectedCity} setSelectedCity={setSelectedCity} />
+        <Sidebar selectedCity={selectedCity} setSelectedCity={handleCitySelect} />
       </div>
       {/* Moved nav-links below the map/sidebar */}
       

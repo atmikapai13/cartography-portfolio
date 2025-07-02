@@ -408,7 +408,7 @@ footer {
 .sidebar {
   background: #141414;
   color: #f5f5e6;
-  width: 340px;
+  width: 400px;
   height: 100vh;
   position: fixed;
   top: 0;
@@ -457,8 +457,8 @@ footer {
 }
 
 .project-card-image-large {
-  width: 80px;
-  height: 80px;
+  width: 90px;
+  height: 90px;
   object-fit: cover;
   border-radius: 10px;
   background: #111;
@@ -576,8 +576,8 @@ footer {
     font-size: 1rem;
   }
   .project-card-image-large {
-    width: 80px;
-    height: 80px;
+    width: 90px;
+    height: 90px;
   }
   .map-wrapper {
     min-height: 230px;
@@ -912,4 +912,23 @@ footer {
   .clear-filters-btn {
     display: none !important;
   }
+}
+
+.popup-playlist {
+  margin-top: 10px;
+  text-align: center;
+}
+
+.popup-playlist a {
+  color: #a5d6fa;
+  font-weight: bold;
+  font-size: 0.5rem;
+  transition: color 0.2s;
+  letter-spacing: 0.01em;
+  margin-top: 0px;
+}
+
+.popup-playlist a:hover {
+  color: #007bff;
+  font-style: italic;
 }

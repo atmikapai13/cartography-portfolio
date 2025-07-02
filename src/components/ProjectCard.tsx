@@ -80,11 +80,11 @@ const ProjectCard: React.FC<ProjectCardProps> = ({ title, image, description, li
 
         </div>
         <div className="project-card-description-col" style={{ flex: '1 1 0', display: 'flex', flexDirection: 'column' }}>
-          {description && <p className="project-card-description" style={{ margin: 0 }}>{description}</p>}
+          {description && <p className="project-card-description" style={{ margin: 0, fontSize: '1rem', fontWeight: 500 }}>{description}</p>}
           {tech_stack2 && (
             <div style={{ width: '100%', textAlign: 'left', marginTop: '6px', marginLeft: 0 }}>
-              <div className="project-tech-stack2" style={{ fontSize: '0.85rem', color: '#a5d6fa', fontWeight: 500, fontStyle: 'italic' }}>
-                <span style={{ fontWeight: 700, color: '#a5d6fa', fontStyle: 'normal' ,fontSize: '0.5rem'}}>Tech Stack:</span> <span style={{ fontStyle: 'italic', color: '#a5d6fa' , fontSize: '0.50rem'}}>{tech_stack2}</span>
+              <div className="project-tech-stack2" style={{ fontSize: '0.7rem', color: '#a5d6fa', fontWeight: 500, fontStyle: 'italic' }}>
+                <span style={{ fontWeight: 700, color: '#a5d6fa', fontStyle: 'normal' ,fontSize: '0.5rem'}}>Tech Stack:</span> <span style={{ fontStyle: 'italic', color: '#a5d6fa' , fontSize: '0.5rem'}}>{tech_stack2}</span>
               </div>
             </div>
           )}

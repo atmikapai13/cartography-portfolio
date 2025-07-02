@@ -7,7 +7,8 @@
   {
     "city": "Berkeley",
     "date": "August 2018-May 2022",
-    "place_description": "I spent my early twenties in Berkeley, where I earned a B.A. in Data Science and Economics from the University of California, Berkeley. \n\nLiving in the long shadow of Silicon Valley shaped my understanding of how the world works and who runs it.\n\nStill, the sun hits different in California. Here's a very indie, Berkeley-centric <a href=\"https://open.spotify.com/playlist/1aUq0gXQwcXCWbmpLqDK0Y?si=0191428cf5104043\" target=\"_blank\" rel=\"noopener noreferrer\">playlist</a> I made."
+    "place_description": "I spent my early twenties in Berkeley, where I earned a B.A. in Data Science and Economics from the University of California, Berkeley. \n\nLiving in the long shadow of Silicon Valley shaped my understanding of how the world works and who runs it.\n\nStill, the sun hits different in California.",
+    "playlist": "https://open.spotify.com/playlist/1aUq0gXQwcXCWbmpLqDK0Y?si=0191428cf5104043"
   },
   {
     "city": "Cafenated, North Berkeley",
@@ -17,7 +18,8 @@
   {
     "city": "Oakland",
     "date": "August 2022-July 2024",
-    "place_description": "I spent my early twenties in Oakland, California, where I began my career at an insurance firm. Here's a playlist I made, an ode to <a href=\"https://open.spotify.com/playlist/6UADKvCNvJOQggMG8TEfV3?si=2dc111eb8bc44a59\" target=\"_blank\" rel=\"noopener noreferrer\">California.</a>"
+    "place_description": "I spent my early twenties in Oakland, California, where I began my career at an insurance firm. Check out the playlist, an ode to California.",
+    "playlist": "https://open.spotify.com/playlist/6UADKvCNvJOQggMG8TEfV3?si=2dc111eb8bc44a59"
   },
   {
     "city": "San Francisco",
@@ -40,12 +42,14 @@
   {
     "city": "Singapore",
     "date": "2008-2012",
-    "place_description": "After Japan, my parents and I moved to Singapore. It's a small country, so I know it's hard to compare to places like the U.S. or India, but it showed me what's possible when a city is thoughtfully planned. Here's a <a href=\"https://open.spotify.com/playlist/525WRgwziKIrfQY9chZ6c6?si=de8173ea23bf4c1f\" target=\"_blank\" rel=\"noopener noreferrer\">playlist</a> that captures my adolescent mind when I lived there."
+    "place_description": "After Japan, my parents and I moved to Singapore. It's a small country, so I know it's hard to compare to places like the U.S. or India, but it showed me what's possible when a city is thoughtfully planned.",
+    "playlist": "https://open.spotify.com/playlist/525WRgwziKIrfQY9chZ6c6?si=de8173ea23bf4c1f"
   },
   {
     "city": "Sydney",
     "date": "2012-2013",
-    "place_description": "After Singapore, my parents and I moved to Sydney—a different ballgame altogether. The car-centric lifestyle was a bit tough for my mom and me, since we were used to walking everywhere. It felt isolating after living in such pedestrian-friendly cities, but it was also one of the most beautiful places I've ever seen. Here's a <a href=\"https://open.spotify.com/playlist/18d898u6NOd4pFKiA4O9QP?si=12ff53a599134c99\" target=\"_blank\" rel=\"noopener noreferrer\">playlist</a> I made to really capture the milieu when I lived there."
+    "place_description": "After Singapore, my parents and I moved to Sydney—a different ballgame altogether. The car-centric lifestyle was a bit tough for my mom and me, since we were used to walking everywhere. It felt isolating after living in such pedestrian-friendly cities, but it was also one of the most beautiful places I've ever seen.",
+    "playlist": "https://open.spotify.com/playlist/18d898u6NOd4pFKiA4O9QP?si=12ff53a599134c99"
   },
   {
     "city": "San Diego",
@@ -126,11 +130,12 @@
   {
     "city": "Christchurch",
     "date": "January 2025",
-    "place_description": "I got to visit New Zealand with my parents. I really loved this country. It is fascinating how they rebuilt Christchurch after the 2011 earthquake. Look at the <a href=\"https://www.youtube.com/watch?v=tgydPEA86HA\" target=\"_blank\" rel=\"noopener noreferrer\">video</a> I shot of Border Collie and Hunt Away dogs herding sheep in Agrodome, Rotorua in the North Island! Here's a <a href=\"https://open.spotify.com/playlist/0ip84tD0XEaMdr2YyHeDpQ?si=78c2b472c7e841d3\" target=\"_blank\" rel=\"noopener noreferrer\">playlist</a> I made when I was visiting!"
+    "place_description": "I got to visit New Zealand with my parents. I really loved this country. It is fascinating how they rebuilt Christchurch after the 2011 earthquake. Look at the <a href=\"https://www.youtube.com/watch?v=tgydPEA86HA\" target=\"_blank\" rel=\"noopener noreferrer\">video</a> I shot of Border Collie and Hunt Away dogs herding sheep in Agrodome, Rotorua in the North Island!",
+    "playlist": "https://open.spotify.com/playlist/0ip84tD0XEaMdr2YyHeDpQ?si=78c2b472c7e841d3"
   },
   {
     "city": "London",
     "date": "June 2024",
-    "place_description": "Here's a <a href=\"https://open.spotify.com/playlist/63uV7EESnxrHDFNRCD3c8W?si=9b42c7401a9e4600\" target=\"_blank\" rel=\"noopener noreferrer\">playlist</a> I've been tinkering with! I really enjoyed Tower of London and the British Museum."
+    "playlist": "https://open.spotify.com/playlist/63uV7EESnxrHDFNRCD3c8W?si=9b42c7401a9e4600"
   }
 ]

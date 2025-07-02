@@ -55,9 +55,15 @@ export default function MapboxGlobe({ selectedCity, onCitySelect, showDisclaimer
   const mapRef = useRef<mapboxgl.Map | null>(null);
   const activePopup = useRef<mapboxgl.Popup | null>(null);
   const rotationEnabled = useRef(true);
+  const popupTimeoutRef = useRef<ReturnType<typeof setTimeout> | null>(null);
+  const moveEndListenerRef = useRef<(() => void) | null>(null);
+  const programmaticZoomRef = useRef(false);
+  const ZOOM_THRESHOLD = 2.5;
 
-  const tickerCities = project_cities
-    .filter(city => !zoomGatedCities.includes(city.name));
+  const tickerCityOrder = ['New York', 'San Francisco', 'Berkeley', 'Oakland', 'San Diego', 'Mumbai'];
+  const tickerCities = tickerCityOrder
+    .map(cityName => project_cities.find(city => city.name === cityName))
+    .filter((city): city is typeof project_cities[number] => Boolean(city));
 
   const handleTickerClick = () => {
     rotationEnabled.current = false;
@@ -74,22 +80,25 @@ export default function MapboxGlobe({ selectedCity, onCitySelect, showDisclaimer
       activePopup.current = null;
     }
 
-    // Find city info (place_description and date)
+    // Find city info (place_description, date, playlist)
     const cityData = (placeData as any[]).find(
       (entry) => entry.city.trim().toLowerCase() === cityName.trim().toLowerCase()
     );
 
-    let popupContent = `<div class="city-popup" style="text-align:center;">`;
+    let popupContent = `<div class="city-popup" style="text-align:center; max-height:250px; overflow:auto;">`;
     if (!cityData) {
       popupContent += ``;
     } else {
       popupContent += `<div class="city-description">`;
-      popupContent += `<h3 style='margin-bottom: 6px; text-align:center;'>${cityName}</h3>`;
+      popupContent += `<h3 style='margin-bottom: 3px; text-align:center;color:#007bff;'>${cityName}</h3>`;
       if (cityData.image) {
         popupContent += `<img src='${cityData.image}' alt='${cityName}' style='display:block;margin:0 auto 10px auto;max-width:250px; width:100%;height:auto;border-radius:10px;' />`;
       }
-      popupContent += `<div style='font-size:0.98rem;color:#bdbdbd;margin-bottom:8px;text-align:center;'><em>${cityData.date || ''}</em></div>`;
-      popupContent += `<div style='font-size:1.05rem;color:#e0e0e0;text-align:center;'>${cityData.place_description || ''}</div>`;
+      popupContent += `<div style='font-size:0.7rem;color:#bdbdbd;margin-bottom:3px;text-align:center; font-style:italic;'><em>${cityData.date || ''}</em></div>`;
+      popupContent += `<div style='font-size:0.5rem;color:#e0e0e0;text-align:center; font-style:italic;line-height:1.2;'>${cityData.place_description || ''}</div>`;
+      if (cityData.playlist) {
+        popupContent += `<div class='popup-playlist' style=' font-size:0.5rem;'><a href='${cityData.playlist}' target='_blank' rel='noopener noreferrer'>my playlist</a></div>`;
+      }
       popupContent += `</div>`;
     }
     popupContent += `</div>`;
@@ -97,7 +106,7 @@ export default function MapboxGlobe({ selectedCity, onCitySelect, showDisclaimer
     // Pause rotation when popup opens
     rotationEnabled.current = false;
     
-    const popup = new mapboxgl.Popup({ maxWidth: '450px' })
+    const popup = new mapboxgl.Popup({ maxWidth: '250px', anchor: 'right'})
       .setLngLat(lngLat)
       .setHTML(popupContent)
       .addTo(mapRef.current);
@@ -111,7 +120,7 @@ export default function MapboxGlobe({ selectedCity, onCitySelect, showDisclaimer
       activePopup.current = null;
     });
   };
-
+  
   useEffect(() => {
     const map = mapRef.current;
     if (!map) return;
@@ -132,25 +141,29 @@ export default function MapboxGlobe({ selectedCity, onCitySelect, showDisclaimer
     const isMobile = window.innerWidth <= 600;
     const map = new mapboxgl.Map({
       container: mapContainer.current,
-      style: "mapbox://styles/mapbox/satellite-streets-v11", //satellite-v9
+      style: "mapbox://styles/mapbox/standard", //satellite-v9 //satellite-streets-v12 //outdoors-v12
       projection: "globe",
-      center: [-110, 25],
-      zoom: isMobile ? 0.30 : 1.60,
+      center: [-100, 40],
+      zoom: isMobile ? 0.30 : 1.7,
       bearing: 0,
       pitch: 0,
-      minZoom: isMobile ? 0.30 : 1.60,
+      minZoom: isMobile ? 0.30 : 1.4,
       attributionControl: false,
     });
     mapRef.current = map;
+    
+     // @ts-ignore
+    //map.addControl(new mapboxgl.LightControl(), 'top-left');
+    
 
 
     map.on("style.load", () => {
       console.log("Loaded projects:", projects);
       map.setFog({
-        color: "rgb(234, 242, 250)",
-        "high-color": "rgb(9, 139, 226)",
-        "horizon-blend": 0.1,
-        "space-color": "rgba(2, 39, 54, 0.79)",
+        color: "rgb(95, 174, 253)",
+        "high-color": "rgb(6, 113, 189)",
+        "horizon-blend": 0.05,
+        "space-color": "rgb(21, 21, 21)", //// //rgb(1, 31, 52)
         "star-intensity": 1.0,
       });
 
@@ -249,13 +262,12 @@ export default function MapboxGlobe({ selectedCity, onCitySelect, showDisclaimer
 
     // Globe rotation
     let isUserInteracting = false;
-    const ZOOM_THRESHOLD = 2.5; // Stop rotation when zoomed in beyond this level
 
     function rotateGlobe() {
       const currentZoom = map.getZoom();
       if (rotationEnabled.current && !isUserInteracting && currentZoom < ZOOM_THRESHOLD) {
         const center = map.getCenter();
-        const newLng = ((center.lng + 0.1) + 360) % 360;
+        const newLng = ((center.lng - 0.1) + 360) % 360;
         map.setCenter([newLng, center.lat]);
       }
       setTimeout(rotateGlobe, 16.7);
@@ -281,7 +293,26 @@ export default function MapboxGlobe({ selectedCity, onCitySelect, showDisclaimer
     });
     map.on("load", rotateGlobe);
 
-    return () => map.remove();
+    // Listen for zoomend to resume rotation if user zooms out
+    const onZoomEnd = () => {
+      if (programmaticZoomRef.current) {
+        // Ignore this zoomend if it was programmatic
+        programmaticZoomRef.current = false;
+        return;
+      }
+      const currentZoom = map.getZoom();
+      if (currentZoom <= ZOOM_THRESHOLD) {
+        rotationEnabled.current = true;
+      } else {
+        rotationEnabled.current = false;
+      }
+    };
+    map.on('zoomend', onZoomEnd);
+
+    return () => {
+      map.remove();
+      map.off('zoomend', onZoomEnd);
+    };
   }, []);
 
   return (
@@ -290,7 +321,45 @@ export default function MapboxGlobe({ selectedCity, onCitySelect, showDisclaimer
         ref={mapContainer}
         style={{ width: "100%", height: "100%", position: "absolute", top: 0, left: 0 }}
       />
-      {!showDisclaimer && <Ticker items={tickerCities} map={mapRef.current} onCityClick={handleTickerClick} onCitySelect={onCitySelect} />}
+
+      {!showDisclaimer && window.innerWidth > 600 && (
+        <Ticker
+          items={tickerCities}
+          map={mapRef.current}
+          onCityClick={handleTickerClick}
+          onCitySelect={onCitySelect}
+          onCityPopup={(city) => {
+            // Cancel any pending popup
+            if (popupTimeoutRef.current) {
+              clearTimeout(popupTimeoutRef.current);
+              popupTimeoutRef.current = null;
+            }
+            // Remove previous moveend listener
+            if (moveEndListenerRef.current && mapRef.current) {
+              mapRef.current.off('moveend', moveEndListenerRef.current);
+              moveEndListenerRef.current = null;
+            }
+            // Close any open popup
+            if (activePopup.current) {
+              activePopup.current.remove();
+              activePopup.current = null;
+            }
+            // Set up moveend listener for popup
+            if (mapRef.current) {
+              programmaticZoomRef.current = true;
+              const showPopup = () => {
+                createCityPopup(city.name, [city.longitude, city.latitude]);
+                if (mapRef.current && moveEndListenerRef.current) {
+                  mapRef.current.off('moveend', moveEndListenerRef.current);
+                  moveEndListenerRef.current = null;
+                }
+              };
+              moveEndListenerRef.current = showPopup;
+              mapRef.current.on('moveend', showPopup);
+            }
+          }}
+        />
+      )}
     </div>
   );
 } 
