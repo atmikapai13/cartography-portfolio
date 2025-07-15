@@ -4,13 +4,13 @@ body {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   overflow: hidden;
-  background: #151515;
+  background: #0A0E11;
 }
 
 #root {
   width: 100vw;
   height: 100vh;
-  background: #151515;
+  background: #0A0E11;
   margin: 0;
   padding: 0;
 }
@@ -905,6 +905,15 @@ footer {
     overflow-y: auto !important;
     max-height: calc(100vh - 560px) !important; 
     padding-bottom: 24px !important;
+  }
+  .project-card-description {
+    flex: 1 1 0;
+    font-size: 0.7rem;
+    color: #e0e0e0;
+    margin: 0;
+    line-height: 1.4;
+    align-self: flex-start;
+    padding-top: 0;
   }
 }
 

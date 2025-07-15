@@ -1,7 +1,7 @@
 [
   {
     "id": 4,
-    "title": "Predictive Maintenance of NYC Subways",
+    "title": "Predicting maintenance of NYC subways",
     "city": "New York",
     "description": "Predictive maintenance framework composed of linear and tree-based models to predict most vulnerable lines. Showcased at 2025 NYC Open Data Week",
     "link": "https://drive.google.com/file/d/1zMYCgKBVHw_3ogIhbPMZD92TFE36Dcbp/view?usp=sharing",
@@ -14,7 +14,7 @@
   },
   {
     "id": 5,
-    "title": "IntelliBART Database System",
+    "title": "IntelliBART database",
     "city": ["San Francisco", "Berkeley", "Oakland"],
     "description": "A relational database management system that integrates BART ridership data with GTFS feeds, enabling geospatial and temporal analysis",
     "link": "https://medium.com/bay-area-transit-tales-from-an-urban-analyst",
@@ -27,7 +27,7 @@
   },
   {
     "id": 2,
-    "title": "NYC Iconic Run Clubs",
+    "title": "Run clubs in NYC",
     "city": "New York",
     "description": "Simple, colorful map of run clubs in NYC for natives",
     "link": "https://atmikapai13.github.io/iconic-runclubs-nyc/",
@@ -40,7 +40,7 @@
   },
   {
     "id": 3,
-    "title": "Transit Deserts in NYC",
+    "title": "Transit deserts in NYC",
     "city": "New York,",
     "description": "Visualized NYC subway system's network architecture, namely nodes, flows, and agents to identify dead transit zones",
     "link": "https://www.youtube.com/watch?v=3O_3suJZR7A",
@@ -53,7 +53,7 @@
   },
   {
     "id": 9,
-    "title": "MakAR AR Experience",
+    "title": "MakAR augmented reality application",
     "city": ["New York","Roosevelt Island"],
     "description": "Augmented Reality application for Meta Orion Smart Glasses, designed for use in the MakerLAB at Cornell Tech",
     "link": "https://youtu.be/XIyegVX8nrM",
@@ -79,7 +79,7 @@
   },
   {
     "id": 26,
-    "title": "Designing Spatial Menus in AR",
+    "title": "Designing spatial menus in AR",
     "city": "New York",
     "description": "Reimagining contextual menus in Augmented Reality (Google's “Augmented Object Intelligence” paper) for improved usability and discoverability",
     "link": "https://drive.google.com/file/d/1a0LDMjJmoM1Bnqvq6W4tXnbVwhOkLk0Y/view?usp=sharing",
@@ -92,7 +92,7 @@
   },
   {
     "id": 6,
-    "title": "Forecasting Transit Ridership in the Bay Area",
+    "title": "Forecasting transit ridership in the Bay Area",
     "city": ["San Francisco", "Berkeley", "Oakland"],
     "description": "Answering whether transit ridership will return to pre-pandemic levels",
     "link": "https://medium.com/bay-area-transit-tales-from-an-urban-analyst",
@@ -105,11 +105,11 @@
   },
   {
     "id": 14,
-    "title": "Urban Tech Hub, NYC",
+    "title": "Cornell Tech's Urban Tech Hub",
     "city": ["New York", "Roosevelt Island"],
     "description": "The Urban Tech Hub at Cornell Tech is an academic think tank developing human-centered technology for urban challenges. I work with professors to design and implement tech solutions for public and private partners. Recent projects include developing tree-planting strategies for extreme heat mitigation and building a global resilience dashboard.",
     "link": "https://urban.tech.cornell.edu/",
-    "image": "/cartography-portfolio/assets/14.png",
+    "image": "/cartography-portfolio/assets/ct-logo.png",
     "github": null,
     "spotlight": false,
     "tech_stack": ["GIS", "Research"],
@@ -133,9 +133,9 @@
   },
   {
     "id": 20,
-    "title": "Tree Planting Strategies for Extreme Heat Mitigation",
+    "title": "Tree-planting strategies in NYC",
     "city": ["New York", "Brooklyn (BK11)", "Brooklyn (BK17)", "Bronx (BX5)", "Manhattan (MN10)", "Queens (QN2)", "Lower Manhattan"],
-    "description": "Developed sustainable tree-planting strategies in 5 NYC community districts using geospatial modeling, directly supporting decision-making by the NGO New Yorkers for Parks",
+    "description": "Developed tree-planting strategies to mitigate extreme heat in 5 NYC community districts using geospatial modeling, influencing urban tree planting decision made by New Yorkers for Parks NGO",
     "link": "https://drive.google.com/file/d/1nUElvpsu3StJxUv4dWGkUcD0va3OIBE1/view",
     "github": null,
     "image": "/cartography-portfolio/assets/20.png",
@@ -148,7 +148,7 @@
   },
   {
     "id": 15,
-    "title": "Disaster Tweet Classification using Natural Language Processing",
+    "title": "Classifying natural disaster Tweets using natural language processing",
     "city": "New York",
     "description": "Built robust preprocessing pipeline (stopword removal, lemmatization, and vectorization) and feature extraction models (Bag of Words and N-Grams) to classify tweets as disaster-related or not.",
     "link": "https://medium.com/@atmikapai/building-a-disaster-detection-model-using-nlp-009a11cfc0ef",
@@ -174,7 +174,7 @@
   },
   {
     "id": 22,
-    "title": "Trailmates Hiking App",
+    "title": "Prototyping Trailmates hiking app",
     "city": "New York",
     "description": "Developed hi-fidelity prototype across mobile, desktop, and smartwatch interfaces for users to discover, plan, and share hikes through filters, social features, and a community feed",
     "link": "https://www.figma.com/proto/UZkPhpKZ0Vu8eYpWono3Zb/HCI-HW4?node-id=95-3105&p=f&t=9YUmNI7qid91hXHb-1&scaling=min-zoom&content-scaling=fixed&page-id=3%3A2&starting-point-node-id=95%3A3105&show-proto-sidebar=1",
@@ -187,7 +187,7 @@
   },
   {
     "id": 25,
-    "title": "Designing Interactions in VR",
+    "title": "Designing interactions in VR",
     "city": "New York",
     "description": "Improved a VR architectural scene by implementing navigation, teleportation, snap turning interaction techniques using XR Interaction Toolkit in Unity for Meta Quest 2",
     "link": "https://drive.google.com/file/d/1tvEpvIihpRzfI5e_FmFD_Ot3K0ehMWqE/view?usp=sharing",
@@ -230,10 +230,10 @@
   },
   {
     "id": 33,
-    "title": "User-Centered Analysis of Transit Apps ",
+    "title": "User-centered analysis of transit apps ",
     "city": "New York",
     "description": "Exploring how student commuters use transit apps like MTA’s official app, Google Maps, and Apple Maps to navigate NYC public transportation through different modes of inquiry (semi-structured qualitative interviews, contextual inquiries, and surveys)",
-    "link": "https://docs.google.com/document/d/1SEZbUxBEvyOtdEcizNvWYVBQoSh-ckVHKb3HfMtZlyM/edit?usp=sharing",
+    "link": "https://www.figma.com/design/fXwIWvqaw9PxIg8zlkP7lW/Atmika_TransitApp?node-id=0-1&m=dev&t=qhBXIvRYxv7ThAqZ-1",
     "github": null,
     "image": "/cartography-portfolio/assets/33.png",
     "spotlight": false,
@@ -257,7 +257,7 @@
   },
   {
     "id": 8,
-    "title": "ESRI Conferences",
+    "title": "ESRI",
     "city": ["Palm Springs", "San Diego"],
     "description": "Helped run event logistics and got to learn about emerging GIS, AI, and LLM tools at Esri Developer and Technology Summit and Esri User Conference",
     "link": "https://medium.com/@atmikapai/notes-on-2025-esri-developer-technology-summit-75cd4b496d5d",
@@ -286,7 +286,7 @@
   },
   {
     "id": 24,
-    "title": "Virtualization of the Public Sphere",
+    "title": "Virtualization of the public sphere",
     "city": "San Francisco",
     "description": "Investigated fragmentation of the public sphere following the user exodus from Twitter/X to Bluesky after the 2024 U.S. Presidential Election and assessed how platform design and moderation influence democratic discourse",
     "link": "https://www.youtube.com/watch?v=Nf0VFN9dvKw",
@@ -311,12 +311,12 @@
   },
   {
     "id": 12,
-    "title": "Taxonomic Database System of Hawaiian Species",
+    "title": "UC Berkeley's Essig Museum of Entomology",
     "city": "Hawaii",
-    "description": "Co-digitized Elwood Zimmerman's seven multivolume series on Hawaiian insect taxonomy into a database for faster retrieval",
+    "description": "Co-digitized Elwood Zimmerman's seven multivolume series on Hawaiian insect taxonomy into a database for faster retrieval as part of my undergraduate research",
     "link": "https://nature.berkeley.edu/evolab/atmika-pai-2/",
     "github": null,
-    "image": "/cartography-portfolio/assets/12.png",
+    "image": "/cartography-portfolio/assets/Essig-Logo-xsm.jpg",
     "spotlight": false,
     "tech_stack": ["Research"],
     "work_experience": ["Work"],
@@ -326,7 +326,7 @@
   },
   {
     "id": 27,
-    "title": "Impacts of Quarantine Mandates on COVID-19 Cases in the US",
+    "title": "Impact of heterogenous quarantine mandates on COVID-19 cases in the US",
     "city": "Berkeley",
     "description": "Estimated the effects of strict quarantine mandates across six intervention windows and 3,143 U.S. counties",
     "link": "https://drive.google.com/file/d/1EnKz7pQ-S4qKx5A20oL9zBTvKT5iDn2K/view?usp=sharing",
@@ -339,9 +339,9 @@
   },
   {
     "id": 28,
-    "title": "Empirical Examination of Kuznets Environmental Model",
+    "title": "Does the Environmental Kuznets Curve Hold? An Empirical Examination",
     "city": "Berkeley",
-    "description": "Verified whether the Environmental Kuznets Curve holds for 161 countries in R",
+    "description": "Verified the Environmental Kuznets Curve using OLS regression on panel data from 161 countries in R; addressed endogeneity and omitted variable bias via fixed effects and instrumental variables, finding empirical support for a parabolic income–pollution relationship.",
     "link": "https://drive.google.com/file/d/1cWUF2O1RDB4xYchSwzJyg-nwKvlguyg3/view?usp=sharing",
     "github": null,
     "image": "/cartography-portfolio/assets/28.png",
@@ -352,7 +352,7 @@
   },
   {
     "id": 29,
-    "title": "Gaussian Classifier for Handwritten Digit Recognition",
+    "title": "Recognizing handwritten digits using Gaussian classifiers",
     "city": "Berkeley",
     "description": "Built a Gaussian classifier in SciPy and Scikit-learn to recognize handwritten digits from MNIST by applying Linear Discriminant Analysis for dimensionality reduction and modeling class-conditional pixel distributions via maximum likelihood estimation",
     "link": "https://github.com/atmikapai13/CS189/blob/main/gaussian_classifiers_programv50.py",
@@ -364,7 +364,7 @@
   },
   {
     "id": 30,
-    "title": "Convolutional Neural Network (CNN) Classifier for Image Classification",
+    "title": "Classiyging images using Convolutional Neural Network (CNN)",
     "city": "Berkeley",
     "description": "Built a convolutional neural network to classify images from the CIFAR-10 dataset using PyTorch and TensorFlow",
     "link": "https://github.com/atmikapai13/CS189/blob/main/gaussian_classifiers_programv50.py",
@@ -377,7 +377,7 @@
   },
   {
     "id": 31,
-    "title": "Version Control System for Local File Management",
+    "title": "Managing files using local version control system",
     "city": "Berkeley",
     "description": "Built a version control system in Java to manage local repositories, track file history, and enable restoration",
     "link": "https://github.com/atmikapai13/CS61BL-Data-Structures/tree/main/Proj2%20-%20Gitlet",
@@ -426,7 +426,7 @@
   },
   {
     "id": 10,
-    "title": "Impact of Foreign Student Migration on US Innovation",
+    "title": "Assessing the impact of foreign student migration on US innovation output",
     "city": ["Berkeley", "Mumbai"],
     "description": "Conducted a Difference-in-Differences analysis to assess the impact of foreign student migration on U.S. patenting with evolving U.S. student visa programs (F-1, OPT-STEM, H1-B) and authored white paper",
     "link": "https://drive.google.com/file/d/1dCk9VlXqLSW0PUJBzkQAA1ljaWDabbw7/view",
