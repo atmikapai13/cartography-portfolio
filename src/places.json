@@ -12,7 +12,7 @@
   },
   {
     "city": "Cafenated, North Berkeley",
-    "image": "/cartography-portfolio/assets/cafenated.png",
+    "image": "/assets/cafenated.png",
     "place_description": "As a project manager at Microfinance at Berkeley, a small business consulting club at UC Berkeley, I led a website redesign for a local café that was transforming its patio into an event venue. The café wanted to enhance its existing website to allow customers to view and book the patio space online. Working closely with the owner, our team designed and prototyped the full booking experience, aligning it with the café’s brand and business goals. Check out the <a href=\"https://www.figma.com/proto/58uCZ0OF3uRz9eCCmaFG0n/Cafenated-Patio--Copy-?node-id=24-2&p=f&t=yLW82Aj5xihTGzwr-1&scaling=scale-down&content-scaling=fixed&page-id=0%3A1\" target=\"_blank\" rel=\"noopener noreferrer\">Figma prototype</a> we created!"
   },
   {
@@ -79,7 +79,7 @@
   },
   {
     "city": "West Hollywood",
-    "image": "/cartography-portfolio/assets/weho.png",
+    "image": "/assets/weho.png",
     "place_description": "Some Urban Tech students and I investigated smart city initiatives in West Hollywood, including smart buses, nodes, and streetlights, and proposed a post-pandemic plan to sustain and expand them. Here's a <a href=\"https://docs.google.com/presentation/d/12oTSDSqduQpqlfIaITrERdzDXeJ0nlA6CQtvTHFjfg4/edit?usp=sharing\" target=\"_blank\" rel=\"noopener noreferrer\">presentation</a> we made."
   },
   {
@@ -94,38 +94,38 @@
   {
     "city": "Cafe Aviva, Roosevelt Island",
     "date": "September 2024",
-    "image": "/cartography-portfolio/assets/cafe_aviva.png",
+    "image": "/assets/cafe_aviva.png",
     "place_description": "As part of my HCI & Design coursework, I collaborated with a team of MS students to design a new e-commerce website for the soon-to-launch Café Aviva on Roosevelt Island. We spoke with the owner, Alon Kruvi, to understand his goals, aesthetic preferences, and the atmosphere he envisioned for the café. Next, we created a high-fidelity prototype in Figma that reflects his brand’s style and layout. Take a look at the <a href=\"https://www.figma.com/proto/oggb8fwW0s0rt300eL0ZsU/Cafe-Aviva-Prototype?node-id=1-6&starting-point-node-id=1%3A6&scaling=scale-down&content-scaling=fixed&t=umlMfbUz3BdTsZNQ-1\" target=\"_blank\" rel=\"noopener noreferrer\">prototype!</a>."
   },
   {
     "city": "Brooklyn (BK11)",
     "place_description": "I identified optimal tree planting locations using land surface temperature data from Sentinel EO Hub's Landsat 8 LIDAR (shown in red) and Michael Treglia's 'practical canopy' framework, which considers land use, cover, and infrastructure constraints (shown in green). This map presents the results of that analysis for BK11 community district.",
-    "image": "/cartography-portfolio/assets/extremeheat_BK11.png"
+    "image": "/assets/extremeheat_BK11.png"
   },
   {
     "city": "Brooklyn (BK17)",
     "place_description": "I identified optimal tree planting locations using land surface temperature data (Sentinel EO Hub's Landsat 8 LIDAR) and Michael Treglia's 'practical canopy' framework, which considers land use, cover, and infrastructure constraints. This map presents the results of that analysis for BK17 community district.",
-    "image": "/cartography-portfolio/assets/extremeheat_BK17.png"
+    "image": "/assets/extremeheat_BK17.png"
   },
   {
     "city": "Bronx (BX5)",
     "place_description": "I identified optimal tree planting locations using land surface temperature data from Sentinel EO Hub's Landsat 8 LIDAR (shown in red) and Michael Treglia's 'practical canopy' framework, which considers land use, cover, and infrastructure constraints (shown in green). This map presents the results of that analysis for BX5 community district.",
-    "image": "/cartography-portfolio/assets/extremeheat_BX5.png"
+    "image": "/assets/extremeheat_BX5.png"
   },
   {
     "city": "Manhattan (MN10)",
     "place_description": "I identified optimal tree planting locations using land surface temperature data from Sentinel EO Hub's Landsat 8 LIDAR (shown in red) and Michael Treglia's 'practical canopy' framework, which considers land use, cover, and infrastructure constraints (shown in green). This map presents the results of that analysis for MN10 community district.",
-    "image": "/cartography-portfolio/assets/extremeheat_MN10.png"
+    "image": "/assets/extremeheat_MN10.png"
   },
   {
     "city": "Queens (QN2)",
     "place_description": "I identified optimal tree planting locations using land surface temperature data from Sentinel EO Hub's Landsat 8 LIDAR (shown in red) and Michael Treglia's 'practical canopy' framework, which considers land use, cover, and infrastructure constraints (shown in green). This map presents the results of that analysis for QN2 community district.",
-    "image": "/cartography-portfolio/assets/extremeheat_QN2.png"
+    "image": "/assets/extremeheat_QN2.png"
   },
   {
     "city": "Lower Manhattan",
     "place_description": "I identified optimal tree planting locations in the five boroughs of NYC using land surface temperature data from Sentinel EO Hub's Landsat 8 LIDAR (shown in red) and Michael Treglia's 'practical canopy' framework, which considers land use, cover, and infrastructure constraints (shown in green). This map shows the two metrics across NYC.",
-    "image": "/cartography-portfolio/assets/extremeheat.png"
+    "image": "/assets/extremeheat.png"
   },
   {
     "city": "Christchurch",
