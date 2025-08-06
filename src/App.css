@@ -170,18 +170,19 @@ footer {
   justify-content: flex-start;
   align-items: center;
   gap: 20px;
-  padding: 2px 0 2px 40px;
+  padding: 1px 0 1px 40px;
   background: rgba(0,0,0,0.04);
   position: static;
   width: 100%;
-  margin-top: 55px;
+  margin-top: 50px;
+  padding-right: 10px;
 }
 
 /* Wrapper for the map to fit between header and footer */
 .map-wrapper {
   position: absolute;
   top: 50px; 
-  bottom: 34px; /* height of footer */
+  bottom: 32px; /* height of footer */
   left: 0;
   right: 0;
   width: 100vw;
@@ -376,10 +377,7 @@ footer {
 }
 
 .mapboxgl-popup-tip {
-  border-top-color: #232323 !important;
-  border-right-color: transparent !important;
-  border-bottom-color: transparent !important;
-  border-left-color: transparent !important;
+  display: none !important;
 }
 
 .mapboxgl-popup-close-button {
@@ -402,6 +400,11 @@ footer {
   text-align: center;
   margin: 0;
   padding: 1rem;
+}
+
+/* Hide scrollbar in city popups */
+.city-popup::-webkit-scrollbar {
+  display: none;
 }
 
 /* Sidebar styles */
@@ -495,7 +498,7 @@ footer {
 .main-content {
   display: flex;
   flex-direction: row;
-  height: calc(100vh - 64px - 48px); /* navbar 64px, footer 48px */
+  height: calc(100vh - 64px - 46px); /* navbar 64px, footer 46px */
   position: relative;
   margin: 0;
   padding: 0;
@@ -510,7 +513,7 @@ footer {
   position: fixed;
   top: 50px; /* height of navbar */
   right: 0;
-  height: calc(100vh - 50px - 48px); /* minus navbar and footer */
+  height: calc(100vh - 50px - 46px); /* minus navbar and footer */
   background: #18181800;
   color: #f7f6f2;
   position: relative;
@@ -626,14 +629,14 @@ footer {
     font-size: 0.6rem !important;
   }
   .ballot-row {
-    display: flex;
-    align-items: center;
-    gap: 14px;
-    margin-bottom: 10px;
-    margin-top: 2px;
-    min-height: 0;
-    justify-content: flex-start;
-  }
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  margin-bottom: 15px;
+  margin-top: 2px;
+  min-height: 0;
+  justify-content: flex-start;
+}
   .clear-filters-btn {
     position: static;
     display: inline-block;

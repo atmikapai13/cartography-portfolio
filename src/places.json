@@ -2,7 +2,7 @@
   {
     "city": "New York",
     "date": "July 2024 onwards",
-    "place_description": "I moved to NYC to pursue a Master's in Information Systems with a focus in urban tech at Cornell Tech. Here, I got to work on some cool projects that deepened my understanding of emerging technologies and urban planning."
+    "place_description": "I moved to NYC to pursue a Master's in Information Systems with a focus in urban tech at Cornell Tech. Here, I got to work on some cool projects that deepened my understanding of emerging technologies and urban planning. Cornell Tech's campus is located on Roosevelt Island."
   },
   {
     "city": "Berkeley",
@@ -13,7 +13,7 @@
   {
     "city": "Cafenated, North Berkeley",
     "image": "/assets/cafenated.png",
-    "place_description": "As a project manager at Microfinance at Berkeley, a small business consulting club at UC Berkeley, I led a website redesign for a local café that was transforming its patio into an event venue. The café wanted to enhance its existing website to allow customers to view and book the patio space online. Working closely with the owner, our team designed and prototyped the full booking experience, aligning it with the café’s brand and business goals. Check out the <a href=\"https://www.figma.com/proto/58uCZ0OF3uRz9eCCmaFG0n/Cafenated-Patio--Copy-?node-id=24-2&p=f&t=yLW82Aj5xihTGzwr-1&scaling=scale-down&content-scaling=fixed&page-id=0%3A1\" target=\"_blank\" rel=\"noopener noreferrer\">Figma prototype</a> we created!"
+    "place_description": "I was a project manager at Microfinance at Berkeley, a small business consulting club at UC Berkeley. I helped two small business redesign their web experience. Working closely with the owners, our team redesigned and prototyped the full booking experience, aligning it with the café’s brand and business goals. Check out our work for Cafenated, a local cafe in Berkeley: <a href=\"https://www.figma.com/proto/58uCZ0OF3uRz9eCCmaFG0n/Cafenated-Patio--Copy-?node-id=24-2&p=f&t=yLW82Aj5xihTGzwr-1&scaling=scale-down&content-scaling=fixed&page-id=0%3A1\" target=\"_blank\" rel=\"noopener noreferrer\">Figma prototype</a>"
   },
   {
     "city": "Oakland",
@@ -54,12 +54,14 @@
   {
     "city": "San Diego",
     "date": "2025",
-    "place_description": "I was selected as a student assistant for ESRI's User Conference, one of the world's largest GIS conferences, held in San Diego, California."
+    "place_description": "I was selected as a student assistant for ESRI's User Conference, one of the world's largest GIS conferences, held in San Diego, California.",
+    "image": "/assets/esri_group.png"
   },
   {
     "city": "Palm Springs",
     "date": "2025",
-    "place_description": "I was selected as a student assistant for ESRI's Developer & Technology Summit in Palm Springs, California. I really enjoyed Palm Springs!"
+    "place_description": "I was selected as a student assistant for ESRI's Developer & Technology Summit in Palm Springs, California. I really enjoyed Palm Springs!",
+    "image": "/assets/esri_palmsprings.jpg"
   },
   {
     "city": "Arizona",
@@ -87,11 +89,6 @@
     "place_description": ""
   },
   {
-    "city": "Roosevelt Island",
-    "date": "July 2024-present",
-    "place_description": "Cornell Tech's campus is located on Roosevelt Island, a thin strip of land island in the East River between Manhattan and Queens. This is also where I live."
-  },
-  {
     "city": "Cafe Aviva, Roosevelt Island",
     "date": "September 2024",
     "image": "/assets/cafe_aviva.png",
@@ -99,32 +96,32 @@
   },
   {
     "city": "Brooklyn (BK11)",
-    "place_description": "I identified optimal tree planting locations using land surface temperature data from Sentinel EO Hub's Landsat 8 LIDAR (shown in red) and Michael Treglia's 'practical canopy' framework, which considers land use, cover, and infrastructure constraints (shown in green). This map presents the results of that analysis for BK11 community district.",
+    "place_description": "I identified optimal tree planting locations using land surface temperature data from Sentinel EO Hub's Landsat 8 LIDAR (shown in red) and Michael Treglia's 'practical canopy' framework, which considers land use, cover, and infrastructure constraints (shown in green). This map presents the results of that analysis for BK11 community district. Check out <a href=\"https://drive.google.com/file/d/1nUElvpsu3StJxUv4dWGkUcD0va3OIBE1/view\" target=\"_blank\" rel=\"noopener noreferrer\">my research paper!</a>",
     "image": "/assets/extremeheat_BK11.png"
   },
   {
     "city": "Brooklyn (BK17)",
-    "place_description": "I identified optimal tree planting locations using land surface temperature data (Sentinel EO Hub's Landsat 8 LIDAR) and Michael Treglia's 'practical canopy' framework, which considers land use, cover, and infrastructure constraints. This map presents the results of that analysis for BK17 community district.",
+    "place_description": "I identified optimal tree planting locations using land surface temperature data (Sentinel EO Hub's Landsat 8 LIDAR) and Michael Treglia's 'practical canopy' framework, which considers land use, cover, and infrastructure constraints. This map presents the results of that analysis for BK17 community district. Check out <a href=\"https://drive.google.com/file/d/1nUElvpsu3StJxUv4dWGkUcD0va3OIBE1/view\" target=\"_blank\" rel=\"noopener noreferrer\">my research paper!</a>",
     "image": "/assets/extremeheat_BK17.png"
   },
   {
     "city": "Bronx (BX5)",
-    "place_description": "I identified optimal tree planting locations using land surface temperature data from Sentinel EO Hub's Landsat 8 LIDAR (shown in red) and Michael Treglia's 'practical canopy' framework, which considers land use, cover, and infrastructure constraints (shown in green). This map presents the results of that analysis for BX5 community district.",
+    "place_description": "I identified optimal tree planting locations using land surface temperature data from Sentinel EO Hub's Landsat 8 LIDAR (shown in red) and Michael Treglia's 'practical canopy' framework, which considers land use, cover, and infrastructure constraints (shown in green). This map presents the results of that analysis for BX5 community district. Check out <a href=\"https://drive.google.com/file/d/1nUElvpsu3StJxUv4dWGkUcD0va3OIBE1/view\" target=\"_blank\" rel=\"noopener noreferrer\">my research paper!</a>",
     "image": "/assets/extremeheat_BX5.png"
   },
   {
     "city": "Manhattan (MN10)",
-    "place_description": "I identified optimal tree planting locations using land surface temperature data from Sentinel EO Hub's Landsat 8 LIDAR (shown in red) and Michael Treglia's 'practical canopy' framework, which considers land use, cover, and infrastructure constraints (shown in green). This map presents the results of that analysis for MN10 community district.",
+    "place_description": "I identified optimal tree planting locations using land surface temperature data from Sentinel EO Hub's Landsat 8 LIDAR (shown in red) and Michael Treglia's 'practical canopy' framework, which considers land use, cover, and infrastructure constraints (shown in green). This map presents the results of that analysis for MN10 community district. Check out <a href=\"https://drive.google.com/file/d/1nUElvpsu3StJxUv4dWGkUcD0va3OIBE1/view\" target=\"_blank\" rel=\"noopener noreferrer\">my research paper!</a>",
     "image": "/assets/extremeheat_MN10.png"
   },
   {
     "city": "Queens (QN2)",
-    "place_description": "I identified optimal tree planting locations using land surface temperature data from Sentinel EO Hub's Landsat 8 LIDAR (shown in red) and Michael Treglia's 'practical canopy' framework, which considers land use, cover, and infrastructure constraints (shown in green). This map presents the results of that analysis for QN2 community district.",
+    "place_description": "I identified optimal tree planting locations using land surface temperature data from Sentinel EO Hub's Landsat 8 LIDAR (shown in red) and Michael Treglia's 'practical canopy' framework, which considers land use, cover, and infrastructure constraints (shown in green). This map presents the results of that analysis for QN2 community district. Check out <a href=\"https://drive.google.com/file/d/1nUElvpsu3StJxUv4dWGkUcD0va3OIBE1/view\" target=\"_blank\" rel=\"noopener noreferrer\">my research paper!</a>",
     "image": "/assets/extremeheat_QN2.png"
   },
   {
     "city": "Lower Manhattan",
-    "place_description": "I identified optimal tree planting locations in the five boroughs of NYC using land surface temperature data from Sentinel EO Hub's Landsat 8 LIDAR (shown in red) and Michael Treglia's 'practical canopy' framework, which considers land use, cover, and infrastructure constraints (shown in green). This map shows the two metrics across NYC.",
+    "place_description": "I identified optimal tree planting locations in the five boroughs of NYC using land surface temperature data from Sentinel EO Hub's Landsat 8 LIDAR (shown in red) and Michael Treglia's 'practical canopy' framework, which considers land use, cover, and infrastructure constraints (shown in green). This map shows the two metrics across NYC. Check out <a href=\"https://drive.google.com/file/d/1nUElvpsu3StJxUv4dWGkUcD0va3OIBE1/view\" target=\"_blank\" rel=\"noopener noreferrer\">my research paper!</a>",
     "image": "/assets/extremeheat.png"
   },
   {
@@ -137,5 +134,17 @@
     "city": "London",
     "date": "June 2024",
     "playlist": "https://open.spotify.com/playlist/63uV7EESnxrHDFNRCD3c8W?si=9b42c7401a9e4600"
+  },
+  {
+    "city": "West Village",
+    "date": "June 2025",
+    "image": "/assets/nyceats.png",
+    "place_description": "Check out <a href=\"https://nyceats.live/\" target=\"_blank\" rel=\"noopener noreferrer\">NYC Eats!</a>"
+  },
+  {
+    "city": "Central Park",
+    "date": "February 2025",
+    "place_description": "Check out <a href=\"https://atmikapai13.github.io/iconic-runclubs-nyc/\" target=\"_blank\" rel=\"noopener noreferrer\">Iconic NYC Run clubs!</a>",
+    "image": "/assets/nycruns.png"
   }
 ]

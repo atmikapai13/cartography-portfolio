@@ -1,7 +1,7 @@
 import React from 'react';
 
 const Footer: React.FC = () => (
-  <footer className="footer" style={{ width: '100%', display: 'flex', justifyContent: 'center', alignItems: 'center', padding: '2px 0' }}>
+  <footer className="footer" style={{ width: '100%', display: 'flex', justifyContent: 'center', alignItems: 'center', padding: '1px 0' }}>
     <div style={{ display: 'flex', alignItems: 'center', gap: 30 }}>
       <a href="https://www.linkedin.com/in/atmikapai/" target="_blank" rel="noopener noreferrer" style={{ display: 'flex', alignItems: 'center', marginTop: '10px' }}>
         <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" style={{ verticalAlign: 'middle' }}>

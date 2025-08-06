@@ -92,12 +92,9 @@ const Sidebar: React.FC<SidebarProps> = ({ selectedCity, setSelectedCity }) => {
   let spotlightProjects: typeof projects = [];
   let otherProjects: typeof projects = [];
 
-  if (!selectedCity) {
-    spotlightProjects = techFilteredProjects.filter((p) => p.spotlight);
-    otherProjects = techFilteredProjects.filter((p) => !p.spotlight);
-  } else {
-    otherProjects = techFilteredProjects;
-  }
+  // Always separate spotlight projects from others, regardless of city selection
+  spotlightProjects = techFilteredProjects.filter((p) => p.spotlight);
+  otherProjects = techFilteredProjects.filter((p) => !p.spotlight);
 
   // Combine spotlight and other projects for unified show more logic
   const allSidebarProjects = [...spotlightProjects, ...otherProjects];
@@ -116,7 +113,7 @@ const Sidebar: React.FC<SidebarProps> = ({ selectedCity, setSelectedCity }) => {
       </p>
       
       {/* Ballot-style category selector and Clear Filters (mobile) */}
-      <div className="ballot-row" style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between' }}>
+      <div className="ballot-row" style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', marginBottom: '5px' }}>
         <div style={{ display: 'flex', alignItems: 'center', gap: 14 }}>
           {experienceCategories.map((cat) => (
             <label key={cat.value} style={{ display: 'flex', alignItems: 'center', cursor: 'pointer', gap: 5, fontSize: '0.91rem', color: '#f5f5e6', fontWeight: 500 }}>
@@ -255,7 +252,7 @@ const Sidebar: React.FC<SidebarProps> = ({ selectedCity, setSelectedCity }) => {
       {/* Project list scrollable area */}
       <div className="sidebar-scroll">
         <div className="sidebar-project-list">
-          {otherProjects.length === 0 && selectedCity && (
+          {allSidebarProjects.length === 0 && selectedCity && (
             <div style={{ color: '#bbb', fontStyle: 'italic', marginTop: 12, marginBottom: 12 , fontSize: '0.5rem'}}>
               Nothing to see here!
             </div>

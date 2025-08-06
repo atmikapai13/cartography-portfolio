@@ -7,7 +7,7 @@ import Ticker from './Ticker';
 
 // Project cities data
 const project_cities = [
-    { id: 1, name: "New York", country: "USA", longitude: -73.9712, latitude: 40.7831 }, 
+    { id: 1, name: "New York", country: "USA", longitude: -73.95630, latitude: 40.75581 }, 
     { id: 2, name: "Hawaii", country: "USA", longitude: -155.5828, latitude: 19.8968},
     { id: 3, name: "San Francisco", country: "USA", longitude: -122.4325, latitude: 37.7751 }, 
     { id: 4, name: "Mumbai", country: "India", longitude: 72.8679, latitude: 19.1144 },
@@ -25,21 +25,22 @@ const project_cities = [
     { id: 15, name: "Nevada", country: "USA", longitude: -116.4194, latitude: 38.8026 },
     { id: 16, name: "Utah", country: "USA", longitude: -111.0937, latitude: 39.32098 },
     { id: 17, name: "New Jersey", country: "USA", longitude: -74.4057, latitude: 40.0583 },
-    { id: 18, name: "Roosevelt Island", country: "USA", longitude: -73.95630, latitude: 40.75581 },
-    { id: 27, name: "Cafe Aviva, Roosevelt Island", country: "USA", longitude: -73.9478, latitude: 40.7605 },
-    { id: 19, name: "Brooklyn (BK11)", country: "USA", borough: "Brooklyn", longitude: -73.9332, latitude: 40.6536 },
-    { id: 20, name: "Brooklyn (BK17)", country: "USA", borough: "Brooklyn", longitude: -73.9225, latitude: 40.6496 },
-    { id: 21, name: "Bronx (BX5)", country: "USA", borough: "Bronx", longitude: -73.9020, latitude: 40.8317 },
-    { id: 22, name: "Manhattan (MN10)", country: "USA", borough: "Manhattan", longitude: -73.9465, latitude: 40.8116 },
-    { id: 23, name: "Queens (QN2)", country: "USA", borough: "Queens", longitude: -73.9326, latitude: 40.7612 },
-    { id: 24, name: "Lower Manhattan", country: "USA", longitude: -74.0090, latitude: 40.7075 },
-    { id: 25, name: "Christchurch", country: "New Zealand", longitude: 172.6306, latitude: -43.5321 },
+    { id: 18, name: "West Village", country: "USA", longitude: -74.0048, latitude: 40.7347 },
+    { id: 19, name: "Central Park", country: "USA", longitude: -73.9654, latitude: 40.7829 },
+    { id: 27, name: "Cafe Aviva, Roosevelt Island", country: "USA", longitude: -73.94989719622808, latitude: 40.76205528704795 },
+    { id: 20, name: "Brooklyn (BK11)", country: "USA", borough: "Brooklyn", longitude: -73.9332, latitude: 40.6536 },
+    { id: 21, name: "Brooklyn (BK17)", country: "USA", borough: "Brooklyn", longitude: -73.9225, latitude: 40.6496 },
+    { id: 22, name: "Bronx (BX5)", country: "USA", borough: "Bronx", longitude: -73.9020, latitude: 40.8317 },
+    { id: 23, name: "Manhattan (MN10)", country: "USA", borough: "Manhattan", longitude: -73.9465, latitude: 40.8116 },
+    { id: 24, name: "Queens (QN2)", country: "USA", borough: "Queens", longitude: -73.9326, latitude: 40.7612 },
+    { id: 25, name: "Lower Manhattan", country: "USA", longitude: -74.0090, latitude: 40.7075 },
+    { id: 26, name: "Christchurch", country: "New Zealand", longitude: 172.6306, latitude: -43.5321 },
     { id: 28, name: "London", country: "USA", longitude: 0.1281, latitude: 51.5080 },
   ];
 
-const zoomGatedCities = ["Walnut Creek", "Roosevelt Island", "New Jersey", "Oakland", "Berkeley", "West Hollywood",
+const zoomGatedCities = ["Walnut Creek", "New Jersey", "Oakland", "Berkeley", "West Hollywood",
   "Brooklyn (BK11)", "Brooklyn (BK17)", "Bronx (BX5)", "Manhattan (MN10)", "Queens (QN2)", 
-  "Lower Manhattan", "Christchurch", "Cafenated, North Berkeley", "Cafe Aviva, Roosevelt Island", "London"
+  "Lower Manhattan", "Christchurch", "Cafenated, North Berkeley", "Cafe Aviva, Roosevelt Island", "London", "West Village", "Central Park"
 ];
 
 mapboxgl.accessToken = "pk.eyJ1IjoiYXRtaWthcGFpMTMiLCJhIjoiY21idHR4eTJpMDdhMjJsb20zNmZheTZ6ayJ9.d_bQSBzesyiCUMA-YHRoIA";
@@ -58,6 +59,7 @@ export default function MapboxGlobe({ selectedCity, onCitySelect, showDisclaimer
   const popupTimeoutRef = useRef<ReturnType<typeof setTimeout> | null>(null);
   const moveEndListenerRef = useRef<(() => void) | null>(null);
   const programmaticZoomRef = useRef(false);
+  const selectedMarkerRef = useRef<string | null>(null);
   const ZOOM_THRESHOLD = 2.5;
 
   const tickerCityOrder = ['New York', 'San Francisco', 'Berkeley', 'Oakland', 'San Diego', 'Mumbai'];
@@ -85,14 +87,14 @@ export default function MapboxGlobe({ selectedCity, onCitySelect, showDisclaimer
       (entry) => entry.city.trim().toLowerCase() === cityName.trim().toLowerCase()
     );
 
-    let popupContent = `<div class="city-popup" style="text-align:center; max-height:250px; overflow:auto;">`;
+    let popupContent = `<div class="city-popup" style="text-align:center; max-height:250px; overflow:auto; scrollbar-width: none; -ms-overflow-style: none;">`;
     if (!cityData) {
       popupContent += ``;
     } else {
       popupContent += `<div class="city-description">`;
       popupContent += `<h3 style='margin-bottom: 3px; text-align:center;color:#007bff;'>${cityName}</h3>`;
       if (cityData.image) {
-        popupContent += `<img src='${cityData.image}' alt='${cityName}' style='display:block;margin:0 auto 10px auto;max-width:250px; width:100%;height:auto;border-radius:10px;' />`;
+        popupContent += `<img src='${cityData.image}' alt='${cityName}' style='display:block;margin:0 auto 10px auto;max-width:320px; width:100%;height:auto;border-radius:10px;' onerror='console.error(\"Failed to load image:\", this.src)' onload='console.log(\"Image loaded successfully:\", this.src)' loading='lazy' />`;
       }
       popupContent += `<div style='font-size:0.7rem;color:#bdbdbd;margin-bottom:3px;text-align:center; font-style:italic;'><em>${cityData.date || ''}</em></div>`;
       popupContent += `<div style='font-size:0.5rem;color:#e0e0e0;text-align:center; font-style:italic;line-height:1.2;'>${cityData.place_description || ''}</div>`;
@@ -106,8 +108,14 @@ export default function MapboxGlobe({ selectedCity, onCitySelect, showDisclaimer
     // Pause rotation when popup opens
     rotationEnabled.current = false;
     
-    const popup = new mapboxgl.Popup({ maxWidth: '250px', anchor: 'right'})
-      .setLngLat(lngLat)
+    // Offset the popup slightly to the right of the marker
+    const offsetLngLat: [number, number] = [lngLat[0] - 0.005, lngLat[1]];
+    
+    // Use larger width if there's an image
+    const popupWidth = cityData?.image ? '350px' : '250px';
+    
+    const popup = new mapboxgl.Popup({ maxWidth: popupWidth, anchor: 'right'})
+      .setLngLat(offsetLngLat)
       .setHTML(popupContent)
       .addTo(mapRef.current);
 
@@ -118,6 +126,54 @@ export default function MapboxGlobe({ selectedCity, onCitySelect, showDisclaimer
       rotationEnabled.current = true;
       if (onCitySelect) onCitySelect(null);
       activePopup.current = null;
+      
+      // Clear selected marker
+      selectedMarkerRef.current = null;
+      
+      // Refresh the marker layer to reset colors
+      if (mapRef.current && mapRef.current.getLayer("city-markers")) {
+        mapRef.current.removeLayer("city-markers");
+        mapRef.current.addLayer({
+          id: "city-markers",
+          type: "circle",
+          source: "cities",
+          paint: {
+            "circle-radius": [
+              "case",
+              ["in", ["get", "name"], ["literal", zoomGatedCities]], 4,
+              5
+            ],
+            "circle-color": [
+              "case",
+              ["==", ["get", "name"], selectedMarkerRef.current], "#007bff",
+              ["case",
+                ["in", ["get", "name"], ["literal", zoomGatedCities]], "#ed462b",
+                "#ed462b"
+              ]
+            ],
+            "circle-stroke-width": [
+              "case",
+              ["==", ["get", "name"], selectedMarkerRef.current], 2,
+              1
+            ],
+            "circle-stroke-color": [
+              "case",
+              ["==", ["get", "name"], selectedMarkerRef.current], "#ffffff",
+              "#000000"
+            ],
+            "circle-opacity": 1.0,
+          },
+          filter: [
+            "any",
+            ["all", ...zoomGatedCities.map(city => ["!=", ["get", "name"], city])],
+            ...zoomGatedCities.map(city => [
+              "all",
+              ["==", ["get", "name"], city],
+              [">=", ["zoom"], 3]
+            ])
+          ]
+        });
+      }
     });
   };
   
@@ -201,11 +257,22 @@ export default function MapboxGlobe({ selectedCity, onCitySelect, showDisclaimer
           ],
           "circle-color": [
             "case",
-            ["in", ["get", "name"], ["literal", zoomGatedCities]], "#ed462b",
-            "#ed462b"
+            ["==", ["get", "name"], selectedMarkerRef.current], "#007bff",
+            ["case",
+              ["in", ["get", "name"], ["literal", zoomGatedCities]], "#ed462b",
+              "#ed462b"
+            ]
           ],
-          "circle-stroke-width": 1,
-          "circle-stroke-color": "#000000",
+          "circle-stroke-width": [
+            "case",
+            ["==", ["get", "name"], selectedMarkerRef.current], 2,
+            1
+          ],
+          "circle-stroke-color": [
+            "case",
+            ["==", ["get", "name"], selectedMarkerRef.current], "#ffffff",
+            "#000000"
+          ],
           "circle-opacity": 1.0,
         },
         filter: [
@@ -219,27 +286,62 @@ export default function MapboxGlobe({ selectedCity, onCitySelect, showDisclaimer
         ]
       });
 
-      map.addLayer({
-        id: "city-labels",
-        type: "symbol",
-        source: "cities",
-        layout: {
-          "text-field": ["get", "name"],
-          "text-size": 12,
-          "text-offset": [0, 1.2],
-          "text-anchor": "top",
-        },
-        paint: {
-          "text-color": "#fff",
-        },
-      });
+
 
       // Popup on marker click
       map.on("click", "city-markers", (e) => {
         const cityName = e.features?.[0]?.properties?.name;
         if (!cityName) return;
+        
+        // Update selected marker
+        selectedMarkerRef.current = cityName;
+        
+        // Refresh the marker layer to update colors
+        if (map.getLayer("city-markers")) {
+          map.removeLayer("city-markers");
+          map.addLayer({
+            id: "city-markers",
+            type: "circle",
+            source: "cities",
+            paint: {
+              "circle-radius": [
+                "case",
+                ["in", ["get", "name"], ["literal", zoomGatedCities]], 4,
+                5
+              ],
+              "circle-color": [
+                "case",
+                ["==", ["get", "name"], selectedMarkerRef.current], "#007bff",
+                ["case",
+                  ["in", ["get", "name"], ["literal", zoomGatedCities]], "#ed462b",
+                  "#ed462b"
+                ]
+              ],
+              "circle-stroke-width": [
+                "case",
+                ["==", ["get", "name"], selectedMarkerRef.current], 2,
+                1
+              ],
+              "circle-stroke-color": [
+                "case",
+                ["==", ["get", "name"], selectedMarkerRef.current], "#ffffff",
+                "#000000"
+              ],
+              "circle-opacity": 1.0,
+            },
+            filter: [
+              "any",
+              ["all", ...zoomGatedCities.map(city => ["!=", ["get", "name"], city])],
+              ...zoomGatedCities.map(city => [
+                "all",
+                ["==", ["get", "name"], city],
+                [">=", ["zoom"], 3]
+              ])
+            ]
+          });
+        }
+        
         if (onCitySelect) onCitySelect(cityName);
-
         createCityPopup(cityName, [e.lngLat.lng, e.lngLat.lat]);
       });
 
@@ -249,6 +351,54 @@ export default function MapboxGlobe({ selectedCity, onCitySelect, showDisclaimer
         const features = map.queryRenderedFeatures(e.point, { layers: ['city-markers'] });
         if (features.length === 0 && onCitySelect) {
           onCitySelect(null);
+          
+          // Clear selected marker
+          selectedMarkerRef.current = null;
+          
+          // Refresh the marker layer to reset colors
+          if (map.getLayer("city-markers")) {
+            map.removeLayer("city-markers");
+            map.addLayer({
+              id: "city-markers",
+              type: "circle",
+              source: "cities",
+              paint: {
+                "circle-radius": [
+                  "case",
+                  ["in", ["get", "name"], ["literal", zoomGatedCities]], 4,
+                  5
+                ],
+                "circle-color": [
+                  "case",
+                  ["==", ["get", "name"], selectedMarkerRef.current], "#007bff",
+                  ["case",
+                    ["in", ["get", "name"], ["literal", zoomGatedCities]], "#ed462b",
+                    "#ed462b"
+                  ]
+                ],
+                "circle-stroke-width": [
+                  "case",
+                  ["==", ["get", "name"], selectedMarkerRef.current], 2,
+                  1
+                ],
+                "circle-stroke-color": [
+                  "case",
+                  ["==", ["get", "name"], selectedMarkerRef.current], "#ffffff",
+                  "#000000"
+                ],
+                "circle-opacity": 1.0,
+              },
+              filter: [
+                "any",
+                ["all", ...zoomGatedCities.map(city => ["!=", ["get", "name"], city])],
+                ...zoomGatedCities.map(city => [
+                  "all",
+                  ["==", ["get", "name"], city],
+                  [">=", ["zoom"], 3]
+                ])
+              ]
+            });
+          }
         }
       });
 
@@ -344,6 +494,55 @@ export default function MapboxGlobe({ selectedCity, onCitySelect, showDisclaimer
               activePopup.current.remove();
               activePopup.current = null;
             }
+            
+            // Update selected marker
+            selectedMarkerRef.current = city.name;
+            
+            // Refresh the marker layer to update colors
+            if (mapRef.current && mapRef.current.getLayer("city-markers")) {
+              mapRef.current.removeLayer("city-markers");
+              mapRef.current.addLayer({
+                id: "city-markers",
+                type: "circle",
+                source: "cities",
+                paint: {
+                  "circle-radius": [
+                    "case",
+                    ["in", ["get", "name"], ["literal", zoomGatedCities]], 4,
+                    5
+                  ],
+                  "circle-color": [
+                    "case",
+                    ["==", ["get", "name"], selectedMarkerRef.current], "#007bff",
+                    ["case",
+                      ["in", ["get", "name"], ["literal", zoomGatedCities]], "#ed462b",
+                      "#ed462b"
+                    ]
+                  ],
+                  "circle-stroke-width": [
+                    "case",
+                    ["==", ["get", "name"], selectedMarkerRef.current], 2,
+                    1
+                  ],
+                  "circle-stroke-color": [
+                    "case",
+                    ["==", ["get", "name"], selectedMarkerRef.current], "#ffffff",
+                    "#000000"
+                  ],
+                  "circle-opacity": 1.0,
+                },
+                filter: [
+                  "any",
+                  ["all", ...zoomGatedCities.map(city => ["!=", ["get", "name"], city])],
+                  ...zoomGatedCities.map(city => [
+                    "all",
+                    ["==", ["get", "name"], city],
+                    [">=", ["zoom"], 3]
+                  ])
+                ]
+              });
+            }
+            
             // Set up moveend listener for popup
             if (mapRef.current) {
               programmaticZoomRef.current = true;
