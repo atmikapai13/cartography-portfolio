@@ -460,28 +460,32 @@ footer {
 }
 
 .project-card-image-large {
-  width: 90px;
-  height: 90px;
+  width: 80px;
+  height: 80px;
   object-fit: cover;
   border-radius: 10px;
   background: #111;
   margin-bottom: 8px;
 }
+
 .project-card-description {
   flex: 1 1 0;
-  font-size: 0.8rem;
+  font-size: 0.7rem !important;
   color: #e0e0e0;
   margin: 0;
   line-height: 1.4;
   align-self: flex-start;
   padding-top: 0;
 }
+
+
 .project-card-links {
   display: flex;
   flex-direction: column;
   gap: 4px;
   margin-top: 6px;
 }
+
 .project-link, .github-link {
   font-size: 0.85rem;
   color: #e0e0e0;
@@ -911,7 +915,7 @@ footer {
   }
   .project-card-description {
     flex: 1 1 0;
-    font-size: 0.7rem;
+    font-size: 0.6rem !important;
     color: #e0e0e0;
     margin: 0;
     line-height: 1.4;

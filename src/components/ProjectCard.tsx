@@ -71,7 +71,7 @@ const ProjectCard: React.FC<ProjectCardProps> = ({ title, image, description, li
                 fontSize: '0.5rem',
                 color: '#00000',
                 fontStyle: 'italic',
-                fontWeight: 100,
+                fontWeight: 100
               }}>
                 📍 {Array.isArray(city) ? city[0] : city}
               </div>
