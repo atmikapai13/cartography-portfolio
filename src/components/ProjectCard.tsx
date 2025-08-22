@@ -26,7 +26,7 @@ const ProjectCard: React.FC<ProjectCardProps> = ({ title, image, description, li
         <h4 className="project-card-title">{title}</h4>
       )}
       <div className="project-card-row" style={{ display: 'flex', alignItems: 'flex-start', gap: '10px', flexDirection: image ? 'row' : 'column' }}>
-        <div className="project-card-image-col" style={{ flex: '0 0 auto', display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
+        <div className="project-card-image-col" style={{ flex: '0 0 auto', display: 'flex', flexDirection: 'column', alignItems: 'flex-start' }}>
           {image && (
             link ? (
               <a href={link} target="_blank" rel="noopener noreferrer" className="project-image-link">
@@ -39,7 +39,7 @@ const ProjectCard: React.FC<ProjectCardProps> = ({ title, image, description, li
           {role && (
             <div style={{ width: '100%', textAlign: 'left', marginTop: '0px' }}>
               <div className="project-role" style={{
-                fontSize: '0.9rem',
+                fontSize: '0.6rem !important',
                 color: '#f5f5e6',
                 fontWeight: 'bold',
                 fontStyle: 'italic',
@@ -48,7 +48,7 @@ const ProjectCard: React.FC<ProjectCardProps> = ({ title, image, description, li
               </div>
               {date && (
                 <div className="project-date" style={{
-                  fontSize: '0.75rem',
+                  fontSize: '0.5rem !important',
                   color: '#e0e0e0',
                   marginTop: '0px',
                   fontWeight: 400,
@@ -68,8 +68,8 @@ const ProjectCard: React.FC<ProjectCardProps> = ({ title, image, description, li
               marginTop: '0px',
             }}>
               <div className="project-city" style={{
-                fontSize: '0.5rem',
-                color: '#00000',
+                fontSize: '0.35rem !important',
+                color: '#e0e0e0',
                 fontStyle: 'italic',
                 fontWeight: 100
               }}>
@@ -80,7 +80,7 @@ const ProjectCard: React.FC<ProjectCardProps> = ({ title, image, description, li
 
         </div>
         <div className="project-card-description-col" style={{ flex: '1 1 0', display: 'flex', flexDirection: 'column' }}>
-          {description && <p className="project-card-description" style={{ margin: 0, fontSize: '1rem', fontWeight: 500 }}>{description}</p>}
+          {description && <p className="project-card-description" style={{ margin: 0, fontSize: '1rem', fontWeight: 500 }} dangerouslySetInnerHTML={{ __html: description.replace(/\n/g, '<br>') }}></p>}
           {tech_stack2 && (
             <div style={{ width: '100%', textAlign: 'left', marginTop: '6px', marginLeft: 0 }}>
               <div className="project-tech-stack2" style={{ fontSize: '0.7rem', color: '#a5d6fa', fontWeight: 500, fontStyle: 'italic' }}>

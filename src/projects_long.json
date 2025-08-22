@@ -201,7 +201,7 @@
     "id": 17,
     "title": "Tata Consultancy Services",
     "city": ["New Jersey"],
-    "description": "I am developing AWS QuickSight app with ML analytics to drive real-time, data-driven decision-making for an Insurtech client",
+    "description": "Designed proof-of-concept insurance chatbot solution with business case, SWOT analysis, and AWS architecture; enhanced policy transparency, uncovered premium savings, and provided location-aware disaster support to strengthen customer trust and retention",
     "link": null,
     "github": null,
     "image": "/assets/17.png",
@@ -210,7 +210,7 @@
     "work_experience": ["Work"],
     "role": "AI & Data Intern",
     "date": "Summer 2025",
-    "tech_stack2": "AWS QuickSight"
+    "tech_stack2": "AWS serverless architecture (Lambda, API Gateway, WAF, Route 53), cloud data services (Athena, Glue, Aurora RDS, SAS integration), and generative AI (Amazon Bedrock/Titan) for conversational UX"
   },
   {
     "id": 16,

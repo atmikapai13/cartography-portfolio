@@ -10,7 +10,8 @@
     "spotlight": true,
     "tech_stack": ["ML", "GIS", "Research", "Mobility"],
     "work_experience": ["Projects"],
-    "tech_stack2": "Python (Scikit-learn)"
+    "tech_stack2": "Python (Scikit-learn)",
+    "show": true
   },
   {
     "id": 5,
@@ -23,20 +24,35 @@
     "spotlight": true,
     "tech_stack": ["GIS", "Mobility"],
     "work_experience": ["Projects"],
-    "tech_stack2": "SQL, Python (Pandas)"
+    "tech_stack2": "SQL, Python (Pandas)",
+    "show": true
   },
   {
     "id": 2,
-    "title": "NYC Run Clubs",
+    "title": "The New York Trilogy",
+    "city": ["New York", "Central Park", "West Village"],
+    "description": "The New York Trilogy visualizes the city not by zoning codes or census tracts, but by how it's lived. From run clubs to restaurant weeks, this series maps the kinetic, cultural, and psychogeographic layers of New York City. Stay tuned for a film guide!",
+    "link": "https://medium.com/map-nyc",
+    "github": "https://medium.com/map-nyc",
+    "image": "/assets/nyc.png",
+    "spotlight": true,
+    "tech_stack": ["GIS", "Web Dev", "UI/UX Design"],
+    "work_experience": ["Projects"],
+    "tech_stack2": "React.JS, ArcGIS Java SDKs, Mapbox GL JS, Python (Web Scrapping)"
+  },
+  {
+    "id": 36,
+    "title": "NYC Races",
     "city": ["New York", "Central Park"],
-    "description": "Simple, colorful map of run clubs in NYC for natives",
+    "description": "Mapping run clubs and races in NYC",
     "link": "https://atmikapai13.github.io/iconic-runclubs-nyc/",
-    "github": "https://github.com/aap253/iconic-runclubs-nyc",
+    "github": "https://atmikapai13.github.io/iconic-runclubs-nyc/",
     "image": "/assets/2.png",
     "spotlight": false,
     "tech_stack": ["GIS", "Web Dev", "UI/UX Design"],
     "work_experience": ["Projects"],
-    "tech_stack2": "Python (Web Scrapping w/ BeautifulSoup), ArcGIS Java SDKs"
+    "tech_stack2": "React.JS, ArcGIS Java SDKs",
+    "show": false
   },
   {
     "id": 3,
@@ -66,9 +82,9 @@
   },
   {
     "id": 34,
-    "title": "Resilience IQ",
+    "title": "Resilience Screens",
     "city": "New York",
-    "description": "Creating UI for Resilience IQ, a web platform on urban adaptaion and climate resilience efforts across 100+ cities",
+    "description": "Collaborating with faculty and venture partners to track climate design and develop the UI for Resilience IQ, a web platform on urban adaptaion and climate resilience efforts across 100+ cities",
     "link": "https://dev--resilience-iq-alpha.netlify.app/",
     "github": null,
     "spotlight": true,
@@ -81,7 +97,7 @@
     "id": 26,
     "title": "Designing Spatial Menus in AR",
     "city": "New York",
-    "description": "Reimagining contextual menus in Augmented Reality (Google's “Augmented Object Intelligence” paper) for improved usability and discoverability",
+    "description": "Redesigned contextual menus in AR, drawing on Google’s “Augmented Object Intelligence” framework to enhance usability and discoverability",
     "link": "https://drive.google.com/file/d/1a0LDMjJmoM1Bnqvq6W4tXnbVwhOkLk0Y/view?usp=sharing",
     "github": null,
     "image": "/assets/26.png",
@@ -105,9 +121,9 @@
   },
   {
     "id": 14,
-    "title": "Cornell Tech's Urban Tech Hub",
+    "title": "Urban Tech Hub",
     "city": ["New York", "Roosevelt Island"],
-    "description": "The Urban Tech Hub at Cornell Tech is an academic think tank developing human-centered technology for urban challenges. I work with professors to design and implement tech solutions for public and private partners. Recent projects include developing tree-planting strategies for extreme heat mitigation and building a global resilience dashboard.",
+    "description": "Building human-centered technologies for urban challenges in collaboration with faculty and external partners at Cornell Tech's academic think tank, Urban Tech Hub",
     "link": "https://urban.tech.cornell.edu/",
     "image": "/assets/ct-logo.png",
     "github": null,
@@ -202,7 +218,7 @@
     "id": 17,
     "title": "Tata Consultancy Services",
     "city": ["New Jersey"],
-    "description": "Developing AWS QuickSight app with ML analytics to drive real-time, data-driven decision-making for an Insurtech client",
+    "description": "Designed proof-of-concept insurance chatbot with business case and AWS architectural diagram for policy transparency, lightweight premium optimization, and location-aware disaster support to strengthen customer trust and retention",
     "link": null,
     "github": null,
     "image": "/assets/17.png",
@@ -211,13 +227,13 @@
     "work_experience": ["Work"],
     "role": "AI & Data Intern",
     "date": "Summer 2025",
-    "tech_stack2": "AWS QuickSight"
+    "tech_stack2": "AWS serverless architecture (Lambda, API Gateway), cloud data services (Athena, Glue), and generative AI (Bedrock) for conversational UX"
   },
   {
     "id": 16,
     "title": "CSAA Insurance Group, an AAA Insurer",
     "city": ["Walnut Creek", "Arizona", "Nevada", "Utah", "Oakland", "San Francisco"],
-    "description": "As one of two product analysts on team, I was responsible for Personal Lines Auto and Property Insurance in AZ, NV, and UT. I forecasted the 3-year financial plan; improved geographic risk segmentation in the pricing algorithm; delivered monthly performance updates to the senior leadership; and supported the migration of data assets from SAS to the cloud-based Snowflake platform.",
+    "description": "SME for Personal Lines Auto and Property Insurance in AZ, NV, and UT; Forecasted 3-year financial plan, improved geographic risk segmentation in the pricing algorithm, delivered monthly performance updates to the senior leadership, and supported the migration of data assets from SAS to the cloud-based Snowflake platform.",
     "link": "https://csaa-insurance.aaa.com/content/aaa-ie/b2c/en/homepage.html/",
     "github": null,
     "image": "/assets/16.png",
@@ -230,7 +246,7 @@
   },
   {
     "id": 33,
-    "title": "User-Centered Analysis of Transit Apps ",
+    "title": "User-Centered Analysis of Transit Apps",
     "city": "New York",
     "description": "Exploring how student commuters use transit apps like MTA’s official app, Google Maps, and Apple Maps to navigate NYC public transportation through different modes of inquiry (semi-structured qualitative interviews, contextual inquiries, and surveys)",
     "link": "https://www.figma.com/design/fXwIWvqaw9PxIg8zlkP7lW/Atmika_TransitApp?node-id=0-1&m=dev&t=qhBXIvRYxv7ThAqZ-1",
@@ -244,8 +260,8 @@
   {
     "id": 19,
     "title": "CSAA Insurance Group, an AAA Insurer",
-    "city": ["San Francisco"],
-    "description": "Created a business proposal for specialized Electric Vehicle insurance using Porter’s Five Forces, collaborating with actuaries and product specialists to assess market fit in California. Pitched proposal to senior leadership, earning recognition for rigorous roadmap and cross-functional collaboration",
+    "city": ["Walnut Creek"],
+    "description": "Summer 2022: Developed a business strategy for specialized Electric Vehicle insurance coverage, earning leadership recognition for rigorous roadmap and teamwork \n Summer 2021: Identified +5.5% sales growth opportunity by analyzing competitiveness and market share geo-correlations using SQL",
     "link": null,
     "github": null,
     "image": "/assets/16.png",
@@ -253,13 +269,14 @@
     "tech_stack": ["Product Development", "Insurance"],
     "work_experience": ["Work"],
     "role": "Summer Intern",
-    "date": "Summer 2021"
+    "date": "Summer 2021/22",
+    "tech_stack2": "SQL, Oracle Essbase"
   },
   {
     "id": 8,
     "title": "ESRI",
     "city": ["Palm Springs", "San Diego"],
-    "description": "Selected as student assistant for 2025Esri Developer and Technology Summit (Palm Springs) and Esri User Conference (San Diego)",
+    "description": "Selected as student assistant for 2025 Esri Developer and Technology Summit (Palm Springs) and Esri User Conference (San Diego)",
     "link": "https://medium.com/@atmikapai/notes-on-2025-esri-developer-technology-summit-75cd4b496d5d",
     "github": null,
     "image": "/assets/8.png",
@@ -268,21 +285,6 @@
     "role": "Student Liason",
     "date": "Summer 2025",
     "tech_stack": ["GIS"]
-  },
-  {
-    "id": 18,
-    "title": "CSAA Insurance Group, an AAA Insurer",
-    "city": ["Maryland"],
-    "description": "Formulated the company’s competitive positioning across six market profiles and 53 competitors in Maryland's auto insurance market",
-    "link": null,
-    "github": null,
-    "image": "/assets/16.png",
-    "spotlight": true,
-    "tech_stack": ["Product Management", "Insurance", "GIS"],
-    "work_experience": ["Work"],
-    "role": "Summer Intern",
-    "date": "Summer 2020",
-    "tech_stack2": "SQL"
   },
   {
     "id": 24,
@@ -414,7 +416,7 @@
   },
   {
     "id": 11,
-    "title": "How does Disinformation Spread?",
+    "title": "How does disinformation spread?",
     "city": "Mumbai",
     "description": "Designed a bilingual survey experiment in English and Hindi as part of a PhD student’s research on misinformation and Bayesian belief updating",
     "link": "https://ideas.repec.org/p/osf/osfxxx/h7pue.html",
@@ -440,15 +442,31 @@
   {
     "id": 35,
     "title": "NYC Eats",
-    "city": ["New York", "West Village"],
+    "city": ["New York"],
     "description": "Built an interactive web app that visualizes all participating NYC restaurant week restaurants and overlays curated foodie lists (Michelin Guide, NYT Top 100, etc.), making it easier to spot standout Restaurant Week offerings",
     "link": "https://nyceats.live/",
     "github": null,
     "image": "/assets/35.png",
-    "spotlight": true,
+    "spotlight": false,
     "tech_stack": ["GIS", "Web Dev", "UI/UX Design"],
     "work_experience": ["Projects"],
     "tech_stack2": "React, Mapbox, JavaScript, Google Analytics"
+  },
+  {
+    "id": 38,
+    "title": "Tata Consultancy Services",
+    "city": ["Mumbai"],
+    "description": "Employed Natural Language Toolkit (NLTK) for dats cleaning and assigned attributes to key factors around, which NLP application would be built",
+    "link": "https://nyceats.live/",
+    "github": null,
+    "image": "/assets/17.png",
+    "spotlight": false,
+    "tech_stack": ["GIS", "Web Dev", "UI/UX Design"],
+    "work_experience": ["Work"],
+    "tech_stack2": "React, Mapbox, JavaScript, Google Analytics",
+    "show": false,
+    "date": "Summer 2019",
+    "role": "Data Science Intern"
   }
 ]
 

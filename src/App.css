@@ -460,10 +460,10 @@ footer {
 }
 
 .project-card-image-large {
-  width: 80px;
-  height: 80px;
+  width: 70px;
+  height: 70px;
   object-fit: cover;
-  border-radius: 10px;
+  border-radius: 5px;
   background: #111;
   margin-bottom: 8px;
 }
@@ -921,6 +921,15 @@ footer {
     line-height: 1.4;
     align-self: flex-start;
     padding-top: 0;
+  }
+  .project-role {
+    font-size: 0.6rem !important;
+  }
+  .project-date {
+    font-size: 0.5rem !important;
+  }
+  .project-city {
+    font-size: 0.35rem !important;
   }
 }
 

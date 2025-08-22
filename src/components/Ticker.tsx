@@ -15,7 +15,7 @@ interface TickerProps {
 }
 
 const Ticker = ({ items, map, onCityClick, onCitySelect, onCityPopup }: TickerProps) => {
-  const tickerCityOrder = ['New York', 'San Francisco', 'Berkeley', 'Oakland', 'San Diego', 'Mumbai'];
+  const tickerCityOrder = ['New York', 'Berkeley', 'San Diego', 'Mumbai'];
   const filteredItems = tickerCityOrder
     .map(cityName => items.find(item => item.name === cityName))
     .filter(Boolean) as City[];
@@ -51,7 +51,7 @@ const Ticker = ({ items, map, onCityClick, onCitySelect, onCityPopup }: TickerPr
             onClick={() => handleCityClick(item)}
             style={{ cursor: 'pointer' }}
           >
-            {item.name}
+            {index + 1}. {item.name}
           </span>
         ))}
       </div>

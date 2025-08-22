@@ -224,18 +224,26 @@ export default function MapboxGlobe({ selectedCity, onCitySelect, showDisclaimer
       });
 
       // --- Add city markers ---
-      const cityFeatures = project_cities.map((city) => ({
-        type: "Feature" as const,
-        geometry: {
-          type: "Point" as const,
-          coordinates: [city.longitude, city.latitude],
-        },
-        properties: {
-          id: city.id,
-          name: city.name,
-          country: city.country,
-        },
-      }));
+      const cityFeatures = project_cities.map((city) => {
+        // Find corresponding place data to get the name field
+        const placeDataEntry = (placeData as any[]).find(
+          (entry) => entry.city.trim().toLowerCase() === city.name.trim().toLowerCase()
+        );
+        
+        return {
+          type: "Feature" as const,
+          geometry: {
+            type: "Point" as const,
+            coordinates: [city.longitude, city.latitude],
+          },
+          properties: {
+            id: city.id,
+            name: city.name,
+            country: city.country,
+            displayName: placeDataEntry?.name || null, // Use name field from places.json if available
+          },
+        };
+      });
 
       map.addSource("cities", {
         type: "geojson",
@@ -286,7 +294,31 @@ export default function MapboxGlobe({ selectedCity, onCitySelect, showDisclaimer
         ]
       });
 
-
+      // Add text labels layer
+      map.addLayer({
+        id: "city-labels",
+        type: "symbol",
+        source: "cities",
+        layout: {
+          "text-field": ["get", "displayName"],
+          "text-font": ["Open Sans Regular"],
+          "text-size": 10,
+          "text-offset": [0.0, 1.3],
+          "text-anchor": "center",
+          "text-allow-overlap": true,
+          "text-ignore-placement": true,
+        },
+        paint: {
+          "text-color": "#ed462b",
+          "text-halo-color": "#ffffff",
+          "text-halo-width": 2,
+        },
+        filter: [
+          "all",
+          ["!=", ["get", "displayName"], null],
+          [">=", ["zoom"], 8]
+        ]
+      });
 
       // Popup on marker click
       map.on("click", "city-markers", (e) => {

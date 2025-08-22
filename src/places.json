@@ -37,7 +37,7 @@
   {
     "city": "Yokohama",
     "date": "2006-2008",
-    "place_description": "My parents and I lived in Yokohama for two years. I remember riding on the local subways and bullet trains with my mom. Looking back, this is probably where my appreciation for public transit first began."
+    "place_description": "My parents and I lived in Yokohama for two years. I remember riding on the local subways and bullet trains with my mom. Looking back, this is probably where my predilection for public transit first began."
   },
   {
     "city": "Singapore",
@@ -52,12 +52,14 @@
     "playlist": "https://open.spotify.com/playlist/18d898u6NOd4pFKiA4O9QP?si=12ff53a599134c99"
   },
   {
+    "name": "ESRI UC 2025",
     "city": "San Diego",
     "date": "2025",
     "place_description": "I was selected as a student assistant for ESRI's User Conference, one of the world's largest GIS conferences, held in San Diego, California.",
     "image": "/assets/esri_group.png"
   },
   {
+    "name": "ESRI Summit 2025",
     "city": "Palm Springs",
     "date": "2025",
     "place_description": "I was selected as a student assistant for ESRI's Developer & Technology Summit in Palm Springs, California. I really enjoyed Palm Springs!",
@@ -100,6 +102,7 @@
     "image": "/assets/extremeheat_BK11.png"
   },
   {
+    "name": "Extreme Heat Mitigation",
     "city": "Brooklyn (BK17)",
     "place_description": "I identified optimal tree planting locations using land surface temperature data (Sentinel EO Hub's Landsat 8 LIDAR) and Michael Treglia's 'practical canopy' framework, which considers land use, cover, and infrastructure constraints. This map presents the results of that analysis for BK17 community district. Check out <a href=\"https://drive.google.com/file/d/1nUElvpsu3StJxUv4dWGkUcD0va3OIBE1/view\" target=\"_blank\" rel=\"noopener noreferrer\">my research paper!</a>",
     "image": "/assets/extremeheat_BK17.png"
@@ -136,12 +139,14 @@
     "playlist": "https://open.spotify.com/playlist/63uV7EESnxrHDFNRCD3c8W?si=9b42c7401a9e4600"
   },
   {
+    "name": "The New York Trilogy",
     "city": "West Village",
     "date": "June 2025",
     "image": "/assets/nyceats.png",
     "place_description": "Check out <a href=\"https://nyceats.live/\" target=\"_blank\" rel=\"noopener noreferrer\">NYC Eats!</a>"
   },
-  {
+  { 
+    "name": "NYC Races",
     "city": "Central Park",
     "date": "February 2025",
     "place_description": "Check out <a href=\"https://atmikapai13.github.io/iconic-runclubs-nyc/\" target=\"_blank\" rel=\"noopener noreferrer\">Iconic NYC Run clubs!</a>",
