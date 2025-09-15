@@ -1,13 +1,14 @@
 [
   {
+    "name": "Cornell Tech",
     "city": "New York",
     "date": "July 2024 onwards",
-    "place_description": "I moved to NYC to pursue a Master's in Information Systems with a focus in urban tech at Cornell Tech. Here, I got to work on some cool projects that deepened my understanding of emerging technologies and urban planning. Cornell Tech's campus is located on Roosevelt Island."
+    "place_description": "I moved from California to NYC to pursue a Master's in Information Systems, conc. in urban tech at Cornell Tech.<br><br>Here, I get to work on interdisciplinary projects that deepen my understanding of emerging technologies and GIS. Toggle to projects in the side panel for a taste!"
   },
   {
     "city": "Berkeley",
     "date": "August 2018-May 2022",
-    "place_description": "I spent my early twenties in Berkeley, where I earned a B.A. in Data Science and Economics from the University of California, Berkeley. \n\nLiving in the long shadow of Silicon Valley shaped my understanding of how the world works and who runs it.\n\nStill, the sun hits different in California.",
+    "place_description": "I spent my early twenties in Berkeley. I earned a B.A. in Data Science and Economics from the University of California, Berkeley. <br><br>Living in the long shadow of Silicon Valley shaped my understanding of how the world works and who runs it.<br><br>Still, the sun hits different in California.",
     "playlist": "https://open.spotify.com/playlist/1aUq0gXQwcXCWbmpLqDK0Y?si=0191428cf5104043"
   },
   {
@@ -18,12 +19,12 @@
   {
     "city": "Oakland",
     "date": "August 2022-July 2024",
-    "place_description": "I spent my early twenties in Oakland, California, where I began my career at an insurance firm. Check out the playlist, an ode to California.",
+    "place_description": "Upon graduating from UC Berkeley, I began my career as a product analyst at an insurance firm, where I worked for two years.",
     "playlist": "https://open.spotify.com/playlist/6UADKvCNvJOQggMG8TEfV3?si=2dc111eb8bc44a59"
   },
   {
     "city": "San Francisco",
-    "place_description": "While I never lived in San Francisco, the city left a lasting impression on me. I spent the pandemic years here and observed how a city built around tech can sometimes leave other industries and institutions by the wayside. Be that as it may, it was here that I first explored public transit data and open-source urban analytics, with much of my early work focused on the Bay Area Rapid Transit (BART) system."
+    "place_description": "While I never lived in San Francisco, the city left a lasting impression on me. During the pandemic years, I observed how a city built around tech can leave other industries and institutions by the wayside. <br><br> Be that as it may, it was here that I first explored public transit data, with much of my early work focused on the Bay Area Rapid Transit (BART) system."
   },
   {
     "city": "Mumbai",
@@ -140,16 +141,8 @@
   },
   {
     "name": "The New York Trilogy",
-    "city": "West Village",
-    "date": "June 2025",
-    "image": "/assets/nyceats.png",
-    "place_description": "Check out <a href=\"https://nyceats.live/\" target=\"_blank\" rel=\"noopener noreferrer\">NYC Eats!</a>"
-  },
-  { 
-    "name": "NYC Races",
     "city": "Central Park",
-    "date": "February 2025",
-    "place_description": "Check out <a href=\"https://atmikapai13.github.io/iconic-runclubs-nyc/\" target=\"_blank\" rel=\"noopener noreferrer\">Iconic NYC Run clubs!</a>",
-    "image": "/assets/nycruns.png"
+    "date": "June 2025",
+    "place_description": "My interest in GIS, cartography, and AR/VR culminates in The New York Trilogy, which is composed of <a href='https://nyceats.live' target='_blank' rel='noopener noreferrer' style='color: #4A90E2; text-decoration: none;'>NYC Eats</a>, <a href='https://atmikapai13.github.io/iconic-runclubs-nyc/' target='_blank' rel='noopener noreferrer' style='color: #4A90E2; text-decoration: none;'>NYC Races</a>, and <a href='https://www.figma.com/proto/A8IxNabbUxPRPWp4aWulRf/NYC-Screens?node-id=361-2282&t=glEEz1tdRoyiQdyS-1' target='_blank' rel='noopener noreferrer' style='color: #4A90E2; text-decoration: none;'>NYC Screens</a>!"
   }
 ]

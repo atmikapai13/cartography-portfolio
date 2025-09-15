@@ -16,7 +16,7 @@
   {
     "id": 5,
     "title": "IntelliBART database",
-    "city": ["San Francisco", "Berkeley", "Oakland"],
+    "city": ["San Francisco", "Oakland"],
     "description": "A relational database management system that integrates BART ridership data with GTFS feeds, enabling geospatial and temporal analysis",
     "link": "https://medium.com/bay-area-transit-tales-from-an-urban-analyst",
     "github": "https://medium.com/bay-area-transit-tales-from-an-urban-analyst/sql-database-for-bart-ridership-and-scheduling-data-8fadb40efc51",
@@ -30,7 +30,7 @@
   {
     "id": 2,
     "title": "The New York Trilogy",
-    "city": ["New York", "Central Park", "West Village"],
+    "city": ["New York", "Central Park"],
     "description": "The New York Trilogy visualizes the city not by zoning codes or census tracts, but by how it's lived. From run clubs to restaurant weeks, this series maps the kinetic, cultural, and psychogeographic layers of New York City. Stay tuned for a film guide!",
     "link": "https://medium.com/map-nyc",
     "github": "https://medium.com/map-nyc",
@@ -39,20 +39,6 @@
     "tech_stack": ["GIS", "Web Dev", "UI/UX Design"],
     "work_experience": ["Projects"],
     "tech_stack2": "React.JS, ArcGIS Java SDKs, Mapbox GL JS, Python (Web Scrapping)"
-  },
-  {
-    "id": 36,
-    "title": "NYC Races",
-    "city": ["New York", "Central Park"],
-    "description": "Mapping run clubs and races in NYC",
-    "link": "https://atmikapai13.github.io/iconic-runclubs-nyc/",
-    "github": "https://atmikapai13.github.io/iconic-runclubs-nyc/",
-    "image": "/assets/2.png",
-    "spotlight": false,
-    "tech_stack": ["GIS", "Web Dev", "UI/UX Design"],
-    "work_experience": ["Projects"],
-    "tech_stack2": "React.JS, ArcGIS Java SDKs",
-    "show": false
   },
   {
     "id": 3,
@@ -109,7 +95,7 @@
   {
     "id": 6,
     "title": "Forecasting Transit Ridership in the Bay",
-    "city": ["San Francisco", "Berkeley", "Oakland"],
+    "city": ["San Francisco", "Oakland"],
     "description": "Answering whether transit ridership will return to pre-pandemic levels",
     "link": "https://medium.com/bay-area-transit-tales-from-an-urban-analyst",
     "github": "https://medium.com/bay-area-transit-tales-from-an-urban-analyst/forecasting-bart-ridership-sarmix-vs-prophet-8fdfae5f24bc",
@@ -232,7 +218,7 @@
   {
     "id": 16,
     "title": "CSAA Insurance Group, an AAA Insurer",
-    "city": ["Walnut Creek", "Arizona", "Nevada", "Utah", "Oakland", "San Francisco"],
+    "city": ["Walnut Creek", "Arizona", "Nevada", "Utah", "Oakland"],
     "description": "SME for Personal Lines Auto and Property Insurance in AZ, NV, and UT; Forecasted 3-year financial plan, improved geographic risk segmentation in the pricing algorithm, delivered monthly performance updates to the senior leadership, and supported the migration of data assets from SAS to the cloud-based Snowflake platform.",
     "link": "https://csaa-insurance.aaa.com/content/aaa-ie/b2c/en/homepage.html/",
     "github": null,
@@ -438,19 +424,6 @@
     "tech_stack": ["ML", "Research"],
     "work_experience": ["Projects"],
     "tech_stack2": "STATA"
-  },
-  {
-    "id": 35,
-    "title": "NYC Eats",
-    "city": ["New York"],
-    "description": "Built an interactive web app that visualizes all participating NYC restaurant week restaurants and overlays curated foodie lists (Michelin Guide, NYT Top 100, etc.), making it easier to spot standout Restaurant Week offerings",
-    "link": "https://nyceats.live/",
-    "github": null,
-    "image": "/assets/35.png",
-    "spotlight": false,
-    "tech_stack": ["GIS", "Web Dev", "UI/UX Design"],
-    "work_experience": ["Projects"],
-    "tech_stack2": "React, Mapbox, JavaScript, Google Analytics"
   },
   {
     "id": 38,

@@ -1,15 +1,14 @@
-import { useEffect, useRef } from "react";
+import { useEffect, useRef, useState } from "react";
 import mapboxgl from "mapbox-gl";
 import "mapbox-gl/dist/mapbox-gl.css";
 import projects from "../projects.json";
 import placeData from '../places.json';
-import Ticker from './Ticker';
 
 // Project cities data
 const project_cities = [
     { id: 1, name: "New York", country: "USA", longitude: -73.95630, latitude: 40.75581 }, 
     { id: 2, name: "Hawaii", country: "USA", longitude: -155.5828, latitude: 19.8968},
-    { id: 3, name: "San Francisco", country: "USA", longitude: -122.4325, latitude: 37.7751 }, 
+    { id: 3, name: "San Francisco", country: "USA", longitude: -122.4830, latitude: 37.7689 }, 
     { id: 4, name: "Mumbai", country: "India", longitude: 72.8679, latitude: 19.1144 },
     { id: 5, name: "San Diego", country: "USA", longitude: -117.1611, latitude: 32.7157 },
     { id: 6, name: "Palm Springs", country: "USA", longitude: -116.5453, latitude: 33.8303 },
@@ -25,8 +24,7 @@ const project_cities = [
     { id: 15, name: "Nevada", country: "USA", longitude: -116.4194, latitude: 38.8026 },
     { id: 16, name: "Utah", country: "USA", longitude: -111.0937, latitude: 39.32098 },
     { id: 17, name: "New Jersey", country: "USA", longitude: -74.4057, latitude: 40.0583 },
-    { id: 18, name: "West Village", country: "USA", longitude: -74.0048, latitude: 40.7347 },
-    { id: 19, name: "Central Park", country: "USA", longitude: -73.9654, latitude: 40.7829 },
+    { id: 18, name: "Central Park", country: "USA", longitude: -73.97263890608842, latitude: 40.77703784020682 },
     { id: 27, name: "Cafe Aviva, Roosevelt Island", country: "USA", longitude: -73.94989719622808, latitude: 40.76205528704795 },
     { id: 20, name: "Brooklyn (BK11)", country: "USA", borough: "Brooklyn", longitude: -73.9332, latitude: 40.6536 },
     { id: 21, name: "Brooklyn (BK17)", country: "USA", borough: "Brooklyn", longitude: -73.9225, latitude: 40.6496 },
@@ -40,8 +38,24 @@ const project_cities = [
 
 const zoomGatedCities = ["Walnut Creek", "New Jersey", "Oakland", "Berkeley", "West Hollywood",
   "Brooklyn (BK11)", "Brooklyn (BK17)", "Bronx (BX5)", "Manhattan (MN10)", "Queens (QN2)", 
-  "Lower Manhattan", "Christchurch", "Cafenated, North Berkeley", "Cafe Aviva, Roosevelt Island", "London", "West Village", "Central Park"
+  "Lower Manhattan", "Christchurch", "Cafenated, North Berkeley", "Cafe Aviva, Roosevelt Island", "London", "Central Park"
 ];
+
+// Guided tour cities in order (by city name)
+const tourCityNames = ["New York", "Central Park", "Oakland", "San Francisco", "Berkeley", "Mumbai"];
+
+// Get tour cities from project_cities array
+const tourCities = tourCityNames
+  .map(cityName => project_cities.find(city => city.name === cityName))
+  .filter((city): city is typeof project_cities[number] => Boolean(city));
+
+// Dropdown cities - specific cities to show in the dropdown menu
+const dropdownCityNames = ["New York", "Berkeley", "San Diego", "Mumbai"];
+
+// Get dropdown cities from project_cities array
+const dropdownCities = dropdownCityNames
+  .map(cityName => project_cities.find(city => city.name === cityName))
+  .filter((city): city is typeof project_cities[number] => Boolean(city));
 
 mapboxgl.accessToken = "pk.eyJ1IjoiYXRtaWthcGFpMTMiLCJhIjoiY21idHR4eTJpMDdhMjJsb20zNmZheTZ6ayJ9.d_bQSBzesyiCUMA-YHRoIA";
 
@@ -51,29 +65,148 @@ interface MapboxGlobeProps {
   showDisclaimer: boolean;
 }
 
-export default function MapboxGlobe({ selectedCity, onCitySelect, showDisclaimer }: MapboxGlobeProps) {
+export default function MapboxGlobe({ selectedCity, onCitySelect }: MapboxGlobeProps) {
   const mapContainer = useRef<HTMLDivElement>(null);
   const mapRef = useRef<mapboxgl.Map | null>(null);
   const activePopup = useRef<mapboxgl.Popup | null>(null);
   const rotationEnabled = useRef(true);
-  const popupTimeoutRef = useRef<ReturnType<typeof setTimeout> | null>(null);
-  const moveEndListenerRef = useRef<(() => void) | null>(null);
+  // const popupTimeoutRef = useRef<ReturnType<typeof setTimeout> | null>(null);
+  // const moveEndListenerRef = useRef<(() => void) | null>(null);
   const programmaticZoomRef = useRef(false);
   const selectedMarkerRef = useRef<string | null>(null);
   const ZOOM_THRESHOLD = 2.5;
+  const [pitch, setPitch] = useState(0);
+  const [showCityDropdown, setShowCityDropdown] = useState(false);
+  // const [isIconClicked, setIsIconClicked] = useState(false);
+  const [showPitchControl, setShowPitchControl] = useState(false);
+  const [showTour, setShowTour] = useState(false);
+  const [currentTourIndex, setCurrentTourIndex] = useState(0);
+  const dropdownRef = useRef<HTMLDivElement>(null);
 
-  const tickerCityOrder = ['New York', 'San Francisco', 'Berkeley', 'Oakland', 'San Diego', 'Mumbai'];
-  const tickerCities = tickerCityOrder
-    .map(cityName => project_cities.find(city => city.name === cityName))
-    .filter((city): city is typeof project_cities[number] => Boolean(city));
 
-  const handleTickerClick = () => {
-    rotationEnabled.current = false;
+  const handlePitchChange = (newPitch: number) => {
+    setPitch(newPitch);
+    if (mapRef.current) {
+      mapRef.current.setPitch(newPitch);
+    }
   };
 
-  const createCityPopup = (cityName: string, lngLat: [number, number]) => {
-    const isMobile = window.innerWidth <= 600;
-    if (isMobile) return;
+  const handleCityDropdownToggle = () => {
+    // Add click animation
+    // setIsIconClicked(true);
+    // setTimeout(() => {
+    //   setIsIconClicked(false);
+    // }, 150);
+    
+    console.log('Dropdown toggle clicked, current state:', showCityDropdown);
+    setShowCityDropdown(!showCityDropdown);
+    console.log('Dropdown state set to:', !showCityDropdown);
+  };
+
+  const handleCitySelect = (city: typeof project_cities[number]) => {
+    if (mapRef.current) {
+      // Step 1: Close any existing popups
+      if (activePopup.current) {
+        activePopup.current.remove();
+        activePopup.current = null;
+      }
+      
+      rotationEnabled.current = false;
+      if (onCitySelect) {
+        onCitySelect(city.name);
+      }
+      
+      // Step 2: Set up moveend listener for popup before starting animation
+      const showPopup = () => {
+        // Step 3: Open popup for new city after flyTo animation completes
+        createCityPopup(city.name, [city.longitude, city.latitude], false);
+        // Remove the listener after use
+        mapRef.current?.off('moveend', showPopup);
+      };
+      
+      // Listen for moveend event (when flyTo animation completes)
+      mapRef.current.on('moveend', showPopup);
+      
+      // Step 2: Fly to the new city
+      mapRef.current.flyTo({
+        center: [city.longitude, city.latitude],
+        zoom: 11,
+        speed: 2.0,
+        curve: 1.40,
+        easing(t) {
+          return t;
+        }
+      });
+    }
+    setShowCityDropdown(false);
+  };
+
+  const handleCameraToggle = () => {
+    setShowPitchControl(!showPitchControl);
+  };
+
+  const handleTourToggle = () => {
+    setShowTour(!showTour);
+    if (!showTour) {
+      setCurrentTourIndex(0);
+      // Start tour with first city
+      startTourCity(0);
+    }
+  };
+
+  const startTourCity = (index: number) => {
+    if (mapRef.current && tourCities[index]) {
+      const city = tourCities[index];
+      
+      // Close any existing popups
+      if (activePopup.current) {
+        activePopup.current.remove();
+        activePopup.current = null;
+      }
+      
+      rotationEnabled.current = false;
+      if (onCitySelect) {
+        onCitySelect(city.name);
+      }
+      
+      // Set up moveend listener for popup
+      const showPopup = () => {
+        createCityPopup(city.name, [city.longitude, city.latitude], true);
+        mapRef.current?.off('moveend', showPopup);
+      };
+      
+      mapRef.current.on('moveend', showPopup);
+      
+      // Fly to the city with higher zoom for 3D view
+      mapRef.current.flyTo({
+        center: [city.longitude, city.latitude],
+        zoom: 16,
+        pitch: 60,
+        speed: 2.0,
+        curve: 1.40,
+        easing(t) {
+          return t;
+        }
+      });
+    }
+  };
+
+  const handleNextCity = () => {
+    const nextIndex = (currentTourIndex + 1) % tourCities.length;
+    setCurrentTourIndex(nextIndex);
+    startTourCity(nextIndex);
+  };
+
+  const handlePrevCity = () => {
+    const prevIndex = currentTourIndex === 0 ? tourCities.length - 1 : currentTourIndex - 1;
+    setCurrentTourIndex(prevIndex);
+    startTourCity(prevIndex);
+  };
+
+
+  const createCityPopup = (cityName: string, lngLat: [number, number], isTour: boolean = false) => {
+    // const isMobile = window.innerWidth <= 600;
+    // Allow popups on mobile for better UX
 
     if (!mapRef.current) return;
 
@@ -109,7 +242,11 @@ export default function MapboxGlobe({ selectedCity, onCitySelect, showDisclaimer
     rotationEnabled.current = false;
     
     // Offset the popup slightly to the right of the marker
-    const offsetLngLat: [number, number] = [lngLat[0] - 0.005, lngLat[1]];
+    // Use smaller offset for tour mode or when zoomed in above level 15
+    const currentZoom = mapRef.current.getZoom();
+    const isHighZoom = currentZoom > 15;
+    const offsetAmount = (isTour || isHighZoom) ? 0.001 : 0.005;
+    const offsetLngLat: [number, number] = [lngLat[0] - offsetAmount, lngLat[1]];
     
     // Use larger width if there's an image
     const popupWidth = cityData?.image ? '350px' : '250px';
@@ -191,25 +328,62 @@ export default function MapboxGlobe({ selectedCity, onCitySelect, showDisclaimer
     }
   }, [selectedCity]);
 
+  // Close dropdown when clicking outside
+  useEffect(() => {
+    const handleClickOutside = (event: MouseEvent) => {
+      if (dropdownRef.current && !dropdownRef.current.contains(event.target as Node)) {
+        setShowCityDropdown(false);
+      }
+    };
+
+    if (showCityDropdown) {
+      document.addEventListener('mousedown', handleClickOutside);
+    }
+
+    return () => {
+      document.removeEventListener('mousedown', handleClickOutside);
+    };
+  }, [showCityDropdown]);
+
   useEffect(() => {
     if (!mapContainer.current) return;
 
-    const isMobile = window.innerWidth <= 600;
+    // const isMobile = window.innerWidth <= 600;
     const map = new mapboxgl.Map({
       container: mapContainer.current,
-      style: "mapbox://styles/mapbox/standard", //satellite-v9 //satellite-streets-v12 //outdoors-v12
+      style: "mapbox://styles/atmikapai13/cmfcvbodb000c01qs0e048je4", // Custom style URL
       projection: "globe",
       center: [-100, 40],
-      zoom: isMobile ? 0.30 : 1.7,
+      zoom: window.innerWidth <= 600 ? 0.30 : 1.7,
       bearing: 0,
-      pitch: 0,
-      minZoom: isMobile ? 0.30 : 1.4,
+      pitch: pitch,
+      minZoom: window.innerWidth <= 600 ? 0.30 : 1.4,
       attributionControl: false,
     });
     mapRef.current = map;
     
-     // @ts-ignore
-    //map.addControl(new mapboxgl.LightControl(), 'top-left');
+    // Add built-in Mapbox controls (desktop only)
+    if (window.innerWidth > 600) {
+      map.addControl(new mapboxgl.NavigationControl(), 'top-left');
+      
+      // Custom positioning for navigation control
+      setTimeout(() => {
+        const navControl = document.querySelector('.mapboxgl-ctrl-group');
+        if (navControl) {
+          // Use setAttribute to force CSS with !important
+          navControl.setAttribute('style', `
+            position: absolute !important;
+            top: 176px !important;
+            left: 12px !important;
+            right: auto !important;
+            bottom: auto !important;
+          `);
+          console.log('Navigation control positioned at top-left');
+        }
+      }, 100);
+    }
+    // map.addControl(new mapboxgl.FullscreenControl(), 'top-right');
+    // map.addControl(new mapboxgl.GeolocateControl(), 'top-right');
     
 
 
@@ -374,7 +548,7 @@ export default function MapboxGlobe({ selectedCity, onCitySelect, showDisclaimer
         }
         
         if (onCitySelect) onCitySelect(cityName);
-        createCityPopup(cityName, [e.lngLat.lng, e.lngLat.lat]);
+        createCityPopup(cityName, [e.lngLat.lng, e.lngLat.lat], false);
       });
 
       // Clear city selection when clicking on map background
@@ -485,6 +659,11 @@ export default function MapboxGlobe({ selectedCity, onCitySelect, showDisclaimer
       const currentZoom = map.getZoom();
       if (currentZoom <= ZOOM_THRESHOLD) {
         rotationEnabled.current = true;
+        // Reset pitch to 0 when fully zoomed out
+        if (map.getPitch() > 0) {
+          map.setPitch(0);
+          setPitch(0);
+        }
       } else {
         rotationEnabled.current = false;
       }
@@ -499,98 +678,405 @@ export default function MapboxGlobe({ selectedCity, onCitySelect, showDisclaimer
 
   return (
     <div style={{ width: "100%", height: "100%", position: "relative" }}>
+      <style>
+        {`
+          .custom-pitch-slider {
+            background: linear-gradient(to right, #007bff 0%, #007bff ${(pitch / 85) * 100}%, #555 ${(pitch / 85) * 100}%, #555 100%) !important;
+          }
+          
+          .custom-pitch-slider::-webkit-slider-thumb {
+            appearance: none;
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+            background: #ffffff;
+            cursor: pointer;
+            border: 2px solid #007bff;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+            transition: all 0.15s ease;
+          }
+          
+          .custom-pitch-slider::-webkit-slider-thumb:hover {
+            transform: scale(1.15);
+            box-shadow: 0 3px 6px rgba(0, 0, 0, 0.4);
+          }
+          
+          .custom-pitch-slider::-webkit-slider-thumb:active {
+            transform: scale(1.05);
+          }
+          
+          .custom-pitch-slider::-moz-range-thumb {
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+            background: #ffffff;
+            cursor: pointer;
+            border: 2px solid #007bff;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+            transition: all 0.15s ease;
+          }
+          
+          .custom-pitch-slider::-moz-range-thumb:hover {
+            transform: scale(1.15);
+            box-shadow: 0 3px 6px rgba(0, 0, 0, 0.4);
+          }
+          
+          .custom-pitch-slider::-webkit-slider-track {
+            background: transparent;
+            border: none;
+          }
+          
+          .custom-pitch-slider::-moz-range-track {
+            background: transparent;
+            border: none;
+          }
+        `}
+      </style>
       <div
         ref={mapContainer}
         style={{ width: "100%", height: "100%", position: "absolute", top: 0, left: 0 }}
       />
 
-      {!showDisclaimer && window.innerWidth > 600 && (
-        <Ticker
-          items={tickerCities}
-          map={mapRef.current}
-          onCityClick={handleTickerClick}
-          onCitySelect={onCitySelect}
-          onCityPopup={(city) => {
-            // Cancel any pending popup
-            if (popupTimeoutRef.current) {
-              clearTimeout(popupTimeoutRef.current);
-              popupTimeoutRef.current = null;
-            }
-            // Remove previous moveend listener
-            if (moveEndListenerRef.current && mapRef.current) {
-              mapRef.current.off('moveend', moveEndListenerRef.current);
-              moveEndListenerRef.current = null;
-            }
-            // Close any open popup
-            if (activePopup.current) {
-              activePopup.current.remove();
-              activePopup.current = null;
-            }
+      {/* Cities Image with Dropdown */}
+      <div 
+        ref={dropdownRef}
+        style={{
+          position: "absolute",
+          top: "10px",
+          left: "10px",
+          zIndex: 1000
+        }}
+      >
+        <div style={{ display: "flex", flexDirection: "column", alignItems: "center", gap: "8px" }}>
+          <img 
+            src="/assets/map-cities.png" 
+            alt="Cities" 
+            onClick={handleCityDropdownToggle}
+            style={{
+              maxWidth: "50px",
+              height: "auto",
+              borderRadius: "5px",
+              cursor: "pointer",
+              transition: "transform 0.2s ease, box-shadow 0.2s ease"
+            }}
+            onMouseEnter={(e) => {
+              e.currentTarget.style.transform = "scale(1.05)";
+            }}
+            onMouseLeave={(e) => {
+              e.currentTarget.style.transform = "scale(1)";
+            }}
+          />
+          
+          {/* Tour Icon */}
+          <img 
+            src="/assets/map-tour.png" 
+            alt="Tour" 
+            onClick={handleTourToggle}
+            style={{
+              maxWidth: "50px",
+              height: "auto",
+              borderRadius: "5px",
+              cursor: "pointer",
+              transition: "transform 0.2s ease, box-shadow 0.2s ease"
+            }}
+            onMouseEnter={(e) => {
+              e.currentTarget.style.transform = "scale(1.05)";
+            }}
+            onMouseLeave={(e) => {
+              e.currentTarget.style.transform = "scale(1)";
+            }}
+          />
+          
+        </div>
+        
+        {/* Dropdown Menu */}
+        {showCityDropdown && (
+          <div style={{
+            position: "absolute",
+            top: "10px",
+            left: window.innerWidth <= 600 ? "10px" : "65px", // Adjust for mobile
+            background: "rgba(0, 0, 0, 0.8)",
+            borderRadius: "8px",
+            boxShadow: "none",
+            padding: "5px 0",
+            minWidth: "150px",
+            borderTop: "1px solid rgba(255, 255, 255, 0.1)",
+            borderBottom: "1px solid rgba(255, 255, 255, 0.1)",
+            borderLeft: "1px solid rgba(255, 255, 255, 0.1)",
+            borderRight: "1px solid rgba(255, 255, 255, 0.1)",
+            overflow: "hidden",
+            animation: "fadeInRight 0.3s ease-out",
+            zIndex: 1001 // Ensure it's above other elements
+          }}>
+            <div style={{
+              fontSize: "0.9rem",
+              fontWeight: "bold",
+              color: "#e0e0e0",
+              fontFamily: "'Courier New', Courier, monospace",
+              textTransform: "uppercase",
+              padding: "4px 12px",
+              borderBottom: "1px solid rgba(255, 255, 255, 0.1)",
+              marginBottom: "0px"
+            }}>
+              Cities:
+            </div>
+            {dropdownCities.map((city) => (
+              <div
+                key={city.id}
+                onClick={() => handleCitySelect(city)}
+                style={{
+                  padding: "2px 12px",
+                  cursor: "pointer",
+                  fontSize: "0.9rem",
+                  color: "#e0e0e0",
+                  fontFamily: "'Courier New', Courier, monospace",
+                  textTransform: "uppercase",
+                  fontWeight: "bold",
+                  transition: "background-color 0.2s ease",
+                  borderRadius: "0",
+                  margin: "0"
+                }}
+                onMouseEnter={(e) => {
+                  e.currentTarget.style.backgroundColor = "rgba(255, 255, 255, 0.1)";
+                  e.currentTarget.style.color = "#ffffff";
+                }}
+                onMouseLeave={(e) => {
+                  e.currentTarget.style.backgroundColor = "transparent";
+                  e.currentTarget.style.color = "#e0e0e0";
+                }}
+              >
+                {city.name}
+              </div>
+            ))}
+          </div>
+        )}
+      </div>
+
+      {/* Camera Icon - positioned above NavigationControl */}
+      <div style={{
+        position: "absolute",
+        top: "125px",
+        left: "10px",
+        zIndex: 1000
+      }}>
+        <img 
+          src="/assets/map-3d.png" 
+          alt="3D" 
+          onClick={handleCameraToggle}
+          style={{
+            maxWidth: "50px",
+            height: "auto",
+            borderRadius: "4px",
+            cursor: "pointer",
+            transition: "transform 0.2s ease, box-shadow 0.2s ease",
             
-            // Update selected marker
-            selectedMarkerRef.current = city.name;
+            padding: "5px",
             
-            // Refresh the marker layer to update colors
-            if (mapRef.current && mapRef.current.getLayer("city-markers")) {
-              mapRef.current.removeLayer("city-markers");
-              mapRef.current.addLayer({
-                id: "city-markers",
-                type: "circle",
-                source: "cities",
-                paint: {
-                  "circle-radius": [
-                    "case",
-                    ["in", ["get", "name"], ["literal", zoomGatedCities]], 4,
-                    5
-                  ],
-                  "circle-color": [
-                    "case",
-                    ["==", ["get", "name"], selectedMarkerRef.current], "#007bff",
-                    ["case",
-                      ["in", ["get", "name"], ["literal", zoomGatedCities]], "#ed462b",
-                      "#ed462b"
-                    ]
-                  ],
-                  "circle-stroke-width": [
-                    "case",
-                    ["==", ["get", "name"], selectedMarkerRef.current], 2,
-                    1
-                  ],
-                  "circle-stroke-color": [
-                    "case",
-                    ["==", ["get", "name"], selectedMarkerRef.current], "#ffffff",
-                    "#000000"
-                  ],
-                  "circle-opacity": 1.0,
-                },
-                filter: [
-                  "any",
-                  ["all", ...zoomGatedCities.map(city => ["!=", ["get", "name"], city])],
-                  ...zoomGatedCities.map(city => [
-                    "all",
-                    ["==", ["get", "name"], city],
-                    [">=", ["zoom"], 3]
-                  ])
-                ]
-              });
-            }
-            
-            // Set up moveend listener for popup
-            if (mapRef.current) {
-              programmaticZoomRef.current = true;
-              const showPopup = () => {
-                createCityPopup(city.name, [city.longitude, city.latitude]);
-                if (mapRef.current && moveEndListenerRef.current) {
-                  mapRef.current.off('moveend', moveEndListenerRef.current);
-                  moveEndListenerRef.current = null;
-                }
-              };
-              moveEndListenerRef.current = showPopup;
-              mapRef.current.on('moveend', showPopup);
-            }
+          }}
+          onMouseEnter={(e) => {
+            e.currentTarget.style.transform = "scale(1.05)";
+          }}
+          onMouseLeave={(e) => {
+            e.currentTarget.style.transform = "scale(1)";
           }}
         />
+      </div>
+
+      {/* Pitch Control */}
+      {showPitchControl && (
+        <div style={{
+          position: "absolute",
+          top: "125px",
+          left: "65px",
+          background: "rgba(0, 0, 0, 0.8)",
+          borderRadius: "8px",
+          boxShadow: "none",
+          padding: "8px 12px",
+          minWidth: "140px",
+          height: "40px",
+          borderTop: "1px solid rgba(255, 255, 255, 0.1)",
+          borderBottom: "1px solid rgba(255, 255, 255, 0.1)",
+          borderLeft: "1px solid rgba(255, 255, 255, 0.1)",
+          borderRight: "1px solid rgba(255, 255, 255, 0.1)",
+          overflow: "hidden",
+          animation: "fadeInRight 0.3s ease-out"
+        }}>
+          <div style={{ 
+            display: "flex", 
+            flexDirection: "row", 
+            alignItems: "center", 
+            height: "100%",
+            justifyContent: "space-between",
+            gap: "8px"
+          }}>
+            <span style={{
+              fontSize: "0.6rem",
+              color: "#e0e0e0",
+              fontFamily: "'Courier New', Courier, monospace",
+              textTransform: "uppercase",
+              fontWeight: "bold",
+              minWidth: "20px"
+            }}>2D</span>
+            <input
+              type="range"
+              min="0"
+              max="85"
+              value={pitch}
+              onChange={(e) => handlePitchChange(Number(e.target.value))}
+              className="custom-pitch-slider"
+              style={{
+                width: "80px",
+                height: "3px",
+                borderRadius: "2px",
+                background: "#444",
+                outline: "none",
+                cursor: "pointer",
+                WebkitAppearance: "none",
+                appearance: "none",
+                position: "relative",
+                flex: "1"
+              }}
+            />
+            <span style={{
+              fontSize: "0.6rem",
+              color: "#e0e0e0",
+              fontFamily: "'Courier New', Courier, monospace",
+              textTransform: "uppercase",
+              fontWeight: "bold",
+              minWidth: "20px"
+            }}>3D</span>
+            <div style={{
+              fontSize: "0.5rem",
+              color: "#ffffff",
+              fontFamily: "sans-serif",
+              fontWeight: "500",
+              minWidth: "30px",
+              textAlign: "center",
+              marginLeft: "4px"
+            }}>
+              {pitch}°
+            </div>
+          </div>
+        </div>
       )}
+
+      {/* Tour Controls */}
+      {showTour && (
+        <div style={{
+          position: "absolute",
+          bottom: "20px",
+          left: "50%",
+          transform: "translateX(-50%)",
+          background: "rgba(0, 0, 0, 0.8)",
+          borderRadius: "6px",
+          padding: "8px 20px",
+          display: "flex",
+          alignItems: "center",
+          gap: "8px",
+          borderTop: "1px solid rgba(255, 255, 255, 0.1)",
+          borderBottom: "1px solid rgba(255, 255, 255, 0.1)",
+          borderLeft: "1px solid rgba(255, 255, 255, 0.1)",
+          borderRight: "1px solid rgba(255, 255, 255, 0.1)",
+          zIndex: 1000
+        }}>
+          <div style={{
+            color: "#e0e0e0",
+            fontSize: "0.9rem",
+            fontFamily: "'Courier New', Courier, monospace",
+            textTransform: "uppercase",
+            fontWeight: "bold",
+            marginRight: "12px",
+            whiteSpace: "nowrap"
+          }}>
+            Guided Tour
+          </div>
+          
+          <button
+            onClick={handlePrevCity}
+            style={{
+              background: "transparent",
+              border: "1px solid rgba(255, 255, 255, 0.3)",
+              color: "#e0e0e0",
+              padding: "4px 8px",
+              borderRadius: "4px",
+              cursor: "pointer",
+              fontSize: "0.75rem",
+              fontFamily: "'Courier New', Courier, monospace",
+              textTransform: "uppercase",
+              whiteSpace: "nowrap"
+            }}
+            onMouseEnter={(e) => {
+              e.currentTarget.style.backgroundColor = "rgba(255, 255, 255, 0.1)";
+            }}
+            onMouseLeave={(e) => {
+              e.currentTarget.style.backgroundColor = "transparent";
+            }}
+          >
+            ← Prev
+          </button>
+          
+          <div style={{
+            color: "#e0e0e0",
+            fontSize: "0.8rem",
+            fontFamily: "'Courier New', Courier, monospace",
+            textTransform: "uppercase",
+            minWidth: "120px",
+            textAlign: "center",
+            whiteSpace: "nowrap"
+          }}>
+            {currentTourIndex + 1} / {tourCities.length}: {tourCities[currentTourIndex]?.name}
+          </div>
+          
+          <button
+            onClick={handleNextCity}
+            style={{
+              background: "transparent",
+              border: "1px solid rgba(255, 255, 255, 0.3)",
+              color: "#e0e0e0",
+              padding: "4px 8px",
+              borderRadius: "4px",
+              cursor: "pointer",
+              fontSize: "0.75rem",
+              fontFamily: "'Courier New', Courier, monospace",
+              textTransform: "uppercase",
+              whiteSpace: "nowrap"
+            }}
+            onMouseEnter={(e) => {
+              e.currentTarget.style.backgroundColor = "rgba(255, 255, 255, 0.1)";
+            }}
+            onMouseLeave={(e) => {
+              e.currentTarget.style.backgroundColor = "transparent";
+            }}
+          >
+            Next →
+          </button>
+          
+          <button
+            onClick={() => setShowTour(false)}
+            style={{
+              background: "transparent",
+              border: "1px solid rgba(255, 255, 255, 0.3)",
+              color: "#e0e0e0",
+              padding: "4px 8px",
+              borderRadius: "4px",
+              cursor: "pointer",
+              fontSize: "0.75rem",
+              fontFamily: "'Courier New', Courier, monospace",
+              textTransform: "uppercase",
+              whiteSpace: "nowrap"
+            }}
+            onMouseEnter={(e) => {
+              e.currentTarget.style.backgroundColor = "rgba(255, 255, 255, 0.1)";
+            }}
+            onMouseLeave={(e) => {
+              e.currentTarget.style.backgroundColor = "transparent";
+            }}
+          >
+            ✕ Close
+          </button>
+        </div>
+      )}
+
     </div>
   );
 } 
