@@ -82,6 +82,12 @@ export default function MapboxGlobe({ selectedCity, onCitySelect }: MapboxGlobeP
   const [showTour, setShowTour] = useState(false);
   const [currentTourIndex, setCurrentTourIndex] = useState(0);
   const dropdownRef = useRef<HTMLDivElement>(null);
+  const [isMobile, setIsMobile] = useState(window.innerWidth <= 600);
+  const [customPopupData, setCustomPopupData] = useState<{
+    cityName: string;
+    lngLat: [number, number];
+    isTour: boolean;
+  } | null>(null);
 
 
   const handlePitchChange = (newPitch: number) => {
@@ -205,113 +211,80 @@ export default function MapboxGlobe({ selectedCity, onCitySelect }: MapboxGlobeP
 
 
   const createCityPopup = (cityName: string, lngLat: [number, number], isTour: boolean = false) => {
-    // const isMobile = window.innerWidth <= 600;
-    // Allow popups on mobile for better UX
-
     if (!mapRef.current) return;
 
+    // Disable popups on mobile
+    if (isMobile) return;
+
+    // Clear any existing Mapbox popup
     if (activePopup.current) {
       activePopup.current.remove();
       activePopup.current = null;
     }
 
-    // Find city info (place_description, date, playlist)
-    const cityData = (placeData as any[]).find(
-      (entry) => entry.city.trim().toLowerCase() === cityName.trim().toLowerCase()
-    );
-
-    let popupContent = `<div class="city-popup" style="text-align:center; max-height:250px; overflow:auto; scrollbar-width: none; -ms-overflow-style: none;">`;
-    if (!cityData) {
-      popupContent += ``;
-    } else {
-      popupContent += `<div class="city-description">`;
-      popupContent += `<h3 style='margin-bottom: 3px; text-align:center;color:#007bff;'>${cityName}</h3>`;
-      if (cityData.image) {
-        popupContent += `<img src='${cityData.image}' alt='${cityName}' style='display:block;margin:0 auto 10px auto;max-width:320px; width:100%;height:auto;border-radius:10px;' onerror='console.error(\"Failed to load image:\", this.src)' onload='console.log(\"Image loaded successfully:\", this.src)' loading='lazy' />`;
-      }
-      popupContent += `<div style='font-size:0.7rem;color:#bdbdbd;margin-bottom:3px;text-align:center; font-style:italic;'><em>${cityData.date || ''}</em></div>`;
-      popupContent += `<div style='font-size:0.5rem;color:#e0e0e0;text-align:center; font-style:italic;line-height:1.2;'>${cityData.place_description || ''}</div>`;
-      if (cityData.playlist) {
-        popupContent += `<div class='popup-playlist' style=' font-size:0.5rem;'><a href='${cityData.playlist}' target='_blank' rel='noopener noreferrer'>my playlist</a></div>`;
-      }
-      popupContent += `</div>`;
-    }
-    popupContent += `</div>`;
-
     // Pause rotation when popup opens
     rotationEnabled.current = false;
     
-    // Offset the popup slightly to the right of the marker
-    // Use smaller offset for tour mode or when zoomed in above level 15
-    const currentZoom = mapRef.current.getZoom();
-    const isHighZoom = currentZoom > 15;
-    const offsetAmount = (isTour || isHighZoom) ? 0.001 : 0.005;
-    const offsetLngLat: [number, number] = [lngLat[0] - offsetAmount, lngLat[1]];
-    
-    // Use larger width if there's an image
-    const popupWidth = cityData?.image ? '350px' : '250px';
-    
-    const popup = new mapboxgl.Popup({ maxWidth: popupWidth, anchor: 'right'})
-      .setLngLat(offsetLngLat)
-      .setHTML(popupContent)
-      .addTo(mapRef.current);
-
-    activePopup.current = popup;
-    
-    // Resume rotation when popup closes
-    popup.on('close', () => {
-      rotationEnabled.current = true;
-      if (onCitySelect) onCitySelect(null);
-      activePopup.current = null;
-      
-      // Clear selected marker
-      selectedMarkerRef.current = null;
-      
-      // Refresh the marker layer to reset colors
-      if (mapRef.current && mapRef.current.getLayer("city-markers")) {
-        mapRef.current.removeLayer("city-markers");
-        mapRef.current.addLayer({
-          id: "city-markers",
-          type: "circle",
-          source: "cities",
-          paint: {
-            "circle-radius": [
-              "case",
-              ["in", ["get", "name"], ["literal", zoomGatedCities]], 4,
-              5
-            ],
-            "circle-color": [
-              "case",
-              ["==", ["get", "name"], selectedMarkerRef.current], "#007bff",
-              ["case",
-                ["in", ["get", "name"], ["literal", zoomGatedCities]], "#ed462b",
-                "#ed462b"
-              ]
-            ],
-            "circle-stroke-width": [
-              "case",
-              ["==", ["get", "name"], selectedMarkerRef.current], 2,
-              1
-            ],
-            "circle-stroke-color": [
-              "case",
-              ["==", ["get", "name"], selectedMarkerRef.current], "#ffffff",
-              "#000000"
-            ],
-            "circle-opacity": 1.0,
-          },
-          filter: [
-            "any",
-            ["all", ...zoomGatedCities.map(city => ["!=", ["get", "name"], city])],
-            ...zoomGatedCities.map(city => [
-              "all",
-              ["==", ["get", "name"], city],
-              [">=", ["zoom"], 3]
-            ])
-          ]
-        });
-      }
+    // Set custom popup data
+    setCustomPopupData({
+      cityName,
+      lngLat,
+      isTour
     });
+  };
+
+  const closeCustomPopup = () => {
+    setCustomPopupData(null);
+    rotationEnabled.current = true;
+    if (onCitySelect) onCitySelect(null);
+    
+    // Clear selected marker
+    selectedMarkerRef.current = null;
+    
+    // Refresh the marker layer to reset colors
+    if (mapRef.current && mapRef.current.getLayer("city-markers")) {
+      mapRef.current.removeLayer("city-markers");
+      mapRef.current.addLayer({
+        id: "city-markers",
+        type: "circle",
+        source: "cities",
+        paint: {
+          "circle-radius": [
+            "case",
+            ["in", ["get", "name"], ["literal", zoomGatedCities]], 4,
+            5
+          ],
+          "circle-color": [
+            "case",
+            ["==", ["get", "name"], selectedMarkerRef.current], "#007bff",
+            ["case",
+              ["in", ["get", "name"], ["literal", zoomGatedCities]], "#ed462b",
+              "#ed462b"
+            ]
+          ],
+          "circle-stroke-width": [
+            "case",
+            ["==", ["get", "name"], selectedMarkerRef.current], 2,
+            1
+          ],
+          "circle-stroke-color": [
+            "case",
+            ["==", ["get", "name"], selectedMarkerRef.current], "#ffffff",
+            "#000000"
+          ],
+          "circle-opacity": 1.0,
+        },
+        filter: [
+          "any",
+          ["all", ...zoomGatedCities.map(city => ["!=", ["get", "name"], city])],
+          ...zoomGatedCities.map(city => [
+            "all",
+            ["==", ["get", "name"], city],
+            [">=", ["zoom"], 3]
+          ])
+        ]
+      });
+    }
   };
   
   useEffect(() => {
@@ -324,9 +297,13 @@ export default function MapboxGlobe({ selectedCity, onCitySelect }: MapboxGlobeP
         activePopup.current.remove();
         activePopup.current = null;
       }
+      // Only clear custom popup on desktop
+      if (!isMobile) {
+        setCustomPopupData(null);
+      }
       rotationEnabled.current = true;
     }
-  }, [selectedCity]);
+  }, [selectedCity, isMobile]);
 
   // Close dropdown when clicking outside
   useEffect(() => {
@@ -344,6 +321,16 @@ export default function MapboxGlobe({ selectedCity, onCitySelect }: MapboxGlobeP
       document.removeEventListener('mousedown', handleClickOutside);
     };
   }, [showCityDropdown]);
+
+  // Handle window resize for mobile detection
+  useEffect(() => {
+    const handleResize = () => {
+      setIsMobile(window.innerWidth <= 600);
+    };
+
+    window.addEventListener('resize', handleResize);
+    return () => window.removeEventListener('resize', handleResize);
+  }, []);
 
   useEffect(() => {
     if (!mapContainer.current) return;
@@ -737,153 +724,157 @@ export default function MapboxGlobe({ selectedCity, onCitySelect }: MapboxGlobeP
         style={{ width: "100%", height: "100%", position: "absolute", top: 0, left: 0 }}
       />
 
-      {/* Cities Image with Dropdown */}
-      <div 
-        ref={dropdownRef}
-        style={{
-          position: "absolute",
-          top: "10px",
-          left: "10px",
-          zIndex: 1000
-        }}
-      >
-        <div style={{ display: "flex", flexDirection: "column", alignItems: "center", gap: "8px" }}>
-          <img 
-            src="/assets/map-cities.png" 
-            alt="Cities" 
-            onClick={handleCityDropdownToggle}
-            style={{
-              maxWidth: "50px",
-              height: "auto",
-              borderRadius: "5px",
-              cursor: "pointer",
-              transition: "transform 0.2s ease, box-shadow 0.2s ease"
-            }}
-            onMouseEnter={(e) => {
-              e.currentTarget.style.transform = "scale(1.05)";
-            }}
-            onMouseLeave={(e) => {
-              e.currentTarget.style.transform = "scale(1)";
-            }}
-          />
-          
-          {/* Tour Icon */}
-          <img 
-            src="/assets/map-tour.png" 
-            alt="Tour" 
-            onClick={handleTourToggle}
-            style={{
-              maxWidth: "50px",
-              height: "auto",
-              borderRadius: "5px",
-              cursor: "pointer",
-              transition: "transform 0.2s ease, box-shadow 0.2s ease"
-            }}
-            onMouseEnter={(e) => {
-              e.currentTarget.style.transform = "scale(1.05)";
-            }}
-            onMouseLeave={(e) => {
-              e.currentTarget.style.transform = "scale(1)";
-            }}
-          />
-          
-        </div>
-        
-        {/* Dropdown Menu */}
-        {showCityDropdown && (
-          <div style={{
+      {/* Cities Image with Dropdown - Hidden on mobile */}
+      {!isMobile && (
+        <div 
+          ref={dropdownRef}
+          style={{
             position: "absolute",
             top: "10px",
-            left: window.innerWidth <= 600 ? "10px" : "65px", // Adjust for mobile
-            background: "rgba(0, 0, 0, 0.8)",
-            borderRadius: "8px",
-            boxShadow: "none",
-            padding: "5px 0",
-            minWidth: "150px",
-            borderTop: "1px solid rgba(255, 255, 255, 0.1)",
-            borderBottom: "1px solid rgba(255, 255, 255, 0.1)",
-            borderLeft: "1px solid rgba(255, 255, 255, 0.1)",
-            borderRight: "1px solid rgba(255, 255, 255, 0.1)",
-            overflow: "hidden",
-            animation: "fadeInRight 0.3s ease-out",
-            zIndex: 1001 // Ensure it's above other elements
-          }}>
-            <div style={{
-              fontSize: "0.9rem",
-              fontWeight: "bold",
-              color: "#e0e0e0",
-              fontFamily: "'Courier New', Courier, monospace",
-              textTransform: "uppercase",
-              padding: "4px 12px",
-              borderBottom: "1px solid rgba(255, 255, 255, 0.1)",
-              marginBottom: "0px"
-            }}>
-              Cities:
-            </div>
-            {dropdownCities.map((city) => (
-              <div
-                key={city.id}
-                onClick={() => handleCitySelect(city)}
-                style={{
-                  padding: "2px 12px",
-                  cursor: "pointer",
-                  fontSize: "0.9rem",
-                  color: "#e0e0e0",
-                  fontFamily: "'Courier New', Courier, monospace",
-                  textTransform: "uppercase",
-                  fontWeight: "bold",
-                  transition: "background-color 0.2s ease",
-                  borderRadius: "0",
-                  margin: "0"
-                }}
-                onMouseEnter={(e) => {
-                  e.currentTarget.style.backgroundColor = "rgba(255, 255, 255, 0.1)";
-                  e.currentTarget.style.color = "#ffffff";
-                }}
-                onMouseLeave={(e) => {
-                  e.currentTarget.style.backgroundColor = "transparent";
-                  e.currentTarget.style.color = "#e0e0e0";
-                }}
-              >
-                {city.name}
-              </div>
-            ))}
+            left: "10px",
+            zIndex: 1000
+          }}
+        >
+          <div style={{ display: "flex", flexDirection: "column", alignItems: "center", gap: "8px" }}>
+            <img 
+              src="/assets/map-cities.png" 
+              alt="Cities" 
+              onClick={handleCityDropdownToggle}
+              style={{
+                maxWidth: "50px",
+                height: "auto",
+                borderRadius: "5px",
+                cursor: "pointer",
+                transition: "transform 0.2s ease, box-shadow 0.2s ease"
+              }}
+              onMouseEnter={(e) => {
+                e.currentTarget.style.transform = "scale(1.05)";
+              }}
+              onMouseLeave={(e) => {
+                e.currentTarget.style.transform = "scale(1)";
+              }}
+            />
+            
+            {/* Tour Icon */}
+            <img 
+              src="/assets/map-tour.png" 
+              alt="Tour" 
+              onClick={handleTourToggle}
+              style={{
+                maxWidth: "50px",
+                height: "auto",
+                borderRadius: "5px",
+                cursor: "pointer",
+                transition: "transform 0.2s ease, box-shadow 0.2s ease"
+              }}
+              onMouseEnter={(e) => {
+                e.currentTarget.style.transform = "scale(1.05)";
+              }}
+              onMouseLeave={(e) => {
+                e.currentTarget.style.transform = "scale(1)";
+              }}
+            />
+            
           </div>
-        )}
-      </div>
+        
+          {/* Dropdown Menu */}
+          {showCityDropdown && (
+            <div style={{
+              position: "absolute",
+              top: "10px",
+              left: "65px", // Fixed position since this is desktop only
+              background: "rgba(0, 0, 0, 0.8)",
+              borderRadius: "8px",
+              boxShadow: "none",
+              padding: "5px 0",
+              minWidth: "150px",
+              borderTop: "1px solid rgba(255, 255, 255, 0.1)",
+              borderBottom: "1px solid rgba(255, 255, 255, 0.1)",
+              borderLeft: "1px solid rgba(255, 255, 255, 0.1)",
+              borderRight: "1px solid rgba(255, 255, 255, 0.1)",
+              overflow: "hidden",
+              animation: "fadeInRight 0.3s ease-out",
+              zIndex: 1001 // Ensure it's above other elements
+            }}>
+              <div style={{
+                fontSize: "0.9rem",
+                fontWeight: "bold",
+                color: "#e0e0e0",
+                fontFamily: "'Courier New', Courier, monospace",
+                textTransform: "uppercase",
+                padding: "4px 12px",
+                borderBottom: "1px solid rgba(255, 255, 255, 0.1)",
+                marginBottom: "0px"
+              }}>
+                Cities:
+              </div>
+              {dropdownCities.map((city) => (
+                <div
+                  key={city.id}
+                  onClick={() => handleCitySelect(city)}
+                  style={{
+                    padding: "2px 12px",
+                    cursor: "pointer",
+                    fontSize: "0.9rem",
+                    color: "#e0e0e0",
+                    fontFamily: "'Courier New', Courier, monospace",
+                    textTransform: "uppercase",
+                    fontWeight: "bold",
+                    transition: "background-color 0.2s ease",
+                    borderRadius: "0",
+                    margin: "0"
+                  }}
+                  onMouseEnter={(e) => {
+                    e.currentTarget.style.backgroundColor = "rgba(255, 255, 255, 0.1)";
+                    e.currentTarget.style.color = "#ffffff";
+                  }}
+                  onMouseLeave={(e) => {
+                    e.currentTarget.style.backgroundColor = "transparent";
+                    e.currentTarget.style.color = "#e0e0e0";
+                  }}
+                >
+                  {city.name}
+                </div>
+              ))}
+            </div>
+          )}
+        </div>
+      )}
 
-      {/* Camera Icon - positioned above NavigationControl */}
-      <div style={{
-        position: "absolute",
-        top: "125px",
-        left: "10px",
-        zIndex: 1000
-      }}>
-        <img 
-          src="/assets/map-3d.png" 
-          alt="3D" 
-          onClick={handleCameraToggle}
-          style={{
-            maxWidth: "50px",
-            height: "auto",
-            borderRadius: "4px",
-            cursor: "pointer",
-            transition: "transform 0.2s ease, box-shadow 0.2s ease",
-            
-            padding: "5px",
-            
-          }}
-          onMouseEnter={(e) => {
-            e.currentTarget.style.transform = "scale(1.05)";
-          }}
-          onMouseLeave={(e) => {
-            e.currentTarget.style.transform = "scale(1)";
-          }}
-        />
-      </div>
+      {/* Camera Icon - positioned above NavigationControl - Hidden on mobile */}
+      {!isMobile && (
+        <div style={{
+          position: "absolute",
+          top: "125px",
+          left: "10px",
+          zIndex: 1000
+        }}>
+          <img 
+            src="/assets/map-3d.png" 
+            alt="3D" 
+            onClick={handleCameraToggle}
+            style={{
+              maxWidth: "50px",
+              height: "auto",
+              borderRadius: "4px",
+              cursor: "pointer",
+              transition: "transform 0.2s ease, box-shadow 0.2s ease",
+              
+              padding: "5px",
+              
+            }}
+            onMouseEnter={(e) => {
+              e.currentTarget.style.transform = "scale(1.05)";
+            }}
+            onMouseLeave={(e) => {
+              e.currentTarget.style.transform = "scale(1)";
+            }}
+          />
+        </div>
+      )}
 
-      {/* Pitch Control */}
-      {showPitchControl && (
+      {/* Pitch Control - Hidden on mobile */}
+      {showPitchControl && !isMobile && (
         <div style={{
           position: "absolute",
           top: "125px",
@@ -960,8 +951,8 @@ export default function MapboxGlobe({ selectedCity, onCitySelect }: MapboxGlobeP
         </div>
       )}
 
-      {/* Tour Controls */}
-      {showTour && (
+      {/* Tour Controls - Hidden on mobile */}
+      {showTour && !isMobile && (
         <div style={{
           position: "absolute",
           bottom: "20px",
@@ -1074,6 +1065,148 @@ export default function MapboxGlobe({ selectedCity, onCitySelect }: MapboxGlobeP
           >
             ✕ Close
           </button>
+        </div>
+      )}
+
+      {/* Custom Popup Area - Below map, above sidebar - Desktop only */}
+      {customPopupData && !isMobile && (
+        <div style={{
+          position: "absolute",
+          bottom: isMobile ? "60px" : "0px", // Above footer on mobile, at bottom on desktop
+          left: isMobile ? "3vw" : "20px",
+          right: isMobile ? "3vw" : "420px", // Leave space for sidebar on desktop
+          background: "rgba(35, 35, 35, 0.95)",
+          borderRadius: "12px",
+          padding: "16px",
+          boxShadow: "0 4px 24px rgba(0,0,0,0.18)",
+          color: "#f8f6f0",
+          zIndex: 1000,
+          maxHeight: "300px",
+          overflow: "auto",
+          border: "1px solid rgba(255, 255, 255, 0.1)",
+          backdropFilter: "blur(10px)"
+        }}>
+          <div style={{ display: "flex", justifyContent: "space-between", alignItems: "flex-start", marginBottom: "12px" }}>
+            <h3 style={{ 
+              margin: 0, 
+              color: "#007bff", 
+              fontSize: "1.2rem", 
+              fontWeight: "bold" 
+            }}>
+              {customPopupData.cityName}
+            </h3>
+            <button
+              onClick={closeCustomPopup}
+              style={{
+                background: "transparent",
+                border: "none",
+                color: "#f8f6f0",
+                fontSize: "18px",
+                cursor: "pointer",
+                padding: "4px",
+                borderRadius: "4px",
+                lineHeight: 1
+              }}
+              onMouseEnter={(e) => {
+                e.currentTarget.style.backgroundColor = "rgba(255, 255, 255, 0.1)";
+              }}
+              onMouseLeave={(e) => {
+                e.currentTarget.style.backgroundColor = "transparent";
+              }}
+            >
+              ×
+            </button>
+          </div>
+          
+          {(() => {
+            const cityData = (placeData as any[]).find(
+              (entry) => entry.city.trim().toLowerCase() === customPopupData.cityName.trim().toLowerCase()
+            );
+            
+            if (!cityData) return null;
+            
+            return (
+              <div style={{ textAlign: "center" }}>
+                {cityData.image && (
+                  <img 
+                    src={cityData.image} 
+                    alt={customPopupData.cityName} 
+                    style={{
+                      display: "block",
+                      margin: "0 auto 12px auto",
+                      maxWidth: "100%",
+                      width: "auto",
+                      height: "auto",
+                      maxHeight: "150px",
+                      borderRadius: "8px",
+                      objectFit: "cover"
+                    }}
+                    onError={(e) => {
+                      console.error("Failed to load image:", e.currentTarget.src);
+                    }}
+                    onLoad={(e) => {
+                      console.log("Image loaded successfully:", e.currentTarget.src);
+                    }}
+                    loading="lazy"
+                  />
+                )}
+                
+                {cityData.date && (
+                  <div style={{
+                    fontSize: "0.8rem",
+                    color: "#bdbdbd",
+                    marginBottom: "8px",
+                    fontStyle: "italic"
+                  }}>
+                    {cityData.date}
+                  </div>
+                )}
+                
+                {cityData.place_description && (
+                  <div style={{
+                    fontSize: "0.9rem",
+                    color: "#e0e0e0",
+                    lineHeight: "1.4",
+                    marginBottom: "12px",
+                    textAlign: "left"
+                  }}>
+                    {cityData.place_description}
+                  </div>
+                )}
+                
+                {cityData.playlist && (
+                  <div style={{ textAlign: "center" }}>
+                    <a 
+                      href={cityData.playlist} 
+                      target="_blank" 
+                      rel="noopener noreferrer"
+                      style={{
+                        color: "#a5d6fa",
+                        fontWeight: "bold",
+                        fontSize: "0.8rem",
+                        textDecoration: "none",
+                        padding: "6px 12px",
+                        border: "1px solid #a5d6fa",
+                        borderRadius: "6px",
+                        display: "inline-block",
+                        transition: "all 0.2s"
+                      }}
+                      onMouseEnter={(e) => {
+                        e.currentTarget.style.backgroundColor = "#a5d6fa";
+                        e.currentTarget.style.color = "#000";
+                      }}
+                      onMouseLeave={(e) => {
+                        e.currentTarget.style.backgroundColor = "transparent";
+                        e.currentTarget.style.color = "#a5d6fa";
+                      }}
+                    >
+                      My Playlist
+                    </a>
+                  </div>
+                )}
+              </div>
+            );
+          })()}
         </div>
       )}
 

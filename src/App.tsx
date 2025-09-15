@@ -130,181 +130,239 @@ function App() {
 
         {/* Middle: Dynamic Content */}
         <div style={{ flex: 1, display: 'flex', flexDirection: 'column', justifyContent: 'center', width: '100%', padding: '10px 10px 0 10px' }}>
-          {disclaimerPage === 1 && (
+          {/* Mobile: Only show page 1 content */}
+          {isMobile ? (
             <>
-              <div style={{ fontSize: isMobile ? '1.0rem' : '1.4rem', fontWeight: 700, marginBottom: 8, color: '#a5d6fa' }}>
+              <div style={{ fontSize: '1.0rem', fontWeight: 700, marginBottom: 8, color: '#a5d6fa' }}>
                 Hello, World!<br />
                 Welcome to Atmika's portfolio.
               </div>
-              <div style={{ fontSize: isMobile ? '0.8rem' : '1rem', lineHeight: '1.4', marginBottom: 10, textAlign: 'center' }}>
+              <div style={{ fontSize: '0.8rem', lineHeight: '1.4', marginBottom: 10, textAlign: 'center' }}>
                 I'm a Cornell Tech grad student, studying Information Systems. GIS, Cartography, and AR/VR fascinate me! 
               </div>
-              <div style={{ fontSize: isMobile ? '0.8rem' : '1rem', lineHeight: '1.4', marginBottom: 20, textAlign: 'center' }}>
+              <div style={{ fontSize: '0.8rem', lineHeight: '1.4', marginBottom: 20, textAlign: 'center' }}>
                 Jack Dangermond says, <span style={{ fontStyle: 'italic' , fontWeight: 600}}>"Location is a way to organize, index, and retrieve our memories."</span> I've lived in six cities (and counting), and each has shaped how I think. This portfolio traces those geographies. 
               </div>
             </>
-          )}
-
-          {disclaimerPage === 2 && (
+          ) : (
             <>
-              <div style={{ fontSize: isMobile ? '0.8rem' : '1rem', lineHeight: '1.4', marginBottom: 5, textAlign: 'center', marginTop: 0 }}>
-                Here are the controls on the map:
-              </div>
-              
-              <div style={{ display: 'flex', flexDirection: 'column', gap: '16px', marginBottom: '20px' }}>
-                {/* Map Cities Control */}
-                <div style={{ display: 'flex', alignItems: 'center', gap: '12px', padding: '12px', background: 'rgba(255, 255, 255, 0.05)', borderRadius: '8px', border: '1px solid rgba(165, 214, 250, 0.2)' }}>
-                  <img src="/assets/map-cities.png" alt="Cities" style={{ width: '32px', height: '32px', borderRadius: '4px' }} />
-                  <div style={{ textAlign: 'center', flex: 1 }}>
-                    <div style={{ fontSize: '0.9rem', fontWeight: '600', color: '#a5d6fa', marginBottom: '4px' }}>Cities Dropdown</div>
-                    <div style={{ fontSize: '0.8rem', color: '#e0e0e0' }}>Click to see a list of cities and jump directly to any location</div>
+              {/* Desktop: Show all pages based on disclaimerPage state */}
+              {disclaimerPage === 1 && (
+                <>
+                  <div style={{ fontSize: '1.4rem', fontWeight: 700, marginBottom: 8, color: '#a5d6fa' }}>
+                    Hello, World!<br />
+                    Welcome to Atmika's portfolio.
                   </div>
-                </div>
+                  <div style={{ fontSize: '1rem', lineHeight: '1.4', marginBottom: 10, textAlign: 'center' }}>
+                    I'm a Cornell Tech grad student, studying Information Systems. GIS, Cartography, and AR/VR fascinate me! 
+                  </div>
+                  <div style={{ fontSize: '1rem', lineHeight: '1.4', marginBottom: 20, textAlign: 'center' }}>
+                    Jack Dangermond says, <span style={{ fontStyle: 'italic' , fontWeight: 600}}>"Location is a way to organize, index, and retrieve our memories."</span> I've lived in six cities (and counting), and each has shaped how I think. This portfolio traces those geographies. 
+                  </div>
+                </>
+              )}
 
-                {/* Map Tour Control */}
-                <div style={{ display: 'flex', alignItems: 'center', gap: '12px', padding: '12px', background: 'rgba(255, 255, 255, 0.05)', borderRadius: '8px', border: '1px solid rgba(165, 214, 250, 0.2)' }}>
-                  <img src="/assets/map-tour.png" alt="Tour" style={{ width: '32px', height: '32px', borderRadius: '4px' }} />
-                  <div style={{ textAlign: 'center', flex: 1 }}>
-                    <div style={{ fontSize: '0.9rem', fontWeight: '600', color: '#a5d6fa', marginBottom: '4px' }}>Guided Tour</div>
-                    <div style={{ fontSize: '0.8rem', color: '#e0e0e0' }}>Take a guided tour of my career thus far</div>
+              {disclaimerPage === 2 && (
+                <>
+                  <div style={{ fontSize: '1rem', lineHeight: '1.4', marginBottom: 5, textAlign: 'center', marginTop: 0 }}>
+                    Here are the controls on the map:
                   </div>
-                </div>
+                  
+                  <div style={{ display: 'flex', flexDirection: 'column', gap: '16px', marginBottom: '20px' }}>
+                    {/* Map Cities Control */}
+                    <div style={{ display: 'flex', alignItems: 'center', gap: '12px', padding: '12px', background: 'rgba(255, 255, 255, 0.05)', borderRadius: '8px', border: '1px solid rgba(165, 214, 250, 0.2)' }}>
+                      <img src="/assets/map-cities.png" alt="Cities" style={{ width: '32px', height: '32px', borderRadius: '4px' }} />
+                      <div style={{ textAlign: 'center', flex: 1 }}>
+                        <div style={{ fontSize: '0.9rem', fontWeight: '600', color: '#a5d6fa', marginBottom: '4px' }}>Cities Dropdown</div>
+                        <div style={{ fontSize: '0.8rem', color: '#e0e0e0' }}>Click to see a list of cities and jump directly to any location</div>
+                      </div>
+                    </div>
 
-                {/* Map Camera Control */}
-                <div style={{ display: 'flex', alignItems: 'center', gap: '12px', padding: '12px', background: 'rgba(255, 255, 255, 0.05)', borderRadius: '8px', border: '1px solid rgba(165, 214, 250, 0.2)' }}>
-                  <img src="/assets/map-3d.png" alt="3D" style={{ width: '32px', height: '32px', borderRadius: '4px' }} />
-                  <div style={{ textAlign: 'center', flex: 1 }}>
-                    <div style={{ fontSize: '0.9rem', fontWeight: '600', color: '#a5d6fa', marginBottom: '4px' }}>3D Toggle</div>
-                    <div style={{ fontSize: '0.8rem', color: '#e0e0e0' }}>Switch between 2D and 3D view </div>
-                  </div>
-                </div>
-              </div>
-            </>
-          )}
+                    {/* Map Tour Control */}
+                    <div style={{ display: 'flex', alignItems: 'center', gap: '12px', padding: '12px', background: 'rgba(255, 255, 255, 0.05)', borderRadius: '8px', border: '1px solid rgba(165, 214, 250, 0.2)' }}>
+                      <img src="/assets/map-tour.png" alt="Tour" style={{ width: '32px', height: '32px', borderRadius: '4px' }} />
+                      <div style={{ textAlign: 'center', flex: 1 }}>
+                        <div style={{ fontSize: '0.9rem', fontWeight: '600', color: '#a5d6fa', marginBottom: '4px' }}>Guided Tour</div>
+                        <div style={{ fontSize: '0.8rem', color: '#e0e0e0' }}>Take a guided tour of my career thus far</div>
+                      </div>
+                    </div>
 
-          {disclaimerPage === 3 && (
-            <>
-              <div style={{ fontSize: isMobile ? '1.0rem' : '1.4rem', fontWeight: 700, marginBottom: 20, color: '#a5d6fa' }}>
-                Ready to explore?
-              </div>
-              
-              <div style={{ display: 'flex', justifyContent: 'center', marginBottom: '20px' }}>
-                <div 
-                  onClick={() => {
-                    // Close the disclaimer first
-                    ReactGA.event({
-                      category: 'Engagement',
-                      action: 'Complete Disclaimer',
-                      label: 'Guided Tour Highlight'
-                    });
-                    setShowDisclaimer(false);
-                    localStorage.setItem('hasSeenPortfolioDisclaimer', 'true');
-                    
-                    // Then trigger the guided tour by simulating a click on map-tour.png
-                    setTimeout(() => {
-                      const tourButton = document.querySelector('img[src="/assets/map-tour.png"]') as HTMLImageElement;
-                      if (tourButton) {
-                        tourButton.click();
-                      }
-                    }, 100); // Small delay to ensure modal closes first
-                  }}
-                  style={{
-                    display: 'flex',
-                    alignItems: 'center',
-                    gap: '12px',
-                    padding: '16px 20px',
-                    background: 'rgba(165, 214, 250, 0.2)',
-                    borderRadius: '12px',
-                    border: '2px solid rgba(165, 214, 250, 0.6)',
-                    cursor: 'pointer',
-                    transition: 'all 0.3s ease',
-                    boxShadow: '0 4px 15px rgba(165, 214, 250, 0.3)',
-                    animation: 'pulse 2s infinite'
-                  }}
-                  onMouseEnter={(e) => {
-                    e.currentTarget.style.background = 'rgba(165, 214, 250, 0.3)';
-                    e.currentTarget.style.borderColor = 'rgba(165, 214, 250, 0.8)';
-                    e.currentTarget.style.transform = 'scale(1.05)';
-                    e.currentTarget.style.boxShadow = '0 6px 20px rgba(165, 214, 250, 0.4)';
-                  }}
-                  onMouseLeave={(e) => {
-                    e.currentTarget.style.background = 'rgba(165, 214, 250, 0.2)';
-                    e.currentTarget.style.borderColor = 'rgba(165, 214, 250, 0.6)';
-                    e.currentTarget.style.transform = 'scale(1)';
-                    e.currentTarget.style.boxShadow = '0 4px 15px rgba(165, 214, 250, 0.3)';
-                  }}
-                >
-                  <img src="/assets/map-tour.png" alt="Guided Tour" style={{ width: '32px', height: '32px', borderRadius: '4px' }} />
-                  <div style={{ textAlign: 'center' }}>
-                    <div style={{ fontSize: '1rem', fontWeight: '600', color: '#a5d6fa' }}>Start Guided Tour</div>
+                    {/* Map Camera Control */}
+                    <div style={{ display: 'flex', alignItems: 'center', gap: '12px', padding: '12px', background: 'rgba(255, 255, 255, 0.05)', borderRadius: '8px', border: '1px solid rgba(165, 214, 250, 0.2)' }}>
+                      <img src="/assets/map-3d.png" alt="3D" style={{ width: '32px', height: '32px', borderRadius: '4px' }} />
+                      <div style={{ textAlign: 'center', flex: 1 }}>
+                        <div style={{ fontSize: '0.9rem', fontWeight: '600', color: '#a5d6fa', marginBottom: '4px' }}>3D Toggle</div>
+                        <div style={{ fontSize: '0.8rem', color: '#e0e0e0' }}>Switch between 2D and 3D view </div>
+                      </div>
+                    </div>
                   </div>
-                </div>
-              </div>
+                </>
+              )}
+
+              {disclaimerPage === 3 && (
+                <>
+                  <div style={{ fontSize: '1.4rem', fontWeight: 700, marginBottom: 20, color: '#a5d6fa' }}>
+                    Ready to explore?
+                  </div>
+                  
+                  <div style={{ display: 'flex', justifyContent: 'center', marginBottom: '20px' }}>
+                    <div 
+                      onClick={() => {
+                        // Close the disclaimer first
+                        ReactGA.event({
+                          category: 'Engagement',
+                          action: 'Complete Disclaimer',
+                          label: 'Guided Tour Highlight'
+                        });
+                        setShowDisclaimer(false);
+                        localStorage.setItem('hasSeenPortfolioDisclaimer', 'true');
+                        
+                        // Then trigger the guided tour by simulating a click on map-tour.png
+                        setTimeout(() => {
+                          const tourButton = document.querySelector('img[src="/assets/map-tour.png"]') as HTMLImageElement;
+                          if (tourButton) {
+                            tourButton.click();
+                          }
+                        }, 100); // Small delay to ensure modal closes first
+                      }}
+                      style={{
+                        display: 'flex',
+                        alignItems: 'center',
+                        gap: '12px',
+                        padding: '16px 20px',
+                        background: 'rgba(165, 214, 250, 0.2)',
+                        borderRadius: '12px',
+                        border: '2px solid rgba(165, 214, 250, 0.6)',
+                        cursor: 'pointer',
+                        transition: 'all 0.3s ease',
+                        boxShadow: '0 4px 15px rgba(165, 214, 250, 0.3)',
+                        animation: 'pulse 2s infinite'
+                      }}
+                      onMouseEnter={(e) => {
+                        e.currentTarget.style.background = 'rgba(165, 214, 250, 0.3)';
+                        e.currentTarget.style.borderColor = 'rgba(165, 214, 250, 0.8)';
+                        e.currentTarget.style.transform = 'scale(1.05)';
+                        e.currentTarget.style.boxShadow = '0 6px 20px rgba(165, 214, 250, 0.4)';
+                      }}
+                      onMouseLeave={(e) => {
+                        e.currentTarget.style.background = 'rgba(165, 214, 250, 0.2)';
+                        e.currentTarget.style.borderColor = 'rgba(165, 214, 250, 0.6)';
+                        e.currentTarget.style.transform = 'scale(1)';
+                        e.currentTarget.style.boxShadow = '0 4px 15px rgba(165, 214, 250, 0.3)';
+                      }}
+                    >
+                      <img src="/assets/map-tour.png" alt="Guided Tour" style={{ width: '32px', height: '32px', borderRadius: '4px' }} />
+                      <div style={{ textAlign: 'center' }}>
+                        <div style={{ fontSize: '1rem', fontWeight: '600', color: '#a5d6fa' }}>Start Guided Tour</div>
+                      </div>
+                    </div>
+                  </div>
+                </>
+              )}
             </>
           )}
 
         </div>
 
-        {/* Bottom: Navigation */}
-        <div style={{
-          flexShrink: 0, 
-          width: '100%', 
-          display: 'flex', 
-          justifyContent: 'space-between', 
-          alignItems: 'center',
-          padding: '0 10px',
-          boxSizing: 'border-box'
-        }}>
-          {/* Back Arrow */}
-          <button 
-            style={{
-              background: 'none',
-              border: 'none',
-              color: '#f8f6f0',
-              fontSize: '2rem',
-              cursor: 'pointer',
-              visibility: disclaimerPage === 1 ? 'hidden' : 'visible',
-              padding: '10px'
-            }}
-            onClick={() => setDisclaimerPage(disclaimerPage - 1)}
-          >
-            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><polyline points="15 18 9 12 15 6"></polyline></svg>
-          </button>
+        {/* Bottom: Navigation - Desktop only */}
+        {!isMobile && (
+          <div style={{
+            flexShrink: 0, 
+            width: '100%', 
+            display: 'flex', 
+            justifyContent: 'space-between', 
+            alignItems: 'center',
+            padding: '0 10px',
+            boxSizing: 'border-box'
+          }}>
+            {/* Back Arrow */}
+            <button 
+              style={{
+                background: 'none',
+                border: 'none',
+                color: '#f8f6f0',
+                fontSize: '2rem',
+                cursor: 'pointer',
+                visibility: disclaimerPage === 1 ? 'hidden' : 'visible',
+                padding: '10px'
+              }}
+              onClick={() => setDisclaimerPage(disclaimerPage - 1)}
+            >
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><polyline points="15 18 9 12 15 6"></polyline></svg>
+            </button>
 
-          {/* Pagination Dots */}
-          <div style={{ display: 'flex', justifyContent: 'center', gap: '8px' }}>
-            <span style={{ height: '8px', width: '8px', backgroundColor: disclaimerPage === 1 ? '#a5d6fa' : '#555', borderRadius: '50%' }}></span>
-            <span style={{ height: '8px', width: '8px', backgroundColor: disclaimerPage === 2 ? '#a5d6fa' : '#555', borderRadius: '50%' }}></span>
-            <span style={{ height: '8px', width: '8px', backgroundColor: disclaimerPage === 3 ? '#a5d6fa' : '#555', borderRadius: '50%' }}></span>
+            {/* Pagination Dots */}
+            <div style={{ display: 'flex', justifyContent: 'center', gap: '8px' }}>
+              <span style={{ height: '8px', width: '8px', backgroundColor: disclaimerPage === 1 ? '#a5d6fa' : '#555', borderRadius: '50%' }}></span>
+              <span style={{ height: '8px', width: '8px', backgroundColor: disclaimerPage === 2 ? '#a5d6fa' : '#555', borderRadius: '50%' }}></span>
+              <span style={{ height: '8px', width: '8px', backgroundColor: disclaimerPage === 3 ? '#a5d6fa' : '#555', borderRadius: '50%' }}></span>
+            </div>
+
+            {/* Forward Arrow */}
+            <button 
+              style={{
+                background: 'none',
+                border: 'none',
+                color: '#a5d6fa',
+                fontSize: '2rem',
+                cursor: 'pointer',
+                padding: '10px'
+              }}
+              onClick={() => {
+                if (disclaimerPage === 3) {
+                  ReactGA.event({
+                    category: 'Engagement',
+                    action: 'Complete Disclaimer',
+                    label: 'Full Flow'
+                  });
+                  setShowDisclaimer(false);
+                  localStorage.setItem('hasSeenPortfolioDisclaimer', 'true');
+                } else {
+                  setDisclaimerPage(disclaimerPage + 1);
+                }
+              }}
+            >
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><polyline points="9 18 15 12 9 6"></polyline></svg>
+            </button>
           </div>
+        )}
 
-          {/* Forward Arrow */}
-          <button 
-            style={{
-              background: 'none',
-              border: 'none',
-              color: '#a5d6fa',
-              fontSize: '2rem',
-              cursor: 'pointer',
-              padding: '10px'
-            }}
-            onClick={() => {
-              if (disclaimerPage === 3) {
+        {/* Mobile: Only show close button */}
+        {isMobile && (
+          <div style={{
+            flexShrink: 0, 
+            width: '100%', 
+            display: 'flex', 
+            justifyContent: 'center', 
+            alignItems: 'center',
+            padding: '0 10px',
+            boxSizing: 'border-box'
+          }}>
+            <button 
+              style={{
+                background: '#a5d6fa',
+                border: 'none',
+                color: '#000',
+                fontSize: '1rem',
+                cursor: 'pointer',
+                padding: '12px 24px',
+                borderRadius: '8px',
+                fontWeight: 'bold'
+              }}
+              onClick={() => {
                 ReactGA.event({
                   category: 'Engagement',
                   action: 'Complete Disclaimer',
-                  label: 'Full Flow'
+                  label: 'Mobile Close'
                 });
                 setShowDisclaimer(false);
                 localStorage.setItem('hasSeenPortfolioDisclaimer', 'true');
-              } else {
-                setDisclaimerPage(disclaimerPage + 1);
-              }
-            }}
-          >
-            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><polyline points="9 18 15 12 9 6"></polyline></svg>
-          </button>
-        </div>
+              }}
+            >
+              Get Started
+            </button>
+          </div>
+        )}
 
       </div>
     </div>
