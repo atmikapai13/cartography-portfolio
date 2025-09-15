@@ -112,22 +112,22 @@ export default function MapboxGlobe({ selectedCity, onCitySelect }: MapboxGlobeP
   const handleCitySelect = (city: typeof project_cities[number]) => {
     if (mapRef.current) {
       // Step 1: Close any existing popups
-      if (activePopup.current) {
-        activePopup.current.remove();
-        activePopup.current = null;
-      }
-      
+    if (activePopup.current) {
+      activePopup.current.remove();
+      activePopup.current = null;
+    }
+
       rotationEnabled.current = false;
       if (onCitySelect) {
         onCitySelect(city.name);
       }
       
       // Step 2: Set up moveend listener for popup before starting animation
-      const showPopup = () => {
-        // Step 3: Open popup for new city after flyTo animation completes
-        createCityPopup(city.name, [city.longitude, city.latitude], false);
-        // Remove the listener after use
-        mapRef.current?.off('moveend', showPopup);
+        const showPopup = () => {
+          // Step 3: Open popup for new city after flyTo animation completes
+          createCityPopup(city.name, [city.longitude, city.latitude]);
+          // Remove the listener after use
+          mapRef.current?.off('moveend', showPopup);
       };
       
       // Listen for moveend event (when flyTo animation completes)
@@ -170,16 +170,16 @@ export default function MapboxGlobe({ selectedCity, onCitySelect }: MapboxGlobeP
         activePopup.current = null;
       }
       
-      rotationEnabled.current = false;
+    rotationEnabled.current = false;
       if (onCitySelect) {
         onCitySelect(city.name);
       }
       
-      // Set up moveend listener for popup
-      const showPopup = () => {
-        createCityPopup(city.name, [city.longitude, city.latitude], true);
-        mapRef.current?.off('moveend', showPopup);
-      };
+        // Set up moveend listener for popup
+        const showPopup = () => {
+          createCityPopup(city.name, [city.longitude, city.latitude]);
+          mapRef.current?.off('moveend', showPopup);
+        };
       
       mapRef.current.on('moveend', showPopup);
       
@@ -210,81 +210,164 @@ export default function MapboxGlobe({ selectedCity, onCitySelect }: MapboxGlobeP
   };
 
 
-  const createCityPopup = (cityName: string, lngLat: [number, number], isTour: boolean = false) => {
-    if (!mapRef.current) return;
-
-    // Disable popups on mobile
+  const createCityPopup = (cityName: string, lngLat: [number, number]) => {
+    const isMobile = window.innerWidth <= 600;
     if (isMobile) return;
 
-    // Clear any existing Mapbox popup
+    if (!mapRef.current) return;
+
     if (activePopup.current) {
       activePopup.current.remove();
       activePopup.current = null;
     }
 
+    // Find city info (place_description, date, playlist)
+    const cityData = (placeData as any[]).find(
+      (entry) => entry.city.trim().toLowerCase() === cityName.trim().toLowerCase()
+    );
+
+    let popupContent = `<div class="city-popup" style="text-align:center; max-height:250px; overflow:auto; scrollbar-width: none; -ms-overflow-style: none;">`;
+    if (!cityData) {
+      popupContent += ``;
+    } else {
+      popupContent += `<div class="city-description">`;
+      popupContent += `<h3 style='margin-bottom: 3px; text-align:center;color:#007bff;'>${cityName}</h3>`;
+      if (cityData.image) {
+        popupContent += `<img src='${cityData.image}' alt='${cityName}' style='display:block;margin:0 auto 10px auto;max-width:320px; width:100%;height:auto;border-radius:10px;' onerror='console.error(\"Failed to load image:\", this.src)' onload='console.log(\"Image loaded successfully:\", this.src)' loading='lazy' />`;
+      }
+      popupContent += `<div style='font-size:0.7rem;color:#bdbdbd;margin-bottom:3px;text-align:center; font-style:italic;'><em>${cityData.date || ''}</em></div>`;
+      popupContent += `<div style='font-size:0.5rem;color:#e0e0e0;text-align:center; font-style:italic;line-height:1.2;'>${cityData.place_description || ''}</div>`;
+      if (cityData.playlist) {
+        popupContent += `<div class='popup-playlist' style=' font-size:0.5rem;'><a href='${cityData.playlist}' target='_blank' rel='noopener noreferrer'>my playlist</a></div>`;
+      }
+      popupContent += `</div>`;
+    }
+    popupContent += `</div>`;
+
     // Pause rotation when popup opens
     rotationEnabled.current = false;
     
-    // Set custom popup data
-    setCustomPopupData({
-      cityName,
-      lngLat,
-      isTour
+    // Offset the popup slightly to the right of the marker
+    const offsetLngLat: [number, number] = [lngLat[0] - 0.005, lngLat[1]];
+    
+    // Use larger width if there's an image
+    const popupWidth = cityData?.image ? '350px' : '250px';
+    
+    const popup = new mapboxgl.Popup({ maxWidth: popupWidth, anchor: 'right'})
+      .setLngLat(offsetLngLat)
+      .setHTML(popupContent)
+      .addTo(mapRef.current);
+
+    activePopup.current = popup;
+    
+    // Resume rotation when popup closes
+    popup.on('close', () => {
+      rotationEnabled.current = true;
+      if (onCitySelect) onCitySelect(null);
+      activePopup.current = null;
+      
+      // Clear selected marker
+      selectedMarkerRef.current = null;
+      
+      // Refresh the marker layer to reset colors
+      if (mapRef.current && mapRef.current.getLayer("city-markers")) {
+        mapRef.current.removeLayer("city-markers");
+        mapRef.current.addLayer({
+          id: "city-markers",
+          type: "circle",
+          source: "cities",
+          paint: {
+            "circle-radius": [
+              "case",
+              ["in", ["get", "name"], ["literal", zoomGatedCities]], 4,
+              5
+            ],
+            "circle-color": [
+              "case",
+              ["==", ["get", "name"], selectedMarkerRef.current], "#007bff",
+              ["case",
+                ["in", ["get", "name"], ["literal", zoomGatedCities]], "#ed462b",
+                "#ed462b"
+              ]
+            ],
+            "circle-stroke-width": [
+              "case",
+              ["==", ["get", "name"], selectedMarkerRef.current], 2,
+              1
+            ],
+            "circle-stroke-color": [
+              "case",
+              ["==", ["get", "name"], selectedMarkerRef.current], "#ffffff",
+              "#000000"
+            ],
+            "circle-opacity": 1.0,
+          },
+          filter: [
+            "any",
+            ["all", ...zoomGatedCities.map(city => ["!=", ["get", "name"], city])],
+            ...zoomGatedCities.map(city => [
+              "all",
+              ["==", ["get", "name"], city],
+              [">=", ["zoom"], 3]
+            ])
+          ]
+        });
+      }
     });
   };
 
   const closeCustomPopup = () => {
     setCustomPopupData(null);
-    rotationEnabled.current = true;
-    if (onCitySelect) onCitySelect(null);
-    
-    // Clear selected marker
-    selectedMarkerRef.current = null;
-    
-    // Refresh the marker layer to reset colors
-    if (mapRef.current && mapRef.current.getLayer("city-markers")) {
-      mapRef.current.removeLayer("city-markers");
-      mapRef.current.addLayer({
-        id: "city-markers",
-        type: "circle",
-        source: "cities",
-        paint: {
-          "circle-radius": [
-            "case",
-            ["in", ["get", "name"], ["literal", zoomGatedCities]], 4,
-            5
-          ],
-          "circle-color": [
-            "case",
-            ["==", ["get", "name"], selectedMarkerRef.current], "#007bff",
-            ["case",
-              ["in", ["get", "name"], ["literal", zoomGatedCities]], "#ed462b",
-              "#ed462b"
-            ]
-          ],
-          "circle-stroke-width": [
-            "case",
-            ["==", ["get", "name"], selectedMarkerRef.current], 2,
-            1
-          ],
-          "circle-stroke-color": [
-            "case",
-            ["==", ["get", "name"], selectedMarkerRef.current], "#ffffff",
-            "#000000"
-          ],
-          "circle-opacity": 1.0,
-        },
-        filter: [
-          "any",
-          ["all", ...zoomGatedCities.map(city => ["!=", ["get", "name"], city])],
-          ...zoomGatedCities.map(city => [
-            "all",
-            ["==", ["get", "name"], city],
-            [">=", ["zoom"], 3]
-          ])
-        ]
-      });
-    }
+      rotationEnabled.current = true;
+      if (onCitySelect) onCitySelect(null);
+      
+      // Clear selected marker
+      selectedMarkerRef.current = null;
+      
+      // Refresh the marker layer to reset colors
+      if (mapRef.current && mapRef.current.getLayer("city-markers")) {
+        mapRef.current.removeLayer("city-markers");
+        mapRef.current.addLayer({
+          id: "city-markers",
+          type: "circle",
+          source: "cities",
+          paint: {
+            "circle-radius": [
+              "case",
+              ["in", ["get", "name"], ["literal", zoomGatedCities]], 4,
+              5
+            ],
+            "circle-color": [
+              "case",
+              ["==", ["get", "name"], selectedMarkerRef.current], "#007bff",
+              ["case",
+                ["in", ["get", "name"], ["literal", zoomGatedCities]], "#ed462b",
+                "#ed462b"
+              ]
+            ],
+            "circle-stroke-width": [
+              "case",
+              ["==", ["get", "name"], selectedMarkerRef.current], 2,
+              1
+            ],
+            "circle-stroke-color": [
+              "case",
+              ["==", ["get", "name"], selectedMarkerRef.current], "#ffffff",
+              "#000000"
+            ],
+            "circle-opacity": 1.0,
+          },
+          filter: [
+            "any",
+            ["all", ...zoomGatedCities.map(city => ["!=", ["get", "name"], city])],
+            ...zoomGatedCities.map(city => [
+              "all",
+              ["==", ["get", "name"], city],
+              [">=", ["zoom"], 3]
+            ])
+          ]
+        });
+      }
   };
   
   useEffect(() => {
