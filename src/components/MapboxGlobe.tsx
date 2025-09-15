@@ -182,8 +182,8 @@ export default function MapboxGlobe({ selectedCity, onCitySelect }: MapboxGlobeP
         center: [city.longitude, city.latitude],
         zoom: 16,
         pitch: 60,
-        speed: 2.0,
-        curve: 1.40,
+        speed: 1.5,
+        curve: 1.2,
         easing(t) {
           return t;
         }

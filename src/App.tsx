@@ -129,7 +129,7 @@ function App() {
         <div style={{ fontSize: '3rem', flexShrink: 0 }}>🌍</div>
 
         {/* Middle: Dynamic Content */}
-        <div style={{ flex: 1, display: 'flex', flexDirection: 'column', justifyContent: 'center', width: '100%', overflowY: 'auto', padding: '10px 10px 0 10px' }}>
+        <div style={{ flex: 1, display: 'flex', flexDirection: 'column', justifyContent: 'center', width: '100%', padding: '10px 10px 0 10px' }}>
           {disclaimerPage === 1 && (
             <>
               <div style={{ fontSize: isMobile ? '1.0rem' : '1.4rem', fontWeight: 700, marginBottom: 8, color: '#a5d6fa' }}>
