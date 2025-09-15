@@ -30,7 +30,7 @@
   {
     "id": 2,
     "title": "The New York Trilogy",
-    "city": ["New York", "Central Park"],
+    "city": ["New York", "Central Park", "East Village", "Lincoln Center"],
     "description": "The New York Trilogy visualizes the city not by zoning codes or census tracts, but by how it's lived. From run clubs to restaurant weeks, this series maps the kinetic, cultural, and psychogeographic layers of New York City. Stay tuned for a film guide!",
     "link": "https://medium.com/map-nyc",
     "github": "https://medium.com/map-nyc",

@@ -34,11 +34,15 @@ const project_cities = [
     { id: 25, name: "Lower Manhattan", country: "USA", longitude: -74.0090, latitude: 40.7075 },
     { id: 26, name: "Christchurch", country: "New Zealand", longitude: 172.6306, latitude: -43.5321 },
     { id: 28, name: "London", country: "USA", longitude: 0.1281, latitude: 51.5080 },
+    { id: 29, name: "East Village", country: "USA", longitude: -73.9857, latitude: 40.7282 },
+    { id: 30, name: "Juhu", country: "India", longitude: 72.8267, latitude: 19.1074 },
+    { id: 31, name: "Lincoln Center", country: "USA", longitude: -73.9847, latitude: 40.7720 },
   ];
 
 const zoomGatedCities = ["Walnut Creek", "New Jersey", "Oakland", "Berkeley", "West Hollywood",
   "Brooklyn (BK11)", "Brooklyn (BK17)", "Bronx (BX5)", "Manhattan (MN10)", "Queens (QN2)", 
-  "Lower Manhattan", "Christchurch", "Cafenated, North Berkeley", "Cafe Aviva, Roosevelt Island", "London", "Central Park"
+  "Lower Manhattan", "Christchurch", "Cafenated, North Berkeley", "Cafe Aviva, Roosevelt Island", 
+  "London", "Central Park", "East Village", "Juhu", "Lincoln Center"
 ];
 
 // Guided tour cities in order (by city name)

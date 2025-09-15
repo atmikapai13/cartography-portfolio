@@ -23,6 +23,7 @@
     "playlist": "https://open.spotify.com/playlist/6UADKvCNvJOQggMG8TEfV3?si=2dc111eb8bc44a59"
   },
   {
+    "name": "IntelliBART",
     "city": "San Francisco",
     "place_description": "While I never lived in San Francisco, the city left a lasting impression on me. During the pandemic years, I observed how a city built around tech can leave other industries and institutions by the wayside. <br><br> Be that as it may, it was here that I first explored public transit data, with much of my early work focused on the Bay Area Rapid Transit (BART) system."
   },
@@ -103,7 +104,6 @@
     "image": "/assets/extremeheat_BK11.png"
   },
   {
-    "name": "Extreme Heat Mitigation",
     "city": "Brooklyn (BK17)",
     "place_description": "I identified optimal tree planting locations using land surface temperature data (Sentinel EO Hub's Landsat 8 LIDAR) and Michael Treglia's 'practical canopy' framework, which considers land use, cover, and infrastructure constraints. This map presents the results of that analysis for BK17 community district. Check out <a href=\"https://drive.google.com/file/d/1nUElvpsu3StJxUv4dWGkUcD0va3OIBE1/view\" target=\"_blank\" rel=\"noopener noreferrer\">my research paper!</a>",
     "image": "/assets/extremeheat_BK17.png"
@@ -124,6 +124,7 @@
     "image": "/assets/extremeheat_QN2.png"
   },
   {
+    "name": "Extreme Heat Mitigation",
     "city": "Lower Manhattan",
     "place_description": "I identified optimal tree planting locations in the five boroughs of NYC using land surface temperature data from Sentinel EO Hub's Landsat 8 LIDAR (shown in red) and Michael Treglia's 'practical canopy' framework, which considers land use, cover, and infrastructure constraints (shown in green). This map shows the two metrics across NYC. Check out <a href=\"https://drive.google.com/file/d/1nUElvpsu3StJxUv4dWGkUcD0va3OIBE1/view\" target=\"_blank\" rel=\"noopener noreferrer\">my research paper!</a>",
     "image": "/assets/extremeheat.png"
@@ -144,5 +145,27 @@
     "city": "Central Park",
     "date": "June 2025",
     "place_description": "My interest in GIS, cartography, and AR/VR culminates in The New York Trilogy, which is composed of <a href='https://nyceats.live' target='_blank' rel='noopener noreferrer' style='color: #4A90E2; text-decoration: none;'>NYC Eats</a>, <a href='https://atmikapai13.github.io/iconic-runclubs-nyc/' target='_blank' rel='noopener noreferrer' style='color: #4A90E2; text-decoration: none;'>NYC Races</a>, and <a href='https://www.figma.com/proto/A8IxNabbUxPRPWp4aWulRf/NYC-Screens?node-id=361-2282&t=glEEz1tdRoyiQdyS-1' target='_blank' rel='noopener noreferrer' style='color: #4A90E2; text-decoration: none;'>NYC Screens</a>!"
+  },
+  {
+    "name": "NYC Eats",
+    "city": "East Village",
+    "date": "June 2025",
+    "place_description": "NYC Eats, part of the New York Trilogy, is a web map of all restaurants participating in the biannual New York Restaurant Week.",
+    "image": "/assets/nyceats.png"
+  },
+  {
+    "name": "Text Me Not",
+    "city": "Juhu",
+    "date": "May 2025",
+    "place_description": "Fun web app that analyzes your Whatsapp texts with friends or partners to detect patterns and insights in your communication. Check it out at <a href='https://atmikapai13.github.io/textmenot/' target='_blank' rel='noopener noreferrer' style='color: #4A90E2; text-decoration: none;'>here</a>!",
+    "image": "/assets/textmenot.png"
+  },
+  {
+    "name": "NYC Screens",
+    "city": "Lincoln Center",
+    "date": "August 2025",
+    "place_description": "Proof-of-concept web app that helps users find indie movie screenings and films shot in NYC, the mecca of cinema, using Figma and AR/VR techniques. Check out the prototype <a href='https://www.figma.com/proto/A8IxNabbUxPRPWp4aWulRf/NYC-Screens?node-id=361-2282&t=glEEz1tdRoyiQdyS-1' target='_blank' rel='noopener noreferrer' style='color: #4A90E2; text-decoration: none;'>here</a>!",
+    "image": "/assets/nycscreens.png"
   }
+
 ]
