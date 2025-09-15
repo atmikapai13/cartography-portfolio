@@ -618,7 +618,7 @@ export default function MapboxGlobe({ selectedCity, onCitySelect }: MapboxGlobeP
         }
         
         if (onCitySelect) onCitySelect(cityName);
-        createCityPopup(cityName, [e.lngLat.lng, e.lngLat.lat], false);
+        createCityPopup(cityName, [e.lngLat.lng, e.lngLat.lat]);
       });
 
       // Clear city selection when clicking on map background
