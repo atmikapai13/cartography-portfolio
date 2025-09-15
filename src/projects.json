@@ -231,19 +231,6 @@
     "tech_stack2": "SQL, Snowflake, Oracle Essbase, Microsoft Suite, Tableau"
   },
   {
-    "id": 33,
-    "title": "User-Centered Analysis of Transit Apps",
-    "city": "New York",
-    "description": "Exploring how student commuters use transit apps like MTA’s official app, Google Maps, and Apple Maps to navigate NYC public transportation through different modes of inquiry (semi-structured qualitative interviews, contextual inquiries, and surveys)",
-    "link": "https://www.figma.com/design/fXwIWvqaw9PxIg8zlkP7lW/Atmika_TransitApp?node-id=0-1&m=dev&t=qhBXIvRYxv7ThAqZ-1",
-    "github": null,
-    "image": "/assets/33.png",
-    "spotlight": false,
-    "tech_stack": ["UI/UX Design", "Mobility"],
-    "work_experience": ["Projects"],
-    "tech_stack2": "User-Centered Design, Surveys, Interviews"
-  },
-  {
     "id": 19,
     "title": "CSAA Insurance Group, an AAA Insurer",
     "city": ["Walnut Creek"],
