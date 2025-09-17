@@ -61,6 +61,14 @@ const dropdownCities = dropdownCityNames
   .map(cityName => project_cities.find(city => city.name === cityName))
   .filter((city): city is typeof project_cities[number] => Boolean(city));
 
+// Music cities - cities with playlists  
+const musicCityNames = ["Berkeley", "Mumbai", "Singapore", "Sydney", "Christchurch", "London"];
+
+// Get music cities from project_cities array  
+const musicCities = musicCityNames
+  .map(cityName => project_cities.find(city => city.name === cityName))
+  .filter((city): city is typeof project_cities[number] => Boolean(city));
+
 mapboxgl.accessToken = "pk.eyJ1IjoiYXRtaWthcGFpMTMiLCJhIjoiY21idHR4eTJpMDdhMjJsb20zNmZheTZ6ayJ9.d_bQSBzesyiCUMA-YHRoIA";
 
 interface MapboxGlobeProps {
@@ -85,6 +93,7 @@ export default function MapboxGlobe({ selectedCity, onCitySelect }: MapboxGlobeP
   const [showPitchControl, setShowPitchControl] = useState(false);
   const [showTour, setShowTour] = useState(false);
   const [currentTourIndex, setCurrentTourIndex] = useState(0);
+  const [showMusicDropdown, setShowMusicDropdown] = useState(false);
   const dropdownRef = useRef<HTMLDivElement>(null);
   const [isMobile, setIsMobile] = useState(window.innerWidth <= 600);
   const [customPopupData, setCustomPopupData] = useState<{
@@ -161,6 +170,59 @@ export default function MapboxGlobe({ selectedCity, onCitySelect }: MapboxGlobeP
       setCurrentTourIndex(0);
       // Start tour with first city
       startTourCity(0);
+    } else {
+      // End tour - close any popups and enable rotation
+      if (activePopup.current) {
+        activePopup.current.remove();
+        activePopup.current = null;
+      }
+      rotationEnabled.current = true;
+    }
+  };
+
+  const handleMusicToggle = () => {
+    console.log('Music dropdown toggle clicked, current state:', showMusicDropdown);
+    setShowMusicDropdown(!showMusicDropdown);
+    console.log('Music dropdown state set to:', !showMusicDropdown);
+  };
+
+  const handleMusicCitySelect = (city: typeof project_cities[number]) => {
+    if (mapRef.current) {
+      // Close any existing popups
+      if (activePopup.current) {
+        activePopup.current.remove();
+        activePopup.current = null;
+      }
+
+      rotationEnabled.current = false;
+      if (onCitySelect) {
+        onCitySelect(city.name);
+      }
+      
+      // Set up moveend listener for popup before starting animation
+      const showPopup = () => {
+        // Open popup for selected city after flyTo animation completes
+        createCityPopup(city.name, [city.longitude, city.latitude]);
+        // Remove the listener after use
+        mapRef.current?.off('moveend', showPopup);
+      };
+      
+      // Listen for moveend event (when flyTo animation completes)
+      mapRef.current.on('moveend', showPopup);
+
+      // Fly to the selected city (matching regular city dropdown)
+      mapRef.current.flyTo({
+        center: [city.longitude, city.latitude],
+        zoom: 11,
+        speed: 2.0,
+        curve: 1.40,
+        easing(t) {
+          return t;
+        }
+      });
+
+      // Close the music dropdown
+      setShowMusicDropdown(false);
     }
   };
 
@@ -181,7 +243,7 @@ export default function MapboxGlobe({ selectedCity, onCitySelect }: MapboxGlobeP
       
         // Set up moveend listener for popup
         const showPopup = () => {
-          createCityPopup(city.name, [city.longitude, city.latitude]);
+          createCityPopup(city.name, [city.longitude, city.latitude], true);
           mapRef.current?.off('moveend', showPopup);
         };
       
@@ -214,7 +276,7 @@ export default function MapboxGlobe({ selectedCity, onCitySelect }: MapboxGlobeP
   };
 
 
-  const createCityPopup = (cityName: string, lngLat: [number, number]) => {
+  const createCityPopup = (cityName: string, lngLat: [number, number], isTour: boolean = false) => {
     const isMobile = window.innerWidth <= 600;
     if (isMobile) return;
 
@@ -242,7 +304,49 @@ export default function MapboxGlobe({ selectedCity, onCitySelect }: MapboxGlobeP
       popupContent += `<div style='font-size:0.7rem;color:#bdbdbd;margin-bottom:3px;text-align:center; font-style:italic;'><em>${cityData.date || ''}</em></div>`;
       popupContent += `<div style='font-size:0.5rem;color:#e0e0e0;text-align:center; font-style:italic;line-height:1.2;'>${cityData.place_description || ''}</div>`;
       if (cityData.playlist) {
-        popupContent += `<div class='popup-playlist' style=' font-size:0.5rem;'><a href='${cityData.playlist}' target='_blank' rel='noopener noreferrer'>my playlist</a></div>`;
+        // Check if there's an embed URL or if we can extract playlist ID for embedding
+        const hasEmbedUrl = cityData.playlist_embed;
+        const playlistId = cityData.playlist.match(/playlist\/([a-zA-Z0-9]+)/)?.[1];
+        
+        if (hasEmbedUrl || playlistId) {
+          // Create expandable playlist embed
+          const embedSrc = hasEmbedUrl || `https://open.spotify.com/embed/playlist/${playlistId}?utm_source=generator&theme=0`;
+          
+          popupContent += `<div class='popup-playlist' style='margin-top: 10px;'>
+            <button 
+              onclick="
+                const playlist = this.nextElementSibling;
+                if (playlist.style.display === 'none' || playlist.style.display === '') {
+                  playlist.style.display = 'block';
+                  this.innerHTML = 'my playlist ▲';
+                } else {
+                  playlist.style.display = 'none';
+                  this.innerHTML = 'my playlist ▼';
+                }
+              " 
+              style='font-size:0.6rem;color:#a5d6fa;margin-bottom:8px;text-align:center;font-weight:500;font-style:italic;background:none;border:none;cursor:pointer;padding:4px 8px;border-radius:6px;transition:background-color 0.2s;display:block;width:auto;margin:0 auto 8px auto;outline:none;box-shadow:none;'
+              onmouseover="this.style.backgroundColor='rgba(165, 214, 250, 0.1)'"
+              onmouseout="this.style.backgroundColor='transparent'"
+            >
+              my playlist ▼
+            </button>
+            <div style='display:none;margin-top:8px;'>
+              <iframe 
+                style="border-radius:12px" 
+                src="${embedSrc}" 
+                width="100%" 
+                height="152" 
+                frameBorder="0" 
+                allowfullscreen="" 
+                allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" 
+                loading="lazy">
+              </iframe>
+            </div>
+          </div>`;
+        } else {
+          // Fallback to simple link if no embed is possible
+          popupContent += `<div class='popup-playlist' style=' font-size:0.5rem;'><a href='${cityData.playlist}' target='_blank' rel='noopener noreferrer'>my playlist</a></div>`;
+        }
       }
       popupContent += `</div>`;
     }
@@ -251,11 +355,14 @@ export default function MapboxGlobe({ selectedCity, onCitySelect }: MapboxGlobeP
     // Pause rotation when popup opens
     rotationEnabled.current = false;
     
-    // Offset the popup slightly to the right of the marker
-    const offsetLngLat: [number, number] = [lngLat[0] - 0.005, lngLat[1]];
+    // Adjust offset based on tour mode - closer to marker for tour
+    const offsetLngLat: [number, number] = isTour 
+      ? [lngLat[0] - 0.001, lngLat[1]] // Closer to the right for tour mode
+      : [lngLat[0] - 0.005, lngLat[1]]; // Regular offset for normal mode
     
-    // Use larger width if there's an image
-    const popupWidth = cityData?.image ? '350px' : '250px';
+    // Use larger width if there's an image or if there's a playlist embed
+    const hasPlaylistEmbed = cityData?.playlist_embed || (cityData?.playlist && cityData.playlist.match(/playlist\/([a-zA-Z0-9]+)/));
+    const popupWidth = cityData?.image || hasPlaylistEmbed ? '350px' : '250px';
     
     const popup = new mapboxgl.Popup({ maxWidth: popupWidth, anchor: 'right'})
       .setLngLat(offsetLngLat)
@@ -397,17 +504,18 @@ export default function MapboxGlobe({ selectedCity, onCitySelect }: MapboxGlobeP
     const handleClickOutside = (event: MouseEvent) => {
       if (dropdownRef.current && !dropdownRef.current.contains(event.target as Node)) {
         setShowCityDropdown(false);
+        setShowMusicDropdown(false);
       }
     };
 
-    if (showCityDropdown) {
+    if (showCityDropdown || showMusicDropdown) {
       document.addEventListener('mousedown', handleClickOutside);
     }
 
     return () => {
       document.removeEventListener('mousedown', handleClickOutside);
     };
-  }, [showCityDropdown]);
+  }, [showCityDropdown, showMusicDropdown]);
 
   // Handle window resize for mobile detection
   useEffect(() => {
@@ -447,7 +555,7 @@ export default function MapboxGlobe({ selectedCity, onCitySelect }: MapboxGlobeP
           // Use setAttribute to force CSS with !important
           navControl.setAttribute('style', `
             position: absolute !important;
-            top: 176px !important;
+            top: 231px !important;
             left: 12px !important;
             right: auto !important;
             bottom: auto !important;
@@ -861,6 +969,27 @@ export default function MapboxGlobe({ selectedCity, onCitySelect }: MapboxGlobeP
                 e.currentTarget.style.transform = "scale(1)";
               }}
             />
+
+            {/* Music Icon */}
+            <img 
+              src="/assets/map-music.png" 
+              alt="Music" 
+              onClick={handleMusicToggle}
+              style={{
+                maxWidth: "45px",
+                height: "auto",
+                borderRadius: "5px",
+                cursor: "pointer",
+                transition: "transform 0.2s ease, box-shadow 0.2s ease",
+                marginLeft: "4px"
+              }}
+              onMouseEnter={(e) => {
+                e.currentTarget.style.transform = "scale(1.05)";
+              }}
+              onMouseLeave={(e) => {
+                e.currentTarget.style.transform = "scale(1)";
+              }}
+            />
             
           </div>
         
@@ -925,6 +1054,68 @@ export default function MapboxGlobe({ selectedCity, onCitySelect }: MapboxGlobeP
               ))}
             </div>
           )}
+
+          {/* Music Dropdown Menu */}
+          {showMusicDropdown && (
+            <div style={{
+              position: "absolute",
+              top: "119px", // Position below the music icon
+              left: "65px",
+              background: "rgba(0, 0, 0, 0.8)",
+              borderRadius: "8px",
+              boxShadow: "none",
+              padding: "5px 0",
+              minWidth: "150px",
+              borderTop: "1px solid rgba(255, 255, 255, 0.1)",
+              borderBottom: "1px solid rgba(255, 255, 255, 0.1)",
+              borderLeft: "1px solid rgba(255, 255, 255, 0.1)",
+              borderRight: "1px solid rgba(255, 255, 255, 0.1)",
+              overflow: "hidden",
+              animation: "fadeInRight 0.3s ease-out",
+              zIndex: 1001
+            }}>
+              <div style={{
+                fontSize: "0.9rem",
+                fontWeight: "bold",
+                color: "#e0e0e0",
+                fontFamily: "'Courier New', Courier, monospace",
+                textTransform: "uppercase",
+                padding: "4px 12px",
+                borderBottom: "1px solid rgba(255, 255, 255, 0.1)",
+                marginBottom: "0px"
+              }}>
+                My Playlists:
+              </div>
+              {musicCities.map((city) => (
+                <div
+                  key={city.id}
+                  onClick={() => handleMusicCitySelect(city)}
+                  style={{
+                    padding: "2px 12px",
+                    cursor: "pointer",
+                    fontSize: "0.9rem",
+                    color: "#e0e0e0",
+                    fontFamily: "'Courier New', Courier, monospace",
+                    textTransform: "uppercase",
+                    fontWeight: "bold",
+                    transition: "background-color 0.2s ease",
+                    borderRadius: "0",
+                    margin: "0"
+                  }}
+                  onMouseEnter={(e) => {
+                    e.currentTarget.style.backgroundColor = "rgba(165, 214, 250, 0.2)";
+                    e.currentTarget.style.color = "#ffffff";
+                  }}
+                  onMouseLeave={(e) => {
+                    e.currentTarget.style.backgroundColor = "transparent";
+                    e.currentTarget.style.color = "#e0e0e0";
+                  }}
+                >
+                  {city.name}
+                </div>
+              ))}
+            </div>
+          )}
         </div>
       )}
 
@@ -932,7 +1123,7 @@ export default function MapboxGlobe({ selectedCity, onCitySelect }: MapboxGlobeP
       {!isMobile && (
         <div style={{
           position: "absolute",
-          top: "125px",
+          top: "180px",
           left: "10px",
           zIndex: 1000
         }}>
@@ -964,7 +1155,7 @@ export default function MapboxGlobe({ selectedCity, onCitySelect }: MapboxGlobeP
       {showPitchControl && !isMobile && (
         <div style={{
           position: "absolute",
-          top: "125px",
+          top: "180px",
           left: "65px",
           background: "rgba(0, 0, 0, 0.8)",
           borderRadius: "8px",

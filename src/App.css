@@ -1001,3 +1001,20 @@ footer {
   color: #007bff;
   font-style: italic;
 }
+
+/* Hide scrollbar in disclaimer popup */
+.disclaimer-content {
+  scrollbar-width: none; /* Firefox */
+  -ms-overflow-style: none;  /* IE and Edge */
+}
+.disclaimer-content::-webkit-scrollbar {
+  display: none; /* Chrome, Safari and Opera */
+}
+
+.disclaimer-controls {
+  scrollbar-width: none; /* Firefox */
+  -ms-overflow-style: none;  /* IE and Edge */
+}
+.disclaimer-controls::-webkit-scrollbar {
+  display: none; /* Chrome, Safari and Opera */
+}

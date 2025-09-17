@@ -129,7 +129,7 @@ function App() {
         <div style={{ fontSize: '3rem', flexShrink: 0 }}>🌍</div>
 
         {/* Middle: Dynamic Content */}
-        <div style={{ flex: 1, display: 'flex', flexDirection: 'column', justifyContent: 'center', width: '100%', padding: '10px 10px 0 10px' }}>
+        <div className="disclaimer-content" style={{ flex: 1, display: 'flex', flexDirection: 'column', justifyContent: 'center', width: '100%', padding: '10px 10px 0 10px', overflowY: 'auto', maxHeight: '300px' }}>
           {/* Mobile: Only show page 1 content */}
           {isMobile ? (
             <>
@@ -164,17 +164,17 @@ function App() {
 
               {disclaimerPage === 2 && (
                 <>
-                  <div style={{ fontSize: '1rem', lineHeight: '1.4', marginBottom: 5, textAlign: 'center', marginTop: 0 }}>
+                  <div style={{ fontSize: '1rem', lineHeight: '1.4', marginBottom: 5, textAlign: 'center', marginTop: 0, fontStyle: 'italic' }}>
                     Here are the controls on the map:
                   </div>
                   
-                  <div style={{ display: 'flex', flexDirection: 'column', gap: '16px', marginBottom: '20px' }}>
+                  <div className="disclaimer-controls" style={{ display: 'flex', flexDirection: 'column', gap: '16px', marginBottom: '20px', overflowY: 'auto', maxHeight: '250px' }}>
                     {/* Map Cities Control */}
                     <div style={{ display: 'flex', alignItems: 'center', gap: '12px', padding: '12px', background: 'rgba(255, 255, 255, 0.05)', borderRadius: '8px', border: '1px solid rgba(165, 214, 250, 0.2)' }}>
                       <img src="/assets/map-cities.png" alt="Cities" style={{ width: '32px', height: '32px', borderRadius: '4px' }} />
                       <div style={{ textAlign: 'center', flex: 1 }}>
                         <div style={{ fontSize: '0.9rem', fontWeight: '600', color: '#a5d6fa', marginBottom: '4px' }}>Cities Dropdown</div>
-                        <div style={{ fontSize: '0.8rem', color: '#e0e0e0' }}>Click to see a list of cities and jump directly to any location</div>
+                        <div style={{ fontSize: '1rem', lineHeight: '1.4' }}>Click to see a list of cities and jump directly to any location</div>
                       </div>
                     </div>
 
@@ -183,7 +183,7 @@ function App() {
                       <img src="/assets/map-tour.png" alt="Tour" style={{ width: '32px', height: '32px', borderRadius: '4px' }} />
                       <div style={{ textAlign: 'center', flex: 1 }}>
                         <div style={{ fontSize: '0.9rem', fontWeight: '600', color: '#a5d6fa', marginBottom: '4px' }}>Guided Tour</div>
-                        <div style={{ fontSize: '0.8rem', color: '#e0e0e0' }}>Take a guided tour of my career thus far</div>
+                        <div style={{ fontSize: '1rem', lineHeight: '1.4' }}>Take a guided tour of my career thus far</div>
                       </div>
                     </div>
 
@@ -192,8 +192,17 @@ function App() {
                       <img src="/assets/map-3d.png" alt="3D" style={{ width: '32px', height: '32px', borderRadius: '4px' }} />
                       <div style={{ textAlign: 'center', flex: 1 }}>
                         <div style={{ fontSize: '0.9rem', fontWeight: '600', color: '#a5d6fa', marginBottom: '4px' }}>3D Toggle</div>
-                        <div style={{ fontSize: '0.8rem', color: '#e0e0e0' }}>Switch between 2D and 3D view </div>
+                        <div style={{ fontSize: '1rem', lineHeight: '1.4' }}>Switch between 2D and 3D view</div>
                       </div>
+                    </div>
+
+                    {/* Map Music Control */}
+                    <div style={{ display: 'flex', alignItems: 'center', gap: '12px', padding: '12px', background: 'rgba(255, 255, 255, 0.05)', borderRadius: '8px', border: '1px solid rgba(165, 214, 250, 0.2)' }}>
+                      <img src="/assets/map-music.png" alt="Music" style={{ width: '32px', height: '32px', borderRadius: '4px' }} />
+                        <div style={{ textAlign: 'center', flex: 1 }}>
+                          <div style={{ fontSize: '0.9rem', fontWeight: '600', color: '#a5d6fa', marginBottom: '4px' }}>My Curated Playlists</div>
+                          <div style={{ fontSize: '1rem', lineHeight: '1.4' }}>Explore curated playlists for each city!</div>
+                        </div>
                     </div>
                   </div>
                 </>
@@ -201,8 +210,12 @@ function App() {
 
               {disclaimerPage === 3 && (
                 <>
-                  <div style={{ fontSize: '1.4rem', fontWeight: 700, marginBottom: 20, color: '#a5d6fa' }}>
+                  <div style={{ fontSize: '1.4rem', fontWeight: 700, marginBottom: 16, color: '#a5d6fa' }}>
                     Ready to explore?
+                  </div>
+                  
+                  <div style={{ fontSize: '1rem', lineHeight: '1.4', marginBottom: 24, textAlign: 'center', fontStyle: 'italic' }}>
+                    Take a journey through all the cities I have had the opportunity to live and work in!
                   </div>
                   
                   <div style={{ display: 'flex', justifyContent: 'center', marginBottom: '20px' }}>
@@ -229,7 +242,7 @@ function App() {
                         display: 'flex',
                         alignItems: 'center',
                         gap: '12px',
-                        padding: '16px 20px',
+                        padding: '12px 20px',
                         background: 'rgba(165, 214, 250, 0.2)',
                         borderRadius: '12px',
                         border: '2px solid rgba(165, 214, 250, 0.6)',
